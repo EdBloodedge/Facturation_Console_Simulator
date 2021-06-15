@@ -25,6 +25,7 @@ int main() {
 	char caracter;
 	int i= 0, j = 0;
 
+  //Inicio del programa
 	do {
 		i = 0;
 		system("cls");
@@ -53,6 +54,7 @@ int main() {
 			}
 		}
 
+    //Comprobación del usuario en la base de datos
 		if (strcmp(usuario, USUARIOS[i]) == 0 && strcmp(clave, CLAVE) == 0) {
 			ingresa = 1;
 
@@ -64,6 +66,7 @@ int main() {
 
 	} while (intento < MAX_INTENTOS && ingresa == 0);
 
+  //Usuario encontrado
 	if (ingresa == 1) {
 		printf("\n\n\tBienvenido al Sistema\n");
 
