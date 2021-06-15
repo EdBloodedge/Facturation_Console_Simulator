@@ -31,12 +31,13 @@ int main() {
   strcpy(USUARIOS[0].usuario, USUARIO);
   strcpy(USUARIOS[0].clave, CLAVE);
 
+
   char usuario[LONGITUD + 1]; //Variable temporal para guardar el usuario ingresado
   char clave[LONGCLAVE + 1]; //Variable temporal para guardar la clave ingresada
 	int intento = 0;
 	int ingresa = 0;
 	char caracter;
-	int i= 0, j = 0;
+	int i= 0, j = 0,SalirDefinifivo;
 
   //Inicio del programa
 
@@ -53,6 +54,7 @@ int main() {
 		gets(usuario);
 		printf("\n\t\t\t\tCLAVE: ");
 		while (caracter = getch()) {
+
 			if (caracter == TECLA_ENTER) {
 				clave[i] = '\0';
 				break;
@@ -72,6 +74,8 @@ int main() {
 			}
 		}
 
+
+
     //Comprobación del usuario en la base de datos
 		if (strcmp(usuario, USUARIOS[0].usuario) == 0 && strcmp(clave, USUARIOS[0].clave) == 0) {
 			ingresa = 1;
@@ -86,7 +90,6 @@ int main() {
 
   //Usuario encontrado
 	if (ingresa == 1) {
-	    sleep(1);
         system("cls");
 		printf("\n\n\t\t\t\t\tBienvenido al Sistema\n");
 
