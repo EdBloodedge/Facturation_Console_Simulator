@@ -18,7 +18,7 @@ int main() {
   int repetir;
 
   do{
-        fflush(stdin);
+
 
   system ("COLOR 3F");
 
@@ -40,14 +40,15 @@ int main() {
 	int i= 0, j = 0,SalirDefinifivo;
 
   //Inicio del programa
-
+do {
 
 		i = 0;
 		system("cls");
-		do {
+
 		printf("\t\t\t\t\t\t---------------------\n");
 		printf("\t\t\t\t\t\t|\t\t    |");
 		printf("\n\t\t\t\t\t\t| INICIO DE SESION  |");
+			fflush(stdin);
 		printf("\n\t\t\t\t\t\t|                   |\n");
 		printf("\t\t\t\t\t\t---------------------\n");
 		printf("\n\t\t\t\tUSUARIO: ");
@@ -81,18 +82,15 @@ int main() {
 			ingresa = 1;
 
 		} else {
-			printf("\n\tUsuario y/o clave son incorrectos.\n\tPresione enter para continuar.\n");
+			printf("\n\tUsuario y/o clave son incorrectos\n");
 			intento++;
 			getchar();
-			system("CLS");
 		}
 
 	} while (intento < MAX_INTENTOS && ingresa == 0);
 
   //Usuario encontrado
 	if (ingresa == 1) {
-    printf("\n\n\tAcceso otorgado.");
-	    sleep(1);
         system("cls");
 		printf("\n\n\t\t\t\t\tBienvenido al Sistema\n");
 
@@ -138,10 +136,10 @@ int main() {
 
 	} else {
 		printf("\n\n\tHa sobrepasado el numero maximo de intentos permitidos\n");
-		repetir = 0;
 	}
 
  } while (repetir);
 
 	return 0;
 }
+
