@@ -42,7 +42,7 @@ struct Usuario{
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-int crear(struct Usuario A, a){
+int crear(struct Usuario A, int a){
 
   system("CLS");
   printf("Ingrese los siguientes datos.\n-EMISOR\nNombre de la empresa: ");
