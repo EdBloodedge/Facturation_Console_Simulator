@@ -44,38 +44,64 @@ struct Usuario{
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int crear(struct Usuario A, int a){
 
+  int copiar = 0;
 
   system("CLS");
-  printf("Ingrese los siguientes datos.\n-EMISOR\nNombre de la empresa: ");
-  fflush(stdin);
-  gets(A.facturas[a].nombreEmisor);
-  printf("RFC: ");
-  fflush(stdin);
-  gets(A.facturas[a].RFCEmisor);
-  printf("Domicilio\n-Calle: ");
-  fflush(stdin);
-  gets(A.facturas[a].domEmisor.calle);
-  printf("-N%cmero: ", 163);
-  fflush(stdin);
-  scanf("%d", &(A.facturas[a].domEmisor.numero));
-  printf("-Colonia: ");
-  fflush(stdin);
-  gets(A.facturas[a].domEmisor.colonia);
-  printf("-C%cdigo postal: ", 162);
-  fflush(stdin);
-  scanf("%d", &(A.facturas[a].domEmisor.codigoPostal));
-  printf("-Ciudad: ");
-  fflush(stdin);
-  gets(A.facturas[a].domEmisor.ciudad);
-  printf("-Estado o provincia: ");
-  fflush(stdin);
-  gets(A.facturas[a].domEmisor.estado);
-  printf("-Pa%cs: ", 161);
-  fflush(stdin);
-  gets(A.facturas[a].domEmisor.pais);
-  printf("R%cgimen fiscal: ", 130);
-  fflush(stdin);
-  gets(A.facturas[a].regimenEmisor);
+  if(a!=0){
+
+    printf("%cDesea usar los datos de emisor de la factura anterior?\n1.-S%c\nOtra tecla.- No\n", 168, 161);
+    scanf("d", &copiar);
+  }
+
+  printf("Ingrese los siguientes datos.\n");
+
+  if(copiar == 1){
+
+    strcpy(A.facturas[a].nombreEmisor, A.facturas[a-1].nombreEmisor);
+    strcpy(A.facturas[a].RFCEmisor, A.facturas[a-1].RFCEmisor);
+    strcpy(A.facturas[a].domEmisor.calle, A.facturas[a-1].domEmisor.calle);
+    strcpy(A.facturas[a].domEmisor.ciudad, A.facturas[a-1].domEmisor.ciudad);
+    strcpy(A.facturas[a].domEmisor.colonia, A.facturas[a-1].domEmisor.colonia);
+    strcpy(A.facturas[a].domEmisor.estado, A.facturas[a-1].domEmisor.estado);
+    strcpy(A.facturas[a].domEmisor.pais, A.facturas[a-1].domEmisor.pais);
+    strcpy(A.facturas[a].regimenEmisor, A.facturas[a-1].regimenEmisor);
+    A.facturas[a].domEmisor.numero = A.facturas[a-1].domEmisor.numero;
+    A.facturas[a].domEmisor.codigoPostal = A.facturas[a-1].domEmisor.codigoPostal;
+  } else {
+
+    system("CLS");
+    printf("-EMISOR\nNombre de la empresa: ");
+    fflush(stdin);
+    gets(A.facturas[a].nombreEmisor);
+    printf("RFC: ");
+    fflush(stdin);
+    gets(A.facturas[a].RFCEmisor);
+    printf("Domicilio\n-Calle: ");
+    fflush(stdin);
+    gets(A.facturas[a].domEmisor.calle);
+    printf("-N%cmero: ", 163);
+    fflush(stdin);
+    scanf("%d", &(A.facturas[a].domEmisor.numero));
+    printf("-Colonia: ");
+    fflush(stdin);
+    gets(A.facturas[a].domEmisor.colonia);
+    printf("-C%cdigo postal: ", 162);
+    fflush(stdin);
+    scanf("%d", &(A.facturas[a].domEmisor.codigoPostal));
+    printf("-Ciudad: ");
+    fflush(stdin);
+    gets(A.facturas[a].domEmisor.ciudad);
+    printf("-Estado o provincia: ");
+    fflush(stdin);
+    gets(A.facturas[a].domEmisor.estado);
+    printf("-Pa%cs: ", 161);
+    fflush(stdin);
+    gets(A.facturas[a].domEmisor.pais);
+    printf("R%cgimen fiscal: ", 130);
+    fflush(stdin);
+    gets(A.facturas[a].regimenEmisor);
+
+}
 
   system("CLS");
   printf("\n\n-RECEPTOR\nNombre de la empresa: ");
@@ -113,7 +139,6 @@ int crear(struct Usuario A, int a){
   printf("Cantidad: ");
   fflush(stdin);
   scanf("%d", &(A.facturas[a].cantidad));
-
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
