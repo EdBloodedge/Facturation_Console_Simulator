@@ -52,11 +52,11 @@ int crear(struct Usuario A, int a){
   printf("Domicilio\n-Calle: ");
   gets(A.facturas[a].domEmisor.calle);
   printf("-N%cmero: ", 163);
-  scanf("%d", $A.facturas[a].domEmisor.numero);
+  scanf("%d", &(A.facturas[a].domEmisor.numero));
   printf("-Colonia: ");
   gets(A.facturas[a].domEmisor.colonia);
   printf("-C%cdigo postal: ", 162);
-  scanf("%d", $A.facturas[a].domEmisor.codigoPostal);
+  scanf("%d", &(A.facturas[a].domEmisor.codigoPostal));
   printf("-Ciudad: ");
   gets(A.facturas[a].domEmisor.ciudad);
   printf("-Estado o provincia: ");
@@ -74,11 +74,11 @@ int crear(struct Usuario A, int a){
   printf("Domicilio\n-Calle: ");
   gets(A.facturas[a].domReceptor.calle);
   printf("-N%cmero: ", 163);
-  scanf("%d", $A.facturas[a].domReceptor.numero);
+  scanf("%d", &(A.facturas[a].domReceptor.numero));
   printf("-Colonia: ");
   gets(A.facturas[a].domReceptor.colonia);
   printf("-C%cdigo postal: ", 162);
-  scanf("%d", $A.facturas[a].domReceptor.codigoPostal);
+  scanf("%d", &(A.facturas[a].domReceptor.codigoPostal));
   printf("-Ciudad: ");
   gets(A.facturas[a].domReceptor.ciudad);
   printf("-Estado o provincia: ");
@@ -88,9 +88,9 @@ int crear(struct Usuario A, int a){
 
   system("CLS");
   printf("\n\n-DATOS DEL PRODUCTO\nClave: ");
-  scanf("%d", $A.facturas[a].clave);
+  scanf("%d", &(A.facturas[a].clave));
   printf("Cantidad: ");
-  scanf("%d", $A.facturas[a].cantidad);
+  scanf("%d", &(A.facturas[a].cantidad));
 
 
 }
