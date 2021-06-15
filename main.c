@@ -44,7 +44,7 @@ int main() {
 		printf("\t\t\t\t\t\t---------------------\n");
 		printf("\n\t\t\t\tUSUARIO: ");
 		gets(usuario);
-		printf("\tCLAVE: ");
+		printf("\n\t\t\t\tCLAVE: ");
 		while (caracter = getch()) {
 			if (caracter == TECLA_ENTER) {
 				clave[i] = '\0';
@@ -79,7 +79,9 @@ int main() {
 
   //Usuario encontrado
 	if (ingresa == 1) {
-		printf("\n\n\tBienvenido al Sistema\n");
+	    sleep(1);
+        system("cls");
+		printf("\n\n\t\t\t\t\tBienvenido al Sistema\n");
 
         printf("\n1)Salir del sistema\n");
         scanf("%d",&MenuPrincipal);
