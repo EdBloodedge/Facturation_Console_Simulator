@@ -16,10 +16,18 @@ int main() {
 
   int MenuPrincipal;
   system ("COLOR 3F");
-	char USUARIOS[NumUsers][LONGITUD + 1] = {USUARIO}; //arreglo de usuarios (convertir a arreglo de estructuras)
-	char CLAVES[NumUsers][LONGCLAVE + 1] = {CLAVE}; //arreglo de claves (añadir al arreglo de estructuras)
+
+  //Estructura de usuario.
+  struct Usuario{
+    char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20];
+  }USUARIOS[5]; //Arreglo de usuarios
+
+  //Asignación de datos del primer usuario
+  strcpy(USUARIOS[0].usuario, USUARIO);
+  strcpy(USUARIOS[0].clave, CLAVE);
+
   char usuario[LONGITUD + 1]; //Variable temporal para guardar el usuario ingresado
-  char clave[LONCLAVE + 1]; //Variable temporal para guardar la clave ingresada
+  char clave[LONGCLAVE + 1]; //Variable temporal para guardar la clave ingresada
 	int intento = 0;
 	int ingresa = 0;
 	char caracter;
@@ -55,7 +63,7 @@ int main() {
 		}
 
     //Comprobación del usuario en la base de datos
-		if (strcmp(usuario, USUARIOS[i]) == 0 && strcmp(clave, CLAVE) == 0) {
+		if (strcmp(usuario, USUARIOS[0].usuario) == 0 && strcmp(clave, USUARIOS[0].clave) == 0) {
 			ingresa = 1;
 
 		} else {
