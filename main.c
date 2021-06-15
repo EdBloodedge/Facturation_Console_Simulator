@@ -15,6 +15,11 @@
 int main() {
 
   int MenuPrincipal;
+  int repetir;
+
+  do{
+        fflush(stdin);
+
   system ("COLOR 3F");
 
   //Estructura de usuario.
@@ -34,9 +39,11 @@ int main() {
 	int i= 0, j = 0;
 
   //Inicio del programa
-	do {
+
+
 		i = 0;
 		system("cls");
+		do {
 		printf("\t\t\t\t\t\t---------------------\n");
 		printf("\t\t\t\t\t\t|\t\t    |");
 		printf("\n\t\t\t\t\t\t| INICIO DE SESION  |");
@@ -83,15 +90,43 @@ int main() {
         system("cls");
 		printf("\n\n\t\t\t\t\tBienvenido al Sistema\n");
 
-        printf("\n1)Salir del sistema\n");
+        printf("\n1)Crear Factura\n");
+        printf("\n2)Mostrar Factura\n");
+        printf("\n3)Enviar Factura\n");
+        printf("\n4)Eliminar Factura\n");
+        printf("\n5)Salir del sistema\n");
         scanf("%d",&MenuPrincipal);
 
         switch(MenuPrincipal){
         case 1:
 
-            printf(".........Saliendo del sistema..........\n");
+            printf("Crear Factura\n");
 
         break;
+
+        case 2:
+
+            printf("Mostrar Factura\n");
+
+        break;
+
+        case 3:
+
+            printf("Enviar Factura\n");
+
+        break;
+
+        case 4:
+
+            printf("Eliminar Factura\n");
+
+        break;
+
+        case 5:
+            MenuPrincipal==repetir;
+        break;
+
+
 
         }
 
@@ -99,7 +134,7 @@ int main() {
 		printf("\n\n\tHa sobrepasado el numero maximo de intentos permitidos\n");
 	}
 
-
+ } while (repetir);
 
 	return 0;
 }
