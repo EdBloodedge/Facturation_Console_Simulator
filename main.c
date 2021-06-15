@@ -240,7 +240,18 @@ int main() {
             do{
                 if (ingresa == 1) {
                     system("cls");
-                    printf("\n\n\t\t\t\t\t Bienvenido al Sistema de Facturaci%cn Electr%cnica\n",162, 162);//ó
+                    for(int i=0; i<=1; i++){
+                        system("cls");
+                        printf("\n\n\t\t\t\t\t\t\t ¡HOLA! (/^o^)/");
+                        sleep(1);
+                        system("cls");
+                        printf("\t\t\t\t     -------------------------------------------------------\n");
+                        printf("\t\t\t\t     |\t\t\t\t");
+                        printf("\t\t\t   |\n\t\t\t\t     |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica  |\n",162, 162);//ó
+                        printf("\t\t\t\t     |\t\t\t\t                           |\n");
+                        printf("\t\t\t\t     -------------------------------------------------------\n");
+                        sleep(1);
+                    }
 
                     printf("\n1)Crear Factura\n");
                     printf("\n2)Mostrar Factura\n");
