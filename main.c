@@ -77,15 +77,17 @@ int main() {
 			ingresa = 1;
 
 		} else {
-			printf("\n\tUsuario y/o clave son incorrectos\n");
+			printf("\n\tUsuario y/o clave son incorrectos.\n\tPresione enter para continuar.\n");
 			intento++;
 			getchar();
+			system("CLS");
 		}
 
 	} while (intento < MAX_INTENTOS && ingresa == 0);
 
   //Usuario encontrado
 	if (ingresa == 1) {
+    printf("\n\n\tAcceso otorgado.");
 	    sleep(1);
         system("cls");
 		printf("\n\n\t\t\t\t\tBienvenido al Sistema\n");
@@ -132,6 +134,7 @@ int main() {
 
 	} else {
 		printf("\n\n\tHa sobrepasado el numero maximo de intentos permitidos\n");
+		repetir = 0;
 	}
 
  } while (repetir);
