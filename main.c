@@ -44,52 +44,74 @@ struct Usuario{
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int crear(struct Usuario A, int a){
 
+
   system("CLS");
   printf("Ingrese los siguientes datos.\n-EMISOR\nNombre de la empresa: ");
+  fflush(stdin);
   gets(A.facturas[a].nombreEmisor);
   printf("RFC: ");
+  fflush(stdin);
   gets(A.facturas[a].RFCEmisor);
   printf("Domicilio\n-Calle: ");
+  fflush(stdin);
   gets(A.facturas[a].domEmisor.calle);
   printf("-N%cmero: ", 163);
+  fflush(stdin);
   scanf("%d", &(A.facturas[a].domEmisor.numero));
   printf("-Colonia: ");
+  fflush(stdin);
   gets(A.facturas[a].domEmisor.colonia);
   printf("-C%cdigo postal: ", 162);
+  fflush(stdin);
   scanf("%d", &(A.facturas[a].domEmisor.codigoPostal));
   printf("-Ciudad: ");
+  fflush(stdin);
   gets(A.facturas[a].domEmisor.ciudad);
   printf("-Estado o provincia: ");
+  fflush(stdin);
   gets(A.facturas[a].domEmisor.estado);
   printf("-Pa%cs: ", 161);
+  fflush(stdin);
   gets(A.facturas[a].domEmisor.pais);
   printf("R%cgimen fiscal: ", 130);
+  fflush(stdin);
   gets(A.facturas[a].regimenEmisor);
 
   system("CLS");
   printf("\n\n-RECEPTOR\nNombre de la empresa: ");
+  fflush(stdin);
   gets(A.facturas[a].nombreReceptor);
   printf("RFC: ");
+  fflush(stdin);
   gets(A.facturas[a].RFCReceptor);
   printf("Domicilio\n-Calle: ");
+  fflush(stdin);
   gets(A.facturas[a].domReceptor.calle);
   printf("-N%cmero: ", 163);
+  fflush(stdin);
   scanf("%d", &(A.facturas[a].domReceptor.numero));
   printf("-Colonia: ");
+  fflush(stdin);
   gets(A.facturas[a].domReceptor.colonia);
   printf("-C%cdigo postal: ", 162);
+  fflush(stdin);
   scanf("%d", &(A.facturas[a].domReceptor.codigoPostal));
   printf("-Ciudad: ");
+  fflush(stdin);
   gets(A.facturas[a].domReceptor.ciudad);
   printf("-Estado o provincia: ");
+  fflush(stdin);
   gets(A.facturas[a].domReceptor.estado);
   printf("-Pa%cs: ", 161);
+  fflush(stdin);
   gets(A.facturas[a].domReceptor.pais);
 
   system("CLS");
   printf("\n\n-DATOS DEL PRODUCTO\nClave: ");
+  fflush(stdin);
   scanf("%d", &(A.facturas[a].clave));
   printf("Cantidad: ");
+  fflush(stdin);
   scanf("%d", &(A.facturas[a].cantidad));
 
 
