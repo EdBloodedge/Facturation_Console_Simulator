@@ -37,9 +37,12 @@ int main() {
 	do {
 		i = 0;
 		system("cls");
-		printf("\n\t\t\tINICIO DE SESION\n");
-		printf("\t\t\t---------------\n");
-		printf("\n\tUSUARIO: ");
+		printf("\t\t\t\t\t\t---------------------\n");
+		printf("\t\t\t\t\t\t|\t\t    |");
+		printf("\n\t\t\t\t\t\t| INICIO DE SESION  |");
+		printf("\n\t\t\t\t\t\t|                   |\n");
+		printf("\t\t\t\t\t\t---------------------\n");
+		printf("\n\t\t\t\tUSUARIO: ");
 		gets(usuario);
 		printf("\tCLAVE: ");
 		while (caracter = getch()) {
