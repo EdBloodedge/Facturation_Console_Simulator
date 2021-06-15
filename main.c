@@ -110,7 +110,7 @@ int main() {
             do{
                 if (ingresa == 1) {
                     system("cls");
-                    printf("\n\n\t\t\t\t\tBienvenido al Sistema\n");
+                    printf("\n\n\t\t\t\t\t Bienvenido al Sistema de Facturaci%cn Electr%cnica\n",162, 162);//ó
 
                     printf("\n1)Crear Factura\n");
                     printf("\n2)Mostrar Factura\n");
