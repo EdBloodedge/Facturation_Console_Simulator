@@ -7,19 +7,23 @@
 
 #define TECLA_ENTER 13
 #define TECLA_BACKSPACE 8
-#define LONGITUD 20
-#define LONGCLAVE 15
+#define NumUsers 5 //Número de usuarios
+#define LONGITUD 20 //Longitud usuario
+#define LONGCLAVE 15 //Longitud clave
 #define MAX_INTENTOS 3
 
 int main() {
-    int MenuPrincipal;
-    system ("COLOR 3F");
-	char usuario[LONGITUD + 1];
-	char clave[LONGCLAVE + 1];
+
+  int MenuPrincipal;
+  system ("COLOR 3F");
+	char USUARIOS[NumUsers][LONGITUD + 1] = {USUARIO}; //arreglo de usuarios (convertir a arreglo de estructuras)
+	char CLAVES[NumUsers][LONGCLAVE + 1] = {CLAVE}; //arreglo de claves (añadir al arreglo de estructuras)
+  char usuario[LONGITUD + 1]; //Variable temporal para guardar el usuario ingresado
+  char clave[LONCLAVE + 1]; //Variable temporal para guardar la clave ingresada
 	int intento = 0;
 	int ingresa = 0;
 	char caracter;
-	int i = 0;
+	int i= 0, j = 0;
 
 	do {
 		i = 0;
@@ -49,7 +53,7 @@ int main() {
 			}
 		}
 
-		if (strcmp(usuario, USUARIO) == 0 && strcmp(clave, CLAVE) == 0) {
+		if (strcmp(usuario, USUARIOS[i]) == 0 && strcmp(clave, CLAVE) == 0) {
 			ingresa = 1;
 
 		} else {
