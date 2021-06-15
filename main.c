@@ -205,7 +205,7 @@ int main() {
                     switch(MenuPrincipal){
                     case 1:
 
-                        crear(USUARIOS[0]);
+                        crear(USUARIOS[0], 0);
                         sleep(1);
 
                     break;
