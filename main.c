@@ -45,7 +45,53 @@ struct Usuario{
 int crear(struct Usuario A, a){
 
   system("CLS");
-  printf("Ingrese los siguientes datos:.\n");
+  printf("Ingrese los siguientes datos.\n-EMISOR\nNombre de la empresa: ");
+  gets(A.facturas[a].nombreEmisor);
+  printf("RFC: ");
+  gets(A.facturas[a].RFCEmisor);
+  printf("Domicilio\n-Calle: ");
+  gets(A.facturas[a].domEmisor.calle);
+  printf("-N%cmero: ", 163);
+  scanf("%d", $A.facturas[a].domEmisor.numero);
+  printf("-Colonia: ");
+  gets(A.facturas[a].domEmisor.colonia);
+  printf("-C%cdigo postal: ", 162);
+  scanf("%d", $A.facturas[a].domEmisor.codigoPostal);
+  printf("-Ciudad: ");
+  gets(A.facturas[a].domEmisor.ciudad);
+  printf("-Estado o provincia: ");
+  gets(A.facturas[a].domEmisor.estado);
+  printf("-Pa%cs: ", 161);
+  gets(A.facturas[a].domEmisor.pais);
+  printf("R%cgimen fiscal: ", 130);
+  gets(A.facturas[a].regimenEmisor);
+
+  system("CLS");
+  printf("\n\n-RECEPTOR\nNombre de la empresa: ");
+  gets(A.facturas[a].nombreReceptor);
+  printf("RFC: ");
+  gets(A.facturas[a].RFCReceptor);
+  printf("Domicilio\n-Calle: ");
+  gets(A.facturas[a].domReceptor.calle);
+  printf("-N%cmero: ", 163);
+  scanf("%d", $A.facturas[a].domReceptor.numero);
+  printf("-Colonia: ");
+  gets(A.facturas[a].domReceptor.colonia);
+  printf("-C%cdigo postal: ", 162);
+  scanf("%d", $A.facturas[a].domReceptor.codigoPostal);
+  printf("-Ciudad: ");
+  gets(A.facturas[a].domReceptor.ciudad);
+  printf("-Estado o provincia: ");
+  gets(A.facturas[a].domReceptor.estado);
+  printf("-Pa%cs: ", 161);
+  gets(A.facturas[a].domReceptor.pais);
+
+  system("CLS");
+  printf("\n\n-DATOS DEL PRODUCTO\nClave: ");
+  scanf("%d", $A.facturas[a].clave);
+  printf("Cantidad: ");
+  scanf("%d", $A.facturas[a].cantidad);
+
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
