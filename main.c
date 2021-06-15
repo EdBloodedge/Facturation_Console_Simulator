@@ -37,6 +37,7 @@ struct factura{
 //Usuario.
 struct Usuario{
   char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20];
+  int cantFacturas = 0;
   struct factura facturas[LimiteFact];
 }USUARIOS[NumUsers]; //Arreglo de usuarios
 
@@ -218,8 +219,10 @@ int main() {
 
                 for(j=0; j<= NumUsers; j++){
 
-                  if (strcmp(usuario, USUARIOS[j].usuario) == 0 && strcmp(clave, USUARIOS[j].clave) == 0)
+                  if (strcmp(usuario, USUARIOS[j].usuario) == 0 && strcmp(clave, USUARIOS[j].clave) == 0){
                       ingresa = 1;
+                      break;
+                  }
 
                 }
 
@@ -263,7 +266,7 @@ int main() {
                     switch(MenuPrincipal){
                     case 1:
 
-                        crear(USUARIOS[0], 0);
+                        crear(USUARIOS[j], USUARIOS[j].cantFacturas);
                         sleep(1);
 
                     break;
