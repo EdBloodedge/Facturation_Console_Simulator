@@ -4,6 +4,8 @@
 
 #define USUARIO "Usuario1"
 #define CLAVE "contra1"
+#define USUARIO2 "Jaimito"
+#define CLAVE2 "tangamandapio"
 
 #define TECLA_ENTER 13
 #define TECLA_BACKSPACE 8
@@ -36,6 +38,9 @@ int main() {
   //Asignación de datos del primer usuario
   strcpy(USUARIOS[0].usuario, USUARIO);
   strcpy(USUARIOS[0].clave, CLAVE);
+  strcpy(USUARIOS[1].usuario, USUARIO2);
+  strcpy(USUARIOS[1].clave, CLAVE2);
+
 
     do{
         //Inicio del programa
@@ -80,15 +85,21 @@ int main() {
                 }
 
                 //Comprobación del usuario en la base de datos
-                if (strcmp(usuario, USUARIOS[0].usuario) == 0 && strcmp(clave, USUARIOS[0].clave) == 0) {
-                    ingresa = 1;
 
-                } else {
+                for(j=0; j<= NumUsers; j++){
+
+                  if (strcmp(usuario, USUARIOS[j].usuario) == 0 && strcmp(clave, USUARIOS[j].clave) == 0)
+                      ingresa = 1;
+
+                }
+
+                if(ingresa!=1) {
                     printf("\n\tUsuario y/o clave son incorrectos.\n\tPresione enter para continuar.\n");
                     intento++;
                     getchar();
                     system("CLS");
                 }
+
             } while (intento < MAX_INTENTOS && ingresa == 0);
             intento = 0;
             //Usuario encontrado
