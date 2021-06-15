@@ -12,9 +12,53 @@
 #define NumUsers 5 //Número de usuarios
 #define LONGITUD 20 //Longitud usuario
 #define LONGCLAVE 15 //Longitud clave
+#define LimiteFact 20 //Cantidad maxima de facturas por usuario
 #define MAX_INTENTOS 3
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIALIZACIÓN DE ESTRUCTURAS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//Domicilio
+struct domicilio{
+
+  char calle[20], colonia[20], ciudad[20], estado[20], pais[20];
+  int numero, codigoPostal;
+
+};
+
+//Facturas
+struct factura{
+
+  char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[11], regimenEmisor[20], nombreReceptor[30], RFCReceptor[11];
+  int clave, cantidad;
+  struct domicilio domEmisor, domReceptor;
+
+
+};
+
+//Usuario.
+struct Usuario{
+  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20];
+  struct factura facturas[LimiteFact];
+}USUARIOS[NumUsers]; //Arreglo de usuarios
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+int crear(struct Usuario A, a){
+
+  system("CLS");
+  printf("Ingrese los siguientes datos:.\n");
+
+}
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENVIAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ELIMINAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO MAIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 int main() {
+
+  system ("COLOR 3F");
 
   int MenuPrincipal;
   int repetir;
@@ -27,13 +71,6 @@ int main() {
   int ingresa = 0;
   char caracter;
   int i= 0, j = 0,SalirDefinifivo;
-
-  system ("COLOR 3F");
-
-  //Estructura de usuario.
-  struct Usuario{
-    char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20];
-  }USUARIOS[5]; //Arreglo de usuarios
 
   //Asignación de datos del primer usuario
   strcpy(USUARIOS[0].usuario, USUARIO);
@@ -122,28 +159,28 @@ int main() {
                     switch(MenuPrincipal){
                     case 1:
 
-                        printf("Crear Factura\n");
+                        crear(USUARIOS[0]);
                         sleep(1);
 
                     break;
 
                     case 2:
 
-                        printf("Mostrar Factura\n");
+                        //mostrar();
                         sleep(1);
 
                     break;
 
                     case 3:
 
-                        printf("Enviar Factura\n");
+                        //enviar();
                         sleep(1);
 
                     break;
 
                     case 4:
 
-                        printf("Eliminar Factura\n");
+                        //eliminar();
                         sleep(1);
 
                     break;

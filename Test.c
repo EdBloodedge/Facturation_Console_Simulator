@@ -2,17 +2,23 @@
 #include <string.h>
 #include <stdlib.h>
 
+struct libro{
+  char a;
+};
+
+struct estudiante{
+
+  struct libro novela;
+
+}pepito;
+
 int main(){
 
-  int i;
-  for(i=0; i<=10; i++){
-    system("cls");
-    printf("(/^o^)/");
-    sleep(1);
-    system("cls");
-    printf("\(^o^\)");
-    sleep(1);
-	}
+  char a = 's';
+
+  pepito.novela.a = a;
+
+  printf("%c", pepito.novela);
 
 
 	return 0;
