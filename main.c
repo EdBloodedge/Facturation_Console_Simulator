@@ -37,8 +37,8 @@ struct factura{
 //Usuario.
 struct Usuario{
   char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20];
-  int cantFacturas = 0;
   struct factura facturas[LimiteFact];
+  int cantFacturas;
 }USUARIOS[NumUsers]; //Arreglo de usuarios
 
 
@@ -171,6 +171,7 @@ int main() {
   strcpy(USUARIOS[0].clave, CLAVE);
   strcpy(USUARIOS[1].usuario, USUARIO2);
   strcpy(USUARIOS[1].clave, CLAVE2);
+  USUARIOS[0].cantFacturas = 0;
 
 
     do{
@@ -243,7 +244,7 @@ int main() {
             do{
                 if (ingresa == 1) {
                     system("cls");
-                    for(int i=0; i<=1; i++){
+                    for(i=0; i<=1; i++){
                         system("cls");
                         printf("\n\n\t\t\t\t\t\t\t ¡HOLA! (/^o^)/");
                         sleep(1);
@@ -267,6 +268,7 @@ int main() {
                     case 1:
 
                         crear(USUARIOS[j], USUARIOS[j].cantFacturas);
+                        USUARIOS[j].cantFacturas++;
                         sleep(1);
 
                     break;
