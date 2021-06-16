@@ -165,7 +165,7 @@ int main() {
   int ingresa = 0;
   char caracter;
   int i= 0, j = 0,SalirDefinifivo;
-  
+
   struct Usuario USUARIOS[NumUsers];
 
   //Asignación de datos del primer usuario
@@ -270,7 +270,7 @@ int main() {
                     case 1:
 
                         crear(&(USUARIOS[j]), USUARIOS[j].cantFacturas);
-                        USUARIOS[j].cantFacturas++;
+                        (USUARIOS[j].cantFacturas)++;
                         sleep(1);
 
                     break;
