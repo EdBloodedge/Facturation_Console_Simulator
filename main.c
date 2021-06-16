@@ -302,7 +302,7 @@ int main() {
                       crear(&(USUARIOS[j]), USUARIOS[j].cantFacturas);
                       (USUARIOS[j].cantFacturas)++;
                       printf("Datos registrados.\n");
-                      system("pause");
+                        system("pause");
 
                     break;
 
