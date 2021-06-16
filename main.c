@@ -51,9 +51,10 @@ int crear(struct Usuario *A, int a){
   if(a!=0){
 
     printf("%cDesea usar los datos de emisor de la factura anterior?\n1.-S%c\nOtra tecla.- No\n", 168, 161);
-    scanf("d", &copiar);
+    scanf("%d", &copiar);
   }
 
+  system("cls");
   printf("Ingrese los siguientes datos.\n");
 
   if(copiar == 1){
@@ -70,7 +71,6 @@ int crear(struct Usuario *A, int a){
     A->facturas[a].domEmisor.codigoPostal = A->facturas[a-1].domEmisor.codigoPostal;
   } else {
 
-    system("CLS");
     printf("-EMISOR\nNombre de la empresa: ");
     fflush(stdin);
     gets(A->facturas[a].nombreEmisor);
@@ -101,11 +101,11 @@ int crear(struct Usuario *A, int a){
     printf("R%cgimen fiscal: ", 130);
     fflush(stdin);
     gets(A->facturas[a].regimenEmisor);
+    system("CLS");
 
 }
 
-  system("CLS");
-  printf("\n\n-RECEPTOR\nNombre de la empresa: ");
+  printf("-RECEPTOR\nNombre de la empresa: ");
   fflush(stdin);
   gets(A->facturas[a].nombreReceptor);
   printf("RFC: ");
@@ -134,7 +134,7 @@ int crear(struct Usuario *A, int a){
   gets(A->facturas[a].domReceptor.pais);
 
   system("CLS");
-  printf("\n\n-DATOS DEL PRODUCTO\nClave: ");
+  printf("-DATOS DEL PRODUCTO\nClave: ");
   fflush(stdin);
   scanf("%d", &(A->facturas[a].clave));
   printf("Cantidad: ");
@@ -248,7 +248,7 @@ int main() {
                     system("cls");
                     for(i=0; i<=1; i++){
                         system("cls");
-                        printf("\n\n\t\t\t\t\t\t\t ¡HOLA! (/^o^)/");
+                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! (/^o^)/", 173);
                         sleep(1);
                         system("cls");
                         printf("\t\t\t\t     -------------------------------------------------------\n");
