@@ -51,9 +51,10 @@ int crear(struct Usuario *A, int a){
   if(a!=0){
 
     printf("%cDesea usar los datos de emisor de la factura anterior?\n1.-S%c\nOtra tecla.- No\n", 168, 161);
-    scanf("d", &copiar);
+    scanf("%d", &copiar);
   }
 
+  system("cls");
   printf("Ingrese los siguientes datos.\n");
 
   if(copiar == 1){
@@ -70,7 +71,6 @@ int crear(struct Usuario *A, int a){
     A->facturas[a].domEmisor.codigoPostal = A->facturas[a-1].domEmisor.codigoPostal;
   } else {
 
-    system("CLS");
     printf("-EMISOR\nNombre de la empresa: ");
     fflush(stdin);
     gets(A->facturas[a].nombreEmisor);
@@ -101,76 +101,49 @@ int crear(struct Usuario *A, int a){
     printf("R%cgimen fiscal: ", 130);
     fflush(stdin);
     gets(A->facturas[a].regimenEmisor);
+    system("CLS");
 
 }
 
-    system("CLS");
-    printf("\n\n-RECEPTOR\nNombre de la empresa: ");
-    fflush(stdin);
-    gets(A->facturas[a].nombreReceptor);
-    printf("RFC: ");
-    fflush(stdin);
-    gets(A->facturas[a].RFCReceptor);
-    printf("Domicilio\n-Calle: ");
-    fflush(stdin);
-    gets(A->facturas[a].domReceptor.calle);
-    printf("-N%cmero: ", 163);
-    fflush(stdin);
-    scanf("%d", &(A->facturas[a].domReceptor.numero));
-    printf("-Colonia: ");
-    fflush(stdin);
-    gets(A->facturas[a].domReceptor.colonia);
-    printf("-C%cdigo postal: ", 162);
-    fflush(stdin);
-    scanf("%d", &(A->facturas[a].domReceptor.codigoPostal));
-    printf("-Ciudad: ");
-    fflush(stdin);
-    gets(A->facturas[a].domReceptor.ciudad);
-    printf("-Estado o provincia: ");
-    fflush(stdin);
-    gets(A->facturas[a].domReceptor.estado);
-    printf("-Pa%cs: ", 161);
-    fflush(stdin);
-    gets(A->facturas[a].domReceptor.pais);
+  printf("-RECEPTOR\nNombre de la empresa: ");
+  fflush(stdin);
+  gets(A->facturas[a].nombreReceptor);
+  printf("RFC: ");
+  fflush(stdin);
+  gets(A->facturas[a].RFCReceptor);
+  printf("Domicilio\n-Calle: ");
+  fflush(stdin);
+  gets(A->facturas[a].domReceptor.calle);
+  printf("-N%cmero: ", 163);
+  fflush(stdin);
+  scanf("%d", &(A->facturas[a].domReceptor.numero));
+  printf("-Colonia: ");
+  fflush(stdin);
+  gets(A->facturas[a].domReceptor.colonia);
+  printf("-C%cdigo postal: ", 162);
+  fflush(stdin);
+  scanf("%d", &(A->facturas[a].domReceptor.codigoPostal));
+  printf("-Ciudad: ");
+  fflush(stdin);
+  gets(A->facturas[a].domReceptor.ciudad);
+  printf("-Estado o provincia: ");
+  fflush(stdin);
+  gets(A->facturas[a].domReceptor.estado);
+  printf("-Pa%cs: ", 161);
+  fflush(stdin);
+  gets(A->facturas[a].domReceptor.pais);
 
-    system("CLS");
-    printf("\n\n-DATOS DEL PRODUCTO\nClave: ");
-    fflush(stdin);
-    scanf("%d", &(A->facturas[a].clave));
-    printf("Cantidad: ");
-    fflush(stdin);
-    scanf("%d", &(A->facturas[a].cantidad));
+  system("CLS");
+  printf("-DATOS DEL PRODUCTO\nClave: ");
+  fflush(stdin);
+  scanf("%d", &(A->facturas[a].clave));
+  printf("Cantidad: ");
+  fflush(stdin);
+  scanf("%d", &(A->facturas[a].cantidad));
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-int mostrar(struct Usuario *A, int a){
-//~~~~~~~~~~~~~~~~~~~~~~~~~~EMISOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    printf("-EMISOR\nNombre de la empresa: %s\n", A->facturas[a].nombreEmisor);
-    printf("RFC: %s\n", A->facturas[a].RFCEmisor);
-    printf("Domicilio\n-Calle: %s\n", A->facturas[a].domReceptor.calle);
-    printf("-N%cmero: %d\n", 163, A->facturas[a].domEmisor.numero);
-    printf("-Colonia: %s\n", A->facturas[a].domEmisor.colonia);
-    printf("-C%cdigo postal: %d\n", 162, A->facturas[a].domEmisor.codigoPostal);
-    printf("-Ciudad: %s\n", A->facturas[a].domEmisor.ciudad);
-    printf("-Estado o provincia: %s\n", A->facturas[a].domEmisor.estado);
-    printf("-Pa%cs: %s\n", 161, A->facturas[a].domEmisor.pais);
-    printf("R%cgimen fiscal: %s\n", 130, A->facturas[a].regimenEmisor);
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~RECEPTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    printf("\n\n-RECEPTOR\nNombre de la empresa: %s\n", A->facturas[a].nombreReceptor);
-    printf("RFC: %s\n", A->facturas[a].RFCReceptor);
-    printf("Domicilio\n-Calle: %s\n", A->facturas[a].domReceptor.calle);
-    printf("-N%cmero: %d\n", 163, A->facturas[a].domReceptor.numero);
-    printf("-Colonia: %s\n", A->facturas[a].domReceptor.colonia);
-    printf("-C%cdigo postal: %d\n", 162, A->facturas[a].domReceptor.codigoPostal);
-    printf("-Ciudad: %s\n", A->facturas[a].domReceptor.ciudad);
-    printf("-Estado o provincia: %s\n", A->facturas[a].domReceptor.estado);
-    printf("-Pa%cs: %s\n", 161, A->facturas[a].domReceptor.pais);
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~PRODUCTO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    printf("\n\n-DATOS DEL PRODUCTO\nClave: %d\n", A->facturas[a].clave);
-    printf("Cantidad: %d\n", A->facturas[a].cantidad);
-}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENVIAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ELIMINAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -275,7 +248,7 @@ int main() {
                     system("cls");
                     for(i=0; i<=1; i++){
                         system("cls");
-                        printf("\n\n\t\t\t\t\t\t\t ¡HOLA! (/^o^)/");
+                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! (/^o^)/", 173);
                         sleep(1);
                         system("cls");
                         printf("\t\t\t\t     -------------------------------------------------------\n");
@@ -291,23 +264,21 @@ int main() {
                     printf("\n3)Enviar Factura\n");
                     printf("\n4)Eliminar Factura\n");
                     printf("\n5)Salir del sistema\n");
-                    fflush(stdin);
                     scanf("%d",&MenuPrincipal);
 
                     switch(MenuPrincipal){
                     case 1:
 
                         crear(&(USUARIOS[j]), USUARIOS[j].cantFacturas);
-                        //USUARIOS[j].cantFacturas++;
-                        printf("Datos registrados\n");
-                        system("pause");
+                        (USUARIOS[j].cantFacturas)++;
+                        sleep(1);
 
                     break;
 
                     case 2:
 
-                        mostrar(&(USUARIOS[j]), USUARIOS[j].cantFacturas);
-                        system("pause");
+                        //mostrar();
+                        sleep(1);
 
                     break;
 
