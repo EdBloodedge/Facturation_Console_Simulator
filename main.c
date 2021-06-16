@@ -39,11 +39,11 @@ struct Usuario{
   char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20];
   struct factura facturas[LimiteFact];
   int cantFacturas;
-}USUARIOS[NumUsers]; //Arreglo de usuarios
+};
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-int crear(struct Usuario A, int a){
+int crear(struct Usuario *A, int a){
 
   int copiar = 0;
 
@@ -58,88 +58,88 @@ int crear(struct Usuario A, int a){
 
   if(copiar == 1){
 
-    strcpy(A.facturas[a].nombreEmisor, A.facturas[a-1].nombreEmisor);
-    strcpy(A.facturas[a].RFCEmisor, A.facturas[a-1].RFCEmisor);
-    strcpy(A.facturas[a].domEmisor.calle, A.facturas[a-1].domEmisor.calle);
-    strcpy(A.facturas[a].domEmisor.ciudad, A.facturas[a-1].domEmisor.ciudad);
-    strcpy(A.facturas[a].domEmisor.colonia, A.facturas[a-1].domEmisor.colonia);
-    strcpy(A.facturas[a].domEmisor.estado, A.facturas[a-1].domEmisor.estado);
-    strcpy(A.facturas[a].domEmisor.pais, A.facturas[a-1].domEmisor.pais);
-    strcpy(A.facturas[a].regimenEmisor, A.facturas[a-1].regimenEmisor);
-    A.facturas[a].domEmisor.numero = A.facturas[a-1].domEmisor.numero;
-    A.facturas[a].domEmisor.codigoPostal = A.facturas[a-1].domEmisor.codigoPostal;
+    strcpy(A->facturas[a].nombreEmisor, A->facturas[a-1].nombreEmisor);
+    strcpy(A->facturas[a].RFCEmisor, A->facturas[a-1].RFCEmisor);
+    strcpy(A->facturas[a].domEmisor.calle, A->facturas[a-1].domEmisor.calle);
+    strcpy(A->facturas[a].domEmisor.ciudad, A->facturas[a-1].domEmisor.ciudad);
+    strcpy(A->facturas[a].domEmisor.colonia, A->facturas[a-1].domEmisor.colonia);
+    strcpy(A->facturas[a].domEmisor.estado, A->facturas[a-1].domEmisor.estado);
+    strcpy(A->facturas[a].domEmisor.pais, A->facturas[a-1].domEmisor.pais);
+    strcpy(A->facturas[a].regimenEmisor, A->facturas[a-1].regimenEmisor);
+    A->facturas[a].domEmisor.numero = A->facturas[a-1].domEmisor.numero;
+    A->facturas[a].domEmisor.codigoPostal = A->facturas[a-1].domEmisor.codigoPostal;
   } else {
 
     system("CLS");
     printf("-EMISOR\nNombre de la empresa: ");
     fflush(stdin);
-    gets(A.facturas[a].nombreEmisor);
+    gets(A->facturas[a].nombreEmisor);
     printf("RFC: ");
     fflush(stdin);
-    gets(A.facturas[a].RFCEmisor);
+    gets(A->facturas[a].RFCEmisor);
     printf("Domicilio\n-Calle: ");
     fflush(stdin);
-    gets(A.facturas[a].domEmisor.calle);
+    gets(A->facturas[a].domEmisor.calle);
     printf("-N%cmero: ", 163);
     fflush(stdin);
-    scanf("%d", &(A.facturas[a].domEmisor.numero));
+    scanf("%d", &(A->facturas[a].domEmisor.numero));
     printf("-Colonia: ");
     fflush(stdin);
-    gets(A.facturas[a].domEmisor.colonia);
+    gets(A->facturas[a].domEmisor.colonia);
     printf("-C%cdigo postal: ", 162);
     fflush(stdin);
-    scanf("%d", &(A.facturas[a].domEmisor.codigoPostal));
+    scanf("%d", &(A->facturas[a].domEmisor.codigoPostal));
     printf("-Ciudad: ");
     fflush(stdin);
-    gets(A.facturas[a].domEmisor.ciudad);
+    gets(A->facturas[a].domEmisor.ciudad);
     printf("-Estado o provincia: ");
     fflush(stdin);
-    gets(A.facturas[a].domEmisor.estado);
+    gets(A->facturas[a].domEmisor.estado);
     printf("-Pa%cs: ", 161);
     fflush(stdin);
-    gets(A.facturas[a].domEmisor.pais);
+    gets(A->facturas[a].domEmisor.pais);
     printf("R%cgimen fiscal: ", 130);
     fflush(stdin);
-    gets(A.facturas[a].regimenEmisor);
+    gets(A->facturas[a].regimenEmisor);
 
 }
 
   system("CLS");
   printf("\n\n-RECEPTOR\nNombre de la empresa: ");
   fflush(stdin);
-  gets(A.facturas[a].nombreReceptor);
+  gets(A->facturas[a].nombreReceptor);
   printf("RFC: ");
   fflush(stdin);
-  gets(A.facturas[a].RFCReceptor);
+  gets(A->facturas[a].RFCReceptor);
   printf("Domicilio\n-Calle: ");
   fflush(stdin);
-  gets(A.facturas[a].domReceptor.calle);
+  gets(A->facturas[a].domReceptor.calle);
   printf("-N%cmero: ", 163);
   fflush(stdin);
-  scanf("%d", &(A.facturas[a].domReceptor.numero));
+  scanf("%d", &(A->facturas[a].domReceptor.numero));
   printf("-Colonia: ");
   fflush(stdin);
-  gets(A.facturas[a].domReceptor.colonia);
+  gets(A->facturas[a].domReceptor.colonia);
   printf("-C%cdigo postal: ", 162);
   fflush(stdin);
-  scanf("%d", &(A.facturas[a].domReceptor.codigoPostal));
+  scanf("%d", &(A->facturas[a].domReceptor.codigoPostal));
   printf("-Ciudad: ");
   fflush(stdin);
-  gets(A.facturas[a].domReceptor.ciudad);
+  gets(A->facturas[a].domReceptor.ciudad);
   printf("-Estado o provincia: ");
   fflush(stdin);
-  gets(A.facturas[a].domReceptor.estado);
+  gets(A->facturas[a].domReceptor.estado);
   printf("-Pa%cs: ", 161);
   fflush(stdin);
-  gets(A.facturas[a].domReceptor.pais);
+  gets(A->facturas[a].domReceptor.pais);
 
   system("CLS");
   printf("\n\n-DATOS DEL PRODUCTO\nClave: ");
   fflush(stdin);
-  scanf("%d", &(A.facturas[a].clave));
+  scanf("%d", &(A->facturas[a].clave));
   printf("Cantidad: ");
   fflush(stdin);
-  scanf("%d", &(A.facturas[a].cantidad));
+  scanf("%d", &(A->facturas[a].cantidad));
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -165,6 +165,8 @@ int main() {
   int ingresa = 0;
   char caracter;
   int i= 0, j = 0,SalirDefinifivo;
+  
+  struct Usuario USUARIOS[NumUsers];
 
   //Asignación de datos del primer usuario
   strcpy(USUARIOS[0].usuario, USUARIO);
@@ -267,7 +269,7 @@ int main() {
                     switch(MenuPrincipal){
                     case 1:
 
-                        crear(USUARIOS[j], USUARIOS[j].cantFacturas);
+                        crear(&(USUARIOS[j]), USUARIOS[j].cantFacturas);
                         USUARIOS[j].cantFacturas++;
                         sleep(1);
 
