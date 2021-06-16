@@ -104,46 +104,73 @@ int crear(struct Usuario *A, int a){
 
 }
 
-  system("CLS");
-  printf("\n\n-RECEPTOR\nNombre de la empresa: ");
-  fflush(stdin);
-  gets(A->facturas[a].nombreReceptor);
-  printf("RFC: ");
-  fflush(stdin);
-  gets(A->facturas[a].RFCReceptor);
-  printf("Domicilio\n-Calle: ");
-  fflush(stdin);
-  gets(A->facturas[a].domReceptor.calle);
-  printf("-N%cmero: ", 163);
-  fflush(stdin);
-  scanf("%d", &(A->facturas[a].domReceptor.numero));
-  printf("-Colonia: ");
-  fflush(stdin);
-  gets(A->facturas[a].domReceptor.colonia);
-  printf("-C%cdigo postal: ", 162);
-  fflush(stdin);
-  scanf("%d", &(A->facturas[a].domReceptor.codigoPostal));
-  printf("-Ciudad: ");
-  fflush(stdin);
-  gets(A->facturas[a].domReceptor.ciudad);
-  printf("-Estado o provincia: ");
-  fflush(stdin);
-  gets(A->facturas[a].domReceptor.estado);
-  printf("-Pa%cs: ", 161);
-  fflush(stdin);
-  gets(A->facturas[a].domReceptor.pais);
+    system("CLS");
+    printf("\n\n-RECEPTOR\nNombre de la empresa: ");
+    fflush(stdin);
+    gets(A->facturas[a].nombreReceptor);
+    printf("RFC: ");
+    fflush(stdin);
+    gets(A->facturas[a].RFCReceptor);
+    printf("Domicilio\n-Calle: ");
+    fflush(stdin);
+    gets(A->facturas[a].domReceptor.calle);
+    printf("-N%cmero: ", 163);
+    fflush(stdin);
+    scanf("%d", &(A->facturas[a].domReceptor.numero));
+    printf("-Colonia: ");
+    fflush(stdin);
+    gets(A->facturas[a].domReceptor.colonia);
+    printf("-C%cdigo postal: ", 162);
+    fflush(stdin);
+    scanf("%d", &(A->facturas[a].domReceptor.codigoPostal));
+    printf("-Ciudad: ");
+    fflush(stdin);
+    gets(A->facturas[a].domReceptor.ciudad);
+    printf("-Estado o provincia: ");
+    fflush(stdin);
+    gets(A->facturas[a].domReceptor.estado);
+    printf("-Pa%cs: ", 161);
+    fflush(stdin);
+    gets(A->facturas[a].domReceptor.pais);
 
-  system("CLS");
-  printf("\n\n-DATOS DEL PRODUCTO\nClave: ");
-  fflush(stdin);
-  scanf("%d", &(A->facturas[a].clave));
-  printf("Cantidad: ");
-  fflush(stdin);
-  scanf("%d", &(A->facturas[a].cantidad));
+    system("CLS");
+    printf("\n\n-DATOS DEL PRODUCTO\nClave: ");
+    fflush(stdin);
+    scanf("%d", &(A->facturas[a].clave));
+    printf("Cantidad: ");
+    fflush(stdin);
+    scanf("%d", &(A->facturas[a].cantidad));
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+int mostrar(struct Usuario *A, int a){
+//~~~~~~~~~~~~~~~~~~~~~~~~~~EMISOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    printf("-EMISOR\nNombre de la empresa: %s\n", A->facturas[a].nombreEmisor);
+    printf("RFC: %s\n", A->facturas[a].RFCEmisor);
+    printf("Domicilio\n-Calle: %s\n", A->facturas[a].domReceptor.calle);
+    printf("-N%cmero: %d\n", 163, A->facturas[a].domEmisor.numero);
+    printf("-Colonia: %s\n", A->facturas[a].domEmisor.colonia);
+    printf("-C%cdigo postal: %d\n", 162, A->facturas[a].domEmisor.codigoPostal);
+    printf("-Ciudad: %s\n", A->facturas[a].domEmisor.ciudad);
+    printf("-Estado o provincia: %s\n", A->facturas[a].domEmisor.estado);
+    printf("-Pa%cs: %s\n", 161, A->facturas[a].domEmisor.pais);
+    printf("R%cgimen fiscal: %s\n", 130, A->facturas[a].regimenEmisor);
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~RECEPTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    printf("\n\n-RECEPTOR\nNombre de la empresa: %s\n", A->facturas[a].nombreReceptor);
+    printf("RFC: %s\n", A->facturas[a].RFCReceptor);
+    printf("Domicilio\n-Calle: %s\n", A->facturas[a].domReceptor.calle);
+    printf("-N%cmero: %d\n", 163, A->facturas[a].domReceptor.numero);
+    printf("-Colonia: %s\n", A->facturas[a].domReceptor.colonia);
+    printf("-C%cdigo postal: %d\n", 162, A->facturas[a].domReceptor.codigoPostal);
+    printf("-Ciudad: %s\n", A->facturas[a].domReceptor.ciudad);
+    printf("-Estado o provincia: %s\n", A->facturas[a].domReceptor.estado);
+    printf("-Pa%cs: %s\n", 161, A->facturas[a].domReceptor.pais);
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~PRODUCTO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    printf("\n\n-DATOS DEL PRODUCTO\nClave: %d\n", A->facturas[a].clave);
+    printf("Cantidad: %d\n", A->facturas[a].cantidad);
+}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENVIAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ELIMINAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -165,7 +192,7 @@ int main() {
   int ingresa = 0;
   char caracter;
   int i= 0, j = 0,SalirDefinifivo;
-  
+
   struct Usuario USUARIOS[NumUsers];
 
   //Asignación de datos del primer usuario
@@ -264,21 +291,23 @@ int main() {
                     printf("\n3)Enviar Factura\n");
                     printf("\n4)Eliminar Factura\n");
                     printf("\n5)Salir del sistema\n");
+                    fflush(stdin);
                     scanf("%d",&MenuPrincipal);
 
                     switch(MenuPrincipal){
                     case 1:
 
                         crear(&(USUARIOS[j]), USUARIOS[j].cantFacturas);
-                        USUARIOS[j].cantFacturas++;
-                        sleep(1);
+                        //USUARIOS[j].cantFacturas++;
+                        printf("Datos registrados\n");
+                        system("pause");
 
                     break;
 
                     case 2:
 
-                        //mostrar();
-                        sleep(1);
+                        mostrar(&(USUARIOS[j]), USUARIOS[j].cantFacturas);
+                        system("pause");
 
                     break;
 
