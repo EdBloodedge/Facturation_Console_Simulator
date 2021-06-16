@@ -2,8 +2,14 @@
 #include <string.h>
 #include <stdlib.h>
 
+struct pagina{
+
+  int num;
+
+};
+
 struct libro{
-  char a;
+  struct pagina numero;
 };
 
 struct estudiante{
@@ -15,7 +21,7 @@ struct estudiante{
 
 int modificar(struct estudiante *a){
 
-	a->novela.a= 'a';
+	a->novela.numero.num = 3;
 
 }
 
@@ -23,14 +29,14 @@ int main(){
 
   char a = 's';
 
-  pepito.novela.a = a;
+  pepito.novela.numero.num = 1;
   pepito.comida = 1;
 
-  printf("%c", pepito.novela);
+  printf("%d", pepito.novela.numero.num);
 
   modificar(&(pepito));
 
-  printf("%c", pepito.novela.a);
+  printf("%d", pepito.novela.numero.num);
 
 
 	return 0;
