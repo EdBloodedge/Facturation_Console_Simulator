@@ -18,6 +18,7 @@
 #define LONGCLAVE 15 //Longitud clave
 #define LimiteFact 20 //Cantidad maxima de facturas por usuario
 #define MAX_INTENTOS 3
+#define Tamanio 5 //Tamaño
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIALIZACIÓN DE ESTRUCTURAS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //Domicilio
@@ -28,13 +29,31 @@ struct domicilio{
 
 };
 
+//Régimen Fiscal
+
+struct RegimenFiscal{
+char PersonasMorales[20];
+char PersonasFiscales[20];
+
+};
+
+//Personas fiscales del regimen fiscal
+
+struct PersonasFisc
+{
+char Asalariados[20];
+int Honorarios, ArrendamientoDeInmuebles, IncorporacionFiscal;
+char ActividadesEmpresariales[20];
+struct RegimenFiscal RegimenfiscalPersFisc;
+}PersonasFis[Tamanio];
+
+
 //Facturas
 struct factura{
 
   char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[11], regimenEmisor[20], nombreReceptor[30], RFCReceptor[11];
   int clave, cantidad;
   struct domicilio domEmisor, domReceptor;
-
 
 };
 
