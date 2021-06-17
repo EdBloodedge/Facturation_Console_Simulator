@@ -4,8 +4,12 @@
 
 #define USUARIO "Usuario1"
 #define CLAVE "contra1"
+
 #define USUARIO2 "Jaimito"
 #define CLAVE2 "tangamandapio"
+
+#define USUARIO3 "LosSAT-anes"
+#define CLAVE3 "SAT-anes"
 
 #define TECLA_ENTER 13
 #define TECLA_BACKSPACE 8
@@ -202,6 +206,9 @@ int main() {
   strcpy(USUARIOS[0].clave, CLAVE);
   strcpy(USUARIOS[1].usuario, USUARIO2);
   strcpy(USUARIOS[1].clave, CLAVE2);
+  strcpy(USUARIOS[2].usuario, USUARIO3);
+  strcpy(USUARIOS[2].clave, CLAVE3);
+
   USUARIOS[0].cantFacturas = 0;
 
 
@@ -280,11 +287,11 @@ int main() {
                         printf("\n\n\t\t\t\t\t\t\t %cHOLA! (/^o^)/", 173);
                         sleep(1);
                         system("cls");
-                        printf("\t\t\t\t     -------------------------------------------------------\n");
-                        printf("\t\t\t\t     |\t\t\t\t");
-                        printf("\t\t\t   |\n\t\t\t\t     |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica  |\n",162, 162);//ó
-                        printf("\t\t\t\t     |\t\t\t\t                           |\n");
-                        printf("\t\t\t\t     -------------------------------------------------------\n");
+                        printf("\t\t\t\t    ---------------------------------------------------------------------\n");
+                        printf("\t\t\t\t    |\t\t\t\t");
+                        printf("\t\t\t\t        |\n\t\t\t\t    |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica los SAT-anes  |\n",162, 162);//ó
+                        printf("\t\t\t\t    |\t\t\t\t                             \t\t|\n");
+                        printf("\t\t\t\t     --------------------------------------------------------------------\n");
                         sleep(1);
                     }
 
