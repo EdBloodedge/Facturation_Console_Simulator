@@ -18,7 +18,8 @@
 #define LONGCLAVE 15 //Longitud clave
 #define LimiteFact 20 //Cantidad maxima de facturas por usuario
 #define MAX_INTENTOS 3
-#define Tamanio 5 //Tamaño
+#define Tamanio 1 //Tamaño
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIALIZACIÓN DE ESTRUCTURAS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //Domicilio
@@ -28,30 +29,12 @@ struct domicilio{
   int numero, codigoPostal;
 
 };
-
-//Régimen Fiscal
-
-struct RegimenFiscal{
-char PersonasMorales[20];
-char PersonasFiscales[20];
-
-};
-
-//Personas fiscales del regimen fiscal
-
-struct PersonasFisc
-{
-char Asalariados[20];
-int Honorarios, ArrendamientoDeInmuebles, IncorporacionFiscal;
-char ActividadesEmpresariales[20];
-struct RegimenFiscal RegimenfiscalPersFisc;
-}PersonasFis[Tamanio];
-
-
 //Facturas
 struct factura{
 
   char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[11], regimenEmisor[20], nombreReceptor[30], RFCReceptor[11];
+  char personasMorales[20], Asalariado[30], ActividadesEmpresariales[20];
+  int Honorarios, ArrendamientoDeInmuebles, IncorporacionFiscal;
   int clave, cantidad;
   struct domicilio domEmisor, domReceptor;
 
@@ -78,7 +61,7 @@ int crear(struct Usuario *A, int a){
   }
 
   system("cls");
-  printf("Ingrese los siguientes datos.\n");
+  printf("\t\t\t\t----Ingrese los siguientes datos.----\n");
 
   if(copiar == 1){
 
@@ -94,13 +77,13 @@ int crear(struct Usuario *A, int a){
     A->facturas[a].domEmisor.codigoPostal = A->facturas[a-1].domEmisor.codigoPostal;
   } else {
 
-    printf("-EMISOR\nNombre de la empresa: ");
+    printf("-EMISOR\n\nNombre de la empresa: ");
     fflush(stdin);
     gets(A->facturas[a].nombreEmisor);
     printf("RFC: ");
     fflush(stdin);
     gets(A->facturas[a].RFCEmisor);
-    printf("Domicilio\n-Calle: ");
+    printf("\n\nDOMICILIO\n\n-Calle: ");
     fflush(stdin);
     gets(A->facturas[a].domEmisor.calle);
     printf("-N%cmero: ", 163);
@@ -128,13 +111,13 @@ int crear(struct Usuario *A, int a){
 
 }
 
-  printf("-RECEPTOR\nNombre de la empresa: ");
+  printf("\n\n-RECEPTOR\n\nNombre de la empresa: ");
   fflush(stdin);
   gets(A->facturas[a].nombreReceptor);
   printf("RFC: ");
   fflush(stdin);
   gets(A->facturas[a].RFCReceptor);
-  printf("Domicilio\n-Calle: ");
+  printf("\nDOMICILICO\n\n-Calle: ");
   fflush(stdin);
   gets(A->facturas[a].domReceptor.calle);
   printf("-N%cmero: ", 163);
@@ -156,6 +139,37 @@ int crear(struct Usuario *A, int a){
   fflush(stdin);
   gets(A->facturas[a].domReceptor.pais);
 
+
+  ////////// Datos de regimen fiscal/////////////
+  char enye = 168;
+  system("CLS");
+  printf("%cQue tipo de personas morales son? (R%cgimen General/ Sin Fines De Lucro): ",enye, 130);
+  fflush(stdin);
+  gets(A->facturas[a].personasMorales);
+
+  printf("\nPERSONAS FISCALES\n\n");
+  printf("%cQui%cn es la persona Asalariada? ",enye, 130);
+  fflush(stdin);
+  gets(A->facturas[a].Asalariado);
+
+  printf("%cCu%cles son los honorarios? ",enye, 160);
+  fflush(stdin);
+  scanf("%i",&A->facturas[a].Honorarios);
+
+  printf("%cCu%cl es el arrendamiento de inmuebles? ",enye, 160);
+  fflush(stdin);
+  scanf("%i",&A->facturas[a].ArrendamientoDeInmuebles);
+
+  printf("%cCu%cl es la Incorporacion Fiscal? ",enye, 160);
+  fflush(stdin);
+  scanf("%i",&A->facturas[a].IncorporacionFiscal);
+
+  printf("%cCu%cles son las Actividades Empresariales? ",enye, 160);
+  fflush(stdin);
+  gets(A->facturas[a].ActividadesEmpresariales);
+
+
+
   system("CLS");
   printf("-DATOS DEL PRODUCTO\nClave: ");
   fflush(stdin);
@@ -167,9 +181,11 @@ int crear(struct Usuario *A, int a){
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+
 int mostrar(struct Usuario *A, int a){
 //~~~~~~~~~~~~~~~~~~~~~~~~~~EMISOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    printf("-EMISOR\nNombre de la empresa: %s\n", A->facturas[a].nombreEmisor);
+    printf("\n\n-EMISOR\n\nNombre de la empresa: %s\n", A->facturas[a].nombreEmisor);
     printf("RFC: %s\n", A->facturas[a].RFCEmisor);
     printf("Domicilio\n-Calle: %s\n", A->facturas[a].domReceptor.calle);
     printf("-N%cmero: %d\n", 163, A->facturas[a].domEmisor.numero);
@@ -181,9 +197,9 @@ int mostrar(struct Usuario *A, int a){
     printf("R%cgimen fiscal: %s\n", 130, A->facturas[a].regimenEmisor);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~RECEPTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    printf("\n\n-RECEPTOR\nNombre de la empresa: %s\n", A->facturas[a].nombreReceptor);
+    printf("\n\n-RECEPTOR\n\nNombre de la empresa: %s\n", A->facturas[a].nombreReceptor);
     printf("RFC: %s\n", A->facturas[a].RFCReceptor);
-    printf("Domicilio\n-Calle: %s\n", A->facturas[a].domReceptor.calle);
+    printf("\n\n\nDOMICILIO\n\n-Calle: %s\n", A->facturas[a].domReceptor.calle);
     printf("-N%cmero: %d\n", 163, A->facturas[a].domReceptor.numero);
     printf("-Colonia: %s\n", A->facturas[a].domReceptor.colonia);
     printf("-C%cdigo postal: %d\n", 162, A->facturas[a].domReceptor.codigoPostal);
@@ -191,8 +207,17 @@ int mostrar(struct Usuario *A, int a){
     printf("-Estado o provincia: %s\n", A->facturas[a].domReceptor.estado);
     printf("-Pa%cs: %s\n", 161, A->facturas[a].domReceptor.pais);
 
+//~~~~~~~~~~~~~~~~~~~~~~REGIMEN FISCAL~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    printf("\n\n-R%cGIMEN FISCAL\n",130);
+    printf("\nLa persona moral es:  %s ", A->facturas[a].personasMorales);
+    printf("\nla persona Asalariada es:  %s ", A->facturas[a].Asalariado);
+    printf("\nEl honorario es de:  %i ", A->facturas[a].Honorarios);
+    printf("\nEl arrendimento de inmuebles es de:  %i ", A->facturas[a].ArrendamientoDeInmuebles);
+    printf("\nLa incorporacion fiscal es de: %i", A->facturas[a].IncorporacionFiscal);
+    printf("\nLas actividades empresariales son:  %s ", A->facturas[a].ActividadesEmpresariales);
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~PRODUCTO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    printf("\n\n-DATOS DEL PRODUCTO\nClave: %d\n", A->facturas[a].clave);
+    printf("\n\n\n-DATOS DEL PRODUCTO\n\nClave: %d\n", A->facturas[a].clave);
     printf("Cantidad: %d\n", A->facturas[a].cantidad);
 }
 
@@ -209,6 +234,7 @@ int main() {
   int MenuPrincipal;
   int repetir;
   int entrar=0;
+
 
   char usuario[LONGITUD + 1]; //Variable temporal para guardar el usuario ingresado
   char clave[LONGCLAVE + 1]; //Variable temporal para guardar la clave ingresada
@@ -236,7 +262,7 @@ int main() {
         repetir = 0;
         system("cls");
         entrar=0;
-		printf("\n\n\t\t\t\t1)Iniciar Sesion \n\t\t\t\t2)Salir\n\t\t\t\t->");
+		printf("\n\n\n\t\t\t\t1)Iniciar Sesion \n\n\t\t\t\t2)Salir\n\n\t\t\t\t->");
 		scanf("%d",&entrar);
 		if (entrar==1){
             do {
@@ -326,8 +352,8 @@ int main() {
                     case 1:
 
                       crear(&(USUARIOS[j]), USUARIOS[j].cantFacturas);
-                      (USUARIOS[j].cantFacturas)++;
-                      printf("Datos registrados.\n");
+                      //(USUARIOS[j].cantFacturas)++;
+                      printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
 
                     break;
