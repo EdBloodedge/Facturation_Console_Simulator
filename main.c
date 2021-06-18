@@ -52,6 +52,8 @@ struct Usuario{
 int crear(struct Usuario *A, int a){
 
   int copiar = 0;
+  int longi = 0;
+  int longitud2;
 
   system("CLS");
   if(a!=0){
@@ -114,9 +116,20 @@ int crear(struct Usuario *A, int a){
   printf("\n\n-RECEPTOR\n\nNombre de la empresa: ");
   fflush(stdin);
   gets(A->facturas[a].nombreReceptor);
-  printf("RFC: ");
-  fflush(stdin);
-  gets(A->facturas[a].RFCReceptor);
+  do{
+    longi = 0;
+    printf("RFC: ");
+    fflush(stdin);
+    gets(A->facturas[a].RFCReceptor);
+    longitud2 = strlen(A->facturas[a].RFCReceptor);//Mide la longitud de la cadena
+    if (longitud2<12 || longitud2>13){
+        printf("\nEl RFC es incorrecto, vuelve a intentarlo\n");
+        longi=2;
+    }
+
+  }while (longi == 2);
+
+
   printf("\nDOMICILICO\n\n-Calle: ");
   fflush(stdin);
   gets(A->facturas[a].domReceptor.calle);
@@ -143,10 +156,14 @@ int crear(struct Usuario *A, int a){
   ////////// Datos de regimen fiscal/////////////
   char enye = 168;
   system("CLS");
+
+  if(longitud2 == 12){
   printf("%cQue tipo de personas morales son? (R%cgimen General/ Sin Fines De Lucro): ",enye, 130);
   fflush(stdin);
   gets(A->facturas[a].personasMorales);
+  }
 
+  if(longitud2 == 13){
   printf("\nPERSONAS FISCALES\n\n");
   printf("%cQui%cn es la persona Asalariada? ",enye, 130);
   fflush(stdin);
@@ -167,7 +184,7 @@ int crear(struct Usuario *A, int a){
   printf("%cCu%cles son las Actividades Empresariales? ",enye, 160);
   fflush(stdin);
   gets(A->facturas[a].ActividadesEmpresariales);
-
+  }
 
 
   system("CLS");
