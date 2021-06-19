@@ -36,6 +36,7 @@ struct factura{
 
   char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[11], regimenEmisor[20], nombreReceptor[30], RFCReceptor[11];
   int clave, cantidad;
+  char folio[15];
   struct domicilio domEmisor, domReceptor;
 
 };
@@ -302,6 +303,7 @@ int mostrar(struct Usuario *A, int a){
 //~~~~~~~~~~~~~~~~~~~~~~~~~~PRODUCTO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     printf("\n\n\n--------DATOS DEL PRODUCTO---------\n\nClave: %d\n", A->facturas[a].clave);
     printf("Cantidad: %d\n", A->facturas[a].cantidad);
+    printf("Su folio: %s\n", A->facturas[a].folio);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENVIAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -317,7 +319,9 @@ int main() {
   int MenuPrincipal;
   int repetir;
   int entrar=0;
-
+  char folioChar[15]={'0','0','0','0','-','2','0','2','1'};
+  int folioInt1=0,folioInt2=0,folioInt3=0,folioInt4=0;
+  int cantidadFacturas=0;
 
   char usuario[LONGITUD + 1]; //Variable temporal para guardar el usuario ingresado
   char clave[LONGCLAVE + 1]; //Variable temporal para guardar la clave ingresada
@@ -434,16 +438,41 @@ int main() {
                     switch(MenuPrincipal){
                     case 1:
 
-                      crear(&(USUARIOS[j]), USUARIOS[j].cantFacturas);
-                      //(USUARIOS[j].cantFacturas)++;
-                      printf("\n\n-----Datos registrados exitosamente-----.\n");
+                        if (folioInt1<9){
+                            folioInt1++;
+                            }
+                        else if (folioInt2<9){
+                            folioInt1=0;
+                            folioInt2++;
+                            }
+                            else if (folioInt3<9){
+                                folioInt1=0;
+                                folioInt2=0;
+                                folioInt3++;
+                                }
+                                else if (folioInt4<9){
+                                    folioInt1=0;
+                                    folioInt2=0;
+                                    folioInt3=0;
+                                    folioInt4++;
+                                    }
+                        folioChar[0]=folioInt4+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
+                        folioChar[1]=folioInt3+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
+                        folioChar[2]=folioInt2+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
+                        folioChar[3]=folioInt1+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
+
+                        strcpy(USUARIOS[j].facturas[cantidadFacturas].folio, folioChar);
+                        crear(&(USUARIOS[j]), cantidadFacturas);
+                        cantidadFacturas++;
+                        printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
+                        mostrar(&(USUARIOS[j]), cantidadFacturas);
 
                     break;
 
                     case 2:
 
-                      mostrar(&(USUARIOS[j]), USUARIOS[j].cantFacturas);
+                      mostrar(&(USUARIOS[j]), cantidadFacturas-1);
                       system("pause");
 
                     break;
