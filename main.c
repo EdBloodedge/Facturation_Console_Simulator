@@ -319,7 +319,7 @@ int main() {
   int MenuPrincipal;
   int repetir;
   int entrar=0;
-  char folioChar[15]={'0','0','0','0','-','2','0','2','1'};
+  char folioBuscado[15], folioChar[15]={'0','0','0','0','-','2','0','2','1'};
   int folioInt1=0,folioInt2=0,folioInt3=0,folioInt4=0;
   int cantidadFacturas=0;
 
@@ -329,7 +329,7 @@ int main() {
   int intento = 0;
   int ingresa = 0;
   char caracter;
-  int i= 0, j = 0,SalirDefinifivo;
+  int i= 0, j = 0;
 
   struct Usuario USUARIOS[NumUsers];
 
@@ -466,15 +466,29 @@ int main() {
                         cantidadFacturas++;
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
-                        mostrar(&(USUARIOS[j]), cantidadFacturas);
-
+                        mostrar(&(USUARIOS[j]), cantidadFacturas-1);
+                        system("pause");
                     break;
 
                     case 2:
-
-                      mostrar(&(USUARIOS[j]), cantidadFacturas-1);
-                      system("pause");
-
+                        if (cantidadFacturas>0){
+                            printf("Ingresa el folio del que quiere consultar-> ");
+                            scanf(" %s",&folioBuscado);
+                            for (int k=0; k<=21; k++){
+                                if (strcmpi(USUARIOS[j].facturas[k].folio, folioBuscado)==0){
+                                    printf("Folio encontrado\n");
+                                    mostrar(&(USUARIOS[j]), k);
+                                    k=101;
+                                }
+                                else if (k==21){
+                                    printf("Folio no encontrado\n");
+                                }
+                            }
+                        }
+                        else{
+                            printf("No hay facturas registradas\n");
+                        }
+                        system("pause");
                     break;
 
                     case 3:
