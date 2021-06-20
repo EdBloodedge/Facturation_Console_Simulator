@@ -13,7 +13,7 @@
 
 #define TECLA_ENTER 13
 #define TECLA_BACKSPACE 8
-#define NumUsers 2 //Número de usuarios
+#define NumUsers 3 //Número de usuarios
 #define LONGITUD 20 //Longitud usuario
 #define LONGCLAVE 15 //Longitud clave
 #define LimiteFact 20 //Cantidad maxima de facturas por usuario
@@ -485,7 +485,7 @@ int main() {
 
                 //Comprobación del usuario en la base de datos
 
-                for(j=0; j<= NumUsers; j++){
+                for(j=0; j<= 2; j++){
 
                   if (strcmp(usuario, USUARIOS[j].usuario) == 0 && strcmp(clave, USUARIOS[j].clave) == 0){
                       ingresa = 1;
