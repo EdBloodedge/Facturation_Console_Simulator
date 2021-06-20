@@ -57,7 +57,7 @@ struct producto{
 
   int clave;
   float precio;
-  char descripcion[20];
+  char descripcion[40];
 
 }PRODUCTOS[25] = {
 //PRODUCTOS
