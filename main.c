@@ -511,7 +511,8 @@ int main() {
                         if (cantidadFacturas>0){
                             printf("Ingresa el folio del que quiere consultar-> ");
                             scanf(" %s",&folioBuscado);
-                            for (int k=0; k<=21; k++){
+                            int k;
+                            for (k=0; k<=21; k++){
                                 if (strcmpi(USUARIOS[j].facturas[k].folio, folioBuscado)==0){
                                     printf("Folio encontrado\n");
                                     mostrar(&(USUARIOS[j]), k);
