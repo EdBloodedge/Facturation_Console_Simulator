@@ -31,6 +31,16 @@ struct domicilio{
   char personasMorales[20], Asalariado[30], ActividadesEmpresariales[20];
 
 };
+
+//Productos
+struct producto{
+
+  int clave;
+  char descripcion[20];
+  float precio;
+
+}PRODUCTOS[25];
+
 //Facturas
 struct factura{
 
@@ -45,8 +55,113 @@ struct factura{
 struct Usuario{
   char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20];
   struct factura facturas[LimiteFact];
-  int cantFacturas;
 };
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BASE DE DATOS DE PRODUCTOS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//PRODUCTOS
+
+PRODUCTOS[0].clave = 45121503;
+PRODUCTOS[0].precio = 247.70;
+strcpy(PRODUCTOS[0].descripcion, "Cámaras desechables");
+
+PRODUCTOS[1].clave = 45121504;
+PRODUCTOS[1].precio = 6999.00;
+strcpy(PRODUCTOS[1].descripcion, "Cámaras digitales");
+
+PRODUCTOS[2].clave = 45121505;
+PRODUCTOS[2].precio = 13999.00;
+strcpy(PRODUCTOS[2].descripcion, "Cámaras cinematográficas");
+
+PRODUCTOS[3].clave = 45121506;
+PRODUCTOS[3].precio = 10569.00;
+strcpy(PRODUCTOS[3].descripcion, "Cámaras de video conferencia");
+
+PRODUCTOS[4].clave = 451215010;
+PRODUCTOS[4].precio = 24999.00;
+strcpy(PRODUCTOS[4].descripcion, "Cámaras aéreas");
+
+PRODUCTOS[5].clave = 45121511;
+PRODUCTOS[5].precio = 10799.00;
+strcpy(PRODUCTOS[5].descripcion, "Cámaras de alta velocidad");
+
+PRODUCTOS[6].clave = 45121520;
+PRODUCTOS[6].precio = 1209.00;
+strcpy(PRODUCTOS[6].descripcion, "Cámaras web");
+
+PRODUCTOS[7].clave = 45121521;
+PRODUCTOS[7].precio = 354.00;
+strcpy(PRODUCTOS[7].descripcion, "Cámaras de inspección");
+
+PRODUCTOS[8].clave = 45121522;
+PRODUCTOS[8].precio = 950.17;
+strcpy(PRODUCTOS[8].descripcion, "Cámaras infrarrojas");
+
+PRODUCTOS[9].clave = 45121523;
+PRODUCTOS[9].precio = 3076.00;
+strcpy(PRODUCTOS[9].descripcion, "Cámaras astronómicas");
+
+PRODUCTOS[10].clave = 45121601;
+PRODUCTOS[10].precio = 1249.00;
+strcpy(PRODUCTOS[10].descripcion, "Flashes o iluminación para cámaras");
+
+PRODUCTOS[11].clave = 45121602;
+PRODUCTOS[11].precio = 799.00;
+strcpy(PRODUCTOS[11].descripcion, "Tripodes para cámara");
+
+PRODUCTOS[12].clave = 45121603;
+PRODUCTOS[12].precio = 63.85;
+strcpy(PRODUCTOS[12].descripcion, "Lentes para cámara");
+
+PRODUCTOS[13].clave = 45121604;
+PRODUCTOS[13].precio = 267.24;
+strcpy(PRODUCTOS[13].descripcion, "Oclusores para cámaras");
+
+PRODUCTOS[14].clave = 45121605;
+PRODUCTOS[14].precio = 7400.00;
+strcpy(PRODUCTOS[14].descripcion, "Marcos de pantalla");
+
+//SERVICIOS
+
+PRODUCTOS[15].clave = 82131601;
+PRODUCTOS[15].precio = 6500.00;
+strcpy(PRODUCTOS[15].descripcion, "Servivios de fotografía aérea");
+
+PRODUCTOS[16].clave = 82131602;
+PRODUCTOS[16].precio = 6315.00;
+strcpy(PRODUCTOS[16].descripcion, "Cinematografía");
+
+PRODUCTOS[17].clave = 82131603;
+PRODUCTOS[17].precio = 4950.00;
+strcpy(PRODUCTOS[17].descripcion, "Servicios de producción de vídeos");
+
+PRODUCTOS[18].clave = 82131604;
+PRODUCTOS[18].precio = 3500.00;
+strcpy(PRODUCTOS[18].descripcion, "Servicios de estudio fotográfico o fotos fijas");
+
+PRODUCTOS[19].clave = 82131501;
+PRODUCTOS[19].precio = 7500.00;
+strcpy(PRODUCTOS[19].descripcion, "Elaboración o reproducción de película fija");
+
+PRODUCTOS[20].clave = 82131502;
+PRODUCTOS[20].precio = 6315.00;
+strcpy(PRODUCTOS[20].descripcion, "Elaboración o reproducción de películas de cine");
+
+PRODUCTOS[21].clave = 82131503;
+PRODUCTOS[21].precio = 2572.90;
+strcpy(PRODUCTOS[21].descripcion, "Servicios de microficha");
+
+PRODUCTOS[22].clave = 82131504;
+PRODUCTOS[22].precio = 175.90;
+strcpy(PRODUCTOS[22].descripcion, "Separación de colores");
+
+PRODUCTOS[23].clave = 82131505;
+PRODUCTOS[23].precio = 3750.00
+strcpy(PRODUCTOS[23].descripcion, "Servicio de postproducción de películas");
+
+PRODUCTOS[24].clave = 82131506;
+PRODUCTOS[24].precio = 2950.00;
+strcpy(PRODUCTOS[24].descripcion, "Servicio de fotos de graduación");
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -231,10 +346,8 @@ int crear(struct Usuario *A, int a){
 
 
 }
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
 int mostrar(struct Usuario *A, int a){
     system("CLS");
     int longitud1;
@@ -377,14 +490,13 @@ int main() {
   strcpy(USUARIOS[2].usuario, USUARIO3);
   strcpy(USUARIOS[2].clave, CLAVE3);
 
-  USUARIOS[0].cantFacturas = 0;
 
-
-    do{
+  do{
         //Inicio del programa
-        repetir = 0;
-        system("cls");
-        entrar=0;
+    repetir = 0;
+    system("cls");
+    entrar=0;
+
 		printf("\n\n\n\t\t\t\t1)Iniciar Sesion \n\n\t\t\t\t2)Salir\n\n\t\t\t\t->");
 		scanf("%d",&entrar);
 		if (entrar==1){
@@ -576,4 +688,3 @@ int main() {
 
 	return 0;
 }
-
