@@ -13,7 +13,7 @@
 
 #define TECLA_ENTER 13
 #define TECLA_BACKSPACE 8
-#define NumUsers 5 //Número de usuarios
+#define NumUsers 2 //Número de usuarios
 #define LONGITUD 20 //Longitud usuario
 #define LONGCLAVE 15 //Longitud clave
 #define LimiteFact 20 //Cantidad maxima de facturas por usuario
