@@ -343,7 +343,47 @@ int crear(struct Usuario *A, int a){
     gets(A->facturas[a].domReceptor.ActividadesEmpresariales);
     }
 
+//------------------------------DATOS DE LOS PRODUCTOS Y SERVICIOS---------------------------------------------
 
+    printf("\n\n\n\n-------------PRODUCTOS Y SERVICIOS-----------\n\n");
+    printf("----------------------PRODUCTOS---------------------\n\n");
+    printf("45121503 C%cmaras desechables\n", 160);
+    printf("45121504 C%cmaras digitales\n", 160);
+    printf("45121505 C%maras cinematogr%cficas\n",160, 160);
+    printf("45121506 C%cmaras de video conferencia\n",160);
+    printf("45121510 C%cmaras a%creas\n",160, 130);
+    printf("45121511 C%cmaras de alta velocidad\n",160);
+    printf("45121520 C%cmaras de web\n",160);
+    printf("45121521 C%cmaras de inspecci%cn\n",160, 162);
+    printf("45121522 C%cmaras infrarrojas\n",160);
+    printf("45121523 C%cmaras astron%cmicas\n",160, 162);
+    printf("45121601 Flashes o iluminaci%cn para c%cmaras\n",162, 160);
+    printf("45121602 Tr%cpodes para c%cmaras (Tripi%cs para c%cmara)\n",161, 160,130, 160);
+    printf("45121603 Lentes para c%cmaras\n", 160);
+    printf("45121604 Oclusores para c%cmaras\n",160);
+    printf("45121605 Marcos de pantalla\n\n\n");
+
+    printf("---------------------SERVICIOS------------------------\n\n");
+    printf("82131601 Servicios de fotograf%ca a%crea\n",161, 130);
+    printf("82131602 Cinematograf%ca\n",161);
+    printf("82131603 Servicios de producci%cn de v%cdeos\n",162,161);
+    printf("82131604 Servicios de estudio fotogr%cfico o fotos fijas\n",160);
+    printf("82131501 Elaboraci%cn o reproducci%cn de pel%ccula fija\n",162, 162, 161);
+    printf("82131502 Elaboraci%cn o reproducci%cn de pel%cculas de cine\n",162, 162, 161);
+    printf("82131503 Servicios de microficha\n");
+    printf("82131504 Separación de colores\n");
+    printf("82131505 Servicio de posproducci%cn de pel%cculas\n",162, 160);
+    printf("82131506 Servicio de fotos de graduacion\n");
+
+    printf("\n\n\n%cQu%c producto(s) o servicio(s) quieres comprar?  ",168, 130);
+    fflush(stdin);
+    scanf("%d", &(A->facturas[a].clave));
+
+    printf("Cantidad: ");
+    fflush(stdin);
+    scanf("%d", &(A->facturas[a].cantidad));
+
+    int clave = 0;
 
 }
 
@@ -408,55 +448,35 @@ int mostrar(struct Usuario *A, int a){
         printf("\nLas actividades empresariales son:  %s ", A->facturas[a].domReceptor.ActividadesEmpresariales);
         }
 
-//------------------------------DATOS DE LOS PRODUCTOS Y SERVICIOS---------------------------------------------
-
-    printf("\n\n\n\n-------------RODUCTOS Y SERVICIOS-----------\n\n");
-    printf("----------------------PRODUCTOS---------------------\n\n");
-    printf("45121503 C%cmaras desechables\n", 160);
-    printf("45121504 C%cmaras digitales\n", 160);
-    printf("45121505 C%maras cinematogr%cficas\n",160, 160);
-    printf("45121506 C%cmaras de video conferencia\n",160);
-    printf("45121510 C%cmaras a%creas\n",160, 130);
-    printf("45121511 C%cmaras de alta velocidad\n",160);
-    printf("45121520 C%cmaras de web\n",160);
-    printf("45121521 C%cmaras de inspecci%cn\n",160, 162);
-    printf("45121522 C%cmaras infrarrojas\n",160);
-    printf("45121523 C%cmaras astron%cmicas\n",160, 162);
-    printf("45121601 Flashes o iluminaci%cn para c%cmaras\n",162, 160);
-    printf("45121602 Tr%cpodes para c%cmaras (Tripi%cs para c%cmara)\n",161, 160,130, 160);
-    printf("45121603 Lentes para c%cmaras\n", 160);
-    printf("45121604 Oclusores para c%cmaras\n",160);
-    printf("45121605 Marcos de pantalla\n\n\n");
-
-    printf("---------------------SERVICIOS------------------------\n\n");
-    printf("82131601 Servicios de fotograf%ca a%crea\n",161, 130);
-    printf("82131602 Cinematograf%ca\n",161);
-    printf("82131603 Servicios de producci%cn de v%cdeos\n",162,161);
-    printf("82131604 Servicios de estudio fotogr%cfico o fotos fijas\n",160);
-    printf("82131501 Elaboraci%cn o reproducci%cn de pel%ccula fija\n",162, 162, 161);
-    printf("82131502 Elaboraci%cn o reproducci%cn de pel%cculas de cine\n",162, 162, 161);
-    printf("82131503 Servicios de microficha\n");
-    printf("82131504 Separación de colores\n");
-    printf("82131505 Servicio de posproducci%cn de pel%cculas\n",162, 160);
-    printf("82131506 Servicio de fotos de graduacion\n");
-
-    printf("\n\n\n%cQu%c producto(s) o servicio(s) quieres comprar?  ",168, 130);
-    fflush(stdin);
-    scanf("%d", &(A->facturas[a].clave));
-
-    printf("Cantidad: ");
-    fflush(stdin);
-    scanf("%d", &(A->facturas[a].cantidad));
-
-    int clave = 0;
-
 printf("\n\n");
 
     printf("Su folio: %s\n", A->facturas[a].folio);
 }
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENVIAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BUSCAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+int buscar(struct Usuario *A, int cantidadFacturas){
+    int k, encontrado=26;
+    char folioBuscado[15];
+    if (cantidadFacturas>0){
+        printf("Ingresa el folio del que quiere consultar-> ");
+        scanf(" %s",&folioBuscado);
+        for (k=0; k<=cantidadFacturas; k++){
+            if (strcmpi(A->facturas[k].folio, folioBuscado)==0){
+                    printf("Folio encontrado\n");
+                    encontrado=k;
+                    k=22;
+            }
+            else if (k==cantidadFacturas){
+                printf("Folio no encontrado\n");
+            }
+        }
+    }
+    else{
+        printf("No hay facturas registradas\n");
+    }
+    system("pause");
+    return encontrado;
+}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ELIMINAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO MAIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -470,7 +490,7 @@ int main() {
   int entrar=0;
   char folioBuscado[15], folioChar[15]={'0','0','0','0','-','2','0','2','1'};
   int folioInt1=0,folioInt2=0,folioInt3=0,folioInt4=0;
-  int cantidadFacturas=0;
+  int cantidadFacturas=0,k;
 
   char usuario[LONGITUD + 1]; //Variable temporal para guardar el usuario ingresado
   char clave[LONGCLAVE + 1]; //Variable temporal para guardar la clave ingresada
@@ -615,30 +635,17 @@ int main() {
                         cantidadFacturas++;
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
-                        mostrar(&(USUARIOS[j]), cantidadFacturas-1);
+                        mostrar(USUARIOS, cantidadFacturas-1);
                         system("pause");
                     break;
 
                     case 2:
-                        if (cantidadFacturas>0){
-                            printf("Ingresa el folio del que quiere consultar-> ");
-                            scanf(" %s",&folioBuscado);
-                            int k;
-                            for (k=0; k<=21; k++){
-                                if (strcmpi(USUARIOS[j].facturas[k].folio, folioBuscado)==0){
-                                    printf("Folio encontrado\n");
-                                    mostrar(&(USUARIOS[j]), k);
-                                    k=101;
-                                }
-                                else if (k==21){
-                                    printf("Folio no encontrado\n");
-                                }
-                            }
+
+                        k=buscar(&(USUARIOS[j]), cantidadFacturas);
+                        if (k!=26){
+                            mostrar(&(USUARIOS[j]), k);
+                            system("pause");
                         }
-                        else{
-                            printf("No hay facturas registradas\n");
-                        }
-                        system("pause");
                     break;
 
                     case 3:
