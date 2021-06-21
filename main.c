@@ -39,7 +39,8 @@ struct factura{
 
   char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[11], regimenEmisor[20], nombreReceptor[30], RFCReceptor[11];
   int clave, cantidad;
-  char folio[15];
+  char folio[15], nombreDescripcion[50];
+  float precioUnitario, subtotal, IVA, total;
   struct domicilio domEmisor, domReceptor;
 
 };
@@ -94,7 +95,7 @@ struct producto{
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-int crear(struct Usuario *A, int a){
+int crear(struct Usuario *A, int a, struct producto *B){
 
   int copiar = 0;
   int longi1 = 0;
@@ -102,6 +103,7 @@ int crear(struct Usuario *A, int a){
   int longitud1;
   int longitud2;
   char enye = 168;
+  int claveBuscada, k, salir;
 
   system("CLS");
   if(a!=0){
@@ -304,13 +306,34 @@ int crear(struct Usuario *A, int a){
     printf("82131505       Servicio de posproducci%cn de pel%cculas\n",162, 160);
     printf("82131506       Servicio de fotos de graduacion\n");
 
-    printf("\n\n\n%cQu%c producto(s) o servicio(s) quieres comprar?  ",168, 130);
-    fflush(stdin);
-    scanf("%d", &(A->facturas[a].clave));
+    do{
+        salir=0;
+        printf("\n\n\n%cQu%c producto(s) o servicio(s) quieres comprar?  ",168, 130);
+        fflush(stdin);
+        scanf("%d",&claveBuscada);
+        for (k=0; k<=25; k++){
+            if ((B[k].clave) == claveBuscada){
+                    A->facturas[a].clave=B[k].clave;
+                    strcpy(A->facturas[a].nombreDescripcion, B[k].descripcion);
+                    A->facturas[a].precioUnitario=B[k].precio;
+                    printf("Producto/Servicio guardado\n");
+                    k=26;
+                    salir=1;
+            }
+            else if (k==25){
+                printf("Clave no existente\n");
+            }
+        }
+    }while(salir==0);
 
     printf("Cantidad: ");
     fflush(stdin);
     scanf("%d", &(A->facturas[a].cantidad));
+    if (A->facturas[a].cantidad>0){
+        A->facturas[a].subtotal=(A->facturas[a].precioUnitario*A->facturas[a].cantidad);
+    }
+    A->facturas[a].IVA=(A->facturas[a].subtotal*0.16);
+    A->facturas[a].total=(A->facturas[a].subtotal+A->facturas[a].IVA);
 
 
 
@@ -376,7 +399,13 @@ int mostrar(struct Usuario *A, int a){
         printf("\nLa incorporacion fiscal es de: %i", A->facturas[a].domReceptor.IncorporacionFiscal);
         printf("\nLas actividades empresariales son:  %s ", A->facturas[a].domReceptor.ActividadesEmpresariales);
         }
-
+    printf("\nClave: %d", A->facturas[a].clave);
+    printf("\nDescripcion: %s", A->facturas[a].nombreDescripcion);
+    printf("\nCantidad: %d", A->facturas[a].cantidad);
+    printf("\nPrecio Unitario: %.2f", A->facturas[a].precioUnitario);
+    printf("\nSubTotal: %.2f", A->facturas[a].subtotal);
+    printf("\nIVA: %.2f", A->facturas[a].IVA);
+    printf("\nTotal: %.2f", A->facturas[a].total);
 printf("\n\n");
 
     printf("Su folio: %s\n", A->facturas[a].folio);
@@ -560,7 +589,7 @@ int main() {
                         folioChar[3]=folioInt1+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
 
                         strcpy(USUARIOS[j].facturas[cantidadFacturas].folio, folioChar);
-                        crear(&(USUARIOS[j]), cantidadFacturas);
+                        crear(&(USUARIOS[j]), cantidadFacturas, PRODUCTOS);
                         cantidadFacturas++;
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
