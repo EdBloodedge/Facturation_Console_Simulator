@@ -37,7 +37,7 @@ struct domicilio{
 //Facturas
 struct factura{
 
-  char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[11], regimenEmisor[20], nombreReceptor[30], RFCReceptor[11];
+  char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[15], regimenEmisor[20], nombreReceptor[30], RFCReceptor[15];
   int clave, cantidad;
   char folio[15], nombreDescripcion[50];
   float precioUnitario, subtotal, IVA, total;
@@ -516,7 +516,7 @@ int main() {
 
                 for(j=0; j<= NumUsers; j++){
 
-                  if (strcmp(usuario, USUARIOS[j].usuario) == 0 && strcmp(clave, USUARIOS[j].clave) == 0){
+                  if (strcmp(usuario, USUARIOS[0].usuario) == 0 && strcmp(clave, USUARIOS[0].clave) == 0){
                       ingresa = 1;
                       break;
                   }
@@ -588,8 +588,8 @@ int main() {
                         folioChar[2]=folioInt2+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
                         folioChar[3]=folioInt1+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
 
-                        strcpy(USUARIOS[j].facturas[cantidadFacturas].folio, folioChar);
-                        crear(&(USUARIOS[j]), cantidadFacturas, PRODUCTOS);
+                        strcpy(USUARIOS[0].facturas[cantidadFacturas].folio, folioChar);
+                        crear(&(USUARIOS[0]), cantidadFacturas, PRODUCTOS);
                         cantidadFacturas++;
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
@@ -599,9 +599,9 @@ int main() {
 
                     case 2:
 
-                        k=buscar(&(USUARIOS[j]), cantidadFacturas);
+                        k=buscar(&(USUARIOS[0]), cantidadFacturas);
                         if (k!=26){
-                            mostrar(&(USUARIOS[j]), k);
+                            mostrar(USUARIOS, k);
                             system("pause");
                         }
                     break;
