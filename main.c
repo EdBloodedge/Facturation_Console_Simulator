@@ -38,7 +38,7 @@ struct domicilio{
 struct factura{
 
   char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[15], regimenEmisor[20], nombreReceptor[30], RFCReceptor[15];
-  int clave, cantidad;
+  int clave, cantidad, enviado;
   char folio[15], nombreDescripcion[50];
   float precioUnitario, subtotal, IVA, total;
   struct domicilio domEmisor, domReceptor;
@@ -97,11 +97,7 @@ struct producto{
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int crear(struct Usuario *A, int a, struct producto *B){
 
-  int copiar = 0;
-  int longi1 = 0;
-  int longi2 = 0;
-  int longitud1;
-  int longitud2;
+  int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2;
   char enye = 168;
   int claveBuscada, k, salir;
 
@@ -342,8 +338,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int mostrar(struct Usuario *A, int a){
     system("CLS");
-    int longitud1;
-    int longitud2;
+    int longitud1, longitud2;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~EMISOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     printf("\n\n----------EMISOR----------\n\nNombre de la empresa: %s\n", A->facturas[a].nombreEmisor);
     printf("RFC: %s\n", A->facturas[a].RFCEmisor);
@@ -435,6 +430,30 @@ int buscar(struct Usuario *A, int cantidadFacturas){
     system("pause");
     return encontrado;
 }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENVIAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+int enviar(struct Usuario *A, int cantidadFacturas, int k){
+    int Enviar;
+    if (cantidadFacturas>0){
+        if (A->facturas[k].enviado==0 || A->facturas[k].enviado==2){
+            do{
+                printf("\n%cQuieres enviar la factura? \n1)Si \n2)No ", 168);
+                fflush(stdin);
+                scanf("%d",&Enviar);
+                if (Enviar!=1 && Enviar!=2){
+                    printf("Opcion no valida\n");
+                }
+            }while(Enviar!=1 && Enviar!=2);
+        }
+        else{
+            printf("La factura ya fue enviada");
+        }
+    }
+    else{
+        printf("No hay facturas registradas\n");
+    }
+}
+
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ELIMINAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO MAIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -443,20 +462,15 @@ int main() {
 
   system ("COLOR 3F");
 
-  int MenuPrincipal;
-  int repetir;
-  int entrar=0;
+  int MenuPrincipal, repetir, entrar=0, cantidadFacturas=0, k, enviado;
   char folioBuscado[15], folioChar[15]={'0','0','0','0','-','2','0','2','1'};
   int folioInt1=0,folioInt2=0,folioInt3=0,folioInt4=0;
-  int cantidadFacturas=0,k;
 
   char usuario[LONGITUD + 1]; //Variable temporal para guardar el usuario ingresado
   char clave[LONGCLAVE + 1]; //Variable temporal para guardar la clave ingresada
 
-  int intento = 0;
-  int ingresa = 0;
+  int intento = 0, ingresa = 0, i= 0, j = 0;
   char caracter;
-  int i= 0, j = 0;
 
   struct Usuario USUARIOS[NumUsers];
 
@@ -594,6 +608,7 @@ int main() {
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
                         mostrar(USUARIOS, cantidadFacturas-1);
+                        USUARIOS[0].facturas[cantidadFacturas-1].enviado=enviar(USUARIOS, cantidadFacturas, cantidadFacturas-1);
                         system("pause");
                     break;
 
@@ -608,7 +623,12 @@ int main() {
 
                     case 3:
 
-                        //enviar();
+                        k=buscar(&(USUARIOS[0]), cantidadFacturas);
+                        if (k!=26){
+                            mostrar(USUARIOS, k);
+                            system("pause");
+                            USUARIOS[0].facturas[k].enviado=enviar(USUARIOS, cantidadFacturas, k);
+                        }
                         sleep(1);
 
                     break;
