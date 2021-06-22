@@ -39,16 +39,20 @@ struct domicilio{
 
 };
 
-
+struct productos{
+    float precioUnitario, subtotal, IVA, total;
+    int cantidad, clave;
+    char nombreDescripcion[50];
+};
 
 //Facturas
 struct factura{
 
-  char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
-  int clave, cantidad, enviado;
-  char folio[15], nombreDescripcion[50], emisorMorales[30], emisorFiscales[30], receptorMorales[30], receptorFiscales[30];
-  float precioUnitario, subtotal, IVA, total;
+  char logo[20][10], nombreEmisor[30], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
+  int enviado;
+  char folio[15], emisorMorales[30], emisorFiscales[30], receptorMorales[30], receptorFiscales[30];
   struct domicilio domEmisor, domReceptor;
+  struct productos MASPRODUCTOS[5];
 
 };
 
@@ -106,7 +110,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
 
   int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2;
   char enye = 168;
-  int claveBuscada, k, salir, moral=0, fiscal=0;
+  int claveBuscada, k, salir, moral=0, fiscal=0, cantidadProductos=0, i;
 
   system("CLS");
   if(a!=0){
@@ -350,36 +354,38 @@ int crear(struct Usuario *A, int a, struct producto *B){
         scanf("%d",&claveBuscada);
         for (k=0; k<=25; k++){
             if ((B[k].clave) == claveBuscada){
-                    A->facturas[a].clave=B[k].clave;
-                    strcpy(A->facturas[a].nombreDescripcion, B[k].descripcion);
-                    A->facturas[a].precioUnitario=B[k].precio;
+                    A->facturas[a].MASPRODUCTOS[cantidadProductos].clave=B[k].clave;
+                    strcpy(A->facturas[a].MASPRODUCTOS[cantidadProductos].nombreDescripcion, B[k].descripcion);
+                    A->facturas[a].MASPRODUCTOS[cantidadProductos].precioUnitario=B[k].precio;
                     printf("Producto/Servicio guardado\n");
+                    printf("Cantidad: ");
+                    fflush(stdin);
+                    scanf("%d", &(A->facturas[a].MASPRODUCTOS[cantidadProductos].cantidad));
                     k=26;
-                    salir=1;
+                    cantidadProductos++;
             }
             else if (k==25){
                 printf("Clave no existente\n");
             }
         }
-    }while(salir==0);
-
-    printf("Cantidad: ");
-    fflush(stdin);
-    scanf("%d", &(A->facturas[a].cantidad));
-    if (A->facturas[a].cantidad>0){
-        A->facturas[a].subtotal=(A->facturas[a].precioUnitario*A->facturas[a].cantidad);
+        printf("Quieres agregar otro producto? \n1)Si \nCualquier tecla)No \n-> ");
+        scanf("%d", &salir);
+    }while(salir==1);
+    for (i=0; i<cantidadProductos; i++){
+        if (A->facturas[a].MASPRODUCTOS[i].clave !=0){
+            if (A->facturas[a].MASPRODUCTOS[i].cantidad>0){
+                A->facturas[a].MASPRODUCTOS[i].subtotal=(A->facturas[a].MASPRODUCTOS[i].precioUnitario*A->facturas[a].MASPRODUCTOS[i].cantidad);
+                A->facturas[a].MASPRODUCTOS[i].IVA=(A->facturas[a].MASPRODUCTOS[i].subtotal*0.16);
+                A->facturas[a].MASPRODUCTOS[i].total=(A->facturas[a].MASPRODUCTOS[i].subtotal+A->facturas[a].MASPRODUCTOS[i].IVA);
+            }
+        }
     }
-    A->facturas[a].IVA=(A->facturas[a].subtotal*0.16);
-    A->facturas[a].total=(A->facturas[a].subtotal+A->facturas[a].IVA);
-
-
-
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int mostrar(struct Usuario *A, int a){
     system("CLS");
-    int longitud1, longitud2;
+    int longitud1, longitud2, i, contadorCantidad=0;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~EMISOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     printf("\n\n----------EMISOR----------\n\nNombre de la empresa: %s\n", A->facturas[a].nombreEmisor);
     printf("RFC: %s\n", A->facturas[a].RFCEmisor);
@@ -426,26 +432,38 @@ int mostrar(struct Usuario *A, int a){
         printf("\n-PERSONAS FISCALES\n\n");
         printf("\nLa persona fiscal es:  %s ", A->facturas[a].receptorFiscales);
         }
-    printf("\nClave: %d", A->facturas[a].clave);
-    printf("\nDescripcion: %s", A->facturas[a].nombreDescripcion);
-    printf("\nCantidad: %d", A->facturas[a].cantidad);
-    printf("\nPrecio Unitario: %.2f", A->facturas[a].precioUnitario);
-    printf("\nSubTotal: %.2f", A->facturas[a].subtotal);
-    printf("\nIVA: %.2f", A->facturas[a].IVA);
-    printf("\nTotal: %.2f", A->facturas[a].total);
-    printf("\n\n");
+    for (i=0; i<5; i++){
+        if (A->facturas[a].MASPRODUCTOS[i].clave !=0){
+            printf("\nProducto/Servicio %d", i+1);
+            printf("\nClave: %d", A->facturas[a].MASPRODUCTOS[i].clave);
+            printf("\nDescripcion: %s", A->facturas[a].MASPRODUCTOS[i].nombreDescripcion);
+            printf("\nCantidad: %d", A->facturas[a].MASPRODUCTOS[i].cantidad);
+            printf("\nPrecio Unitario: %.2f", A->facturas[a].MASPRODUCTOS[i].precioUnitario);
+            printf("\nSubTotal: %.2f", A->facturas[a].MASPRODUCTOS[i].subtotal);
+            printf("\nIVA: %.2f", A->facturas[a].MASPRODUCTOS[i].IVA);
+            printf("\nTotal: %.2f", A->facturas[a].MASPRODUCTOS[i].total);
+            printf("\n\n");
+        }
+    }
+
 
     printf("Su folio: %s\n", A->facturas[a].folio);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BUSCAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
-    int k, encontrado=26, i;
+    int k, encontrado=26, i, j, contadorCantidad=0;
     char folioBuscado[15];
     if (MenuPrincipal!=1){
-        printf("\t\t\t\tFacturas Disponibles\n");
+        printf("\t\t\t\t\tFacturas Disponibles\n");
         for (i=0; i<cantidadFacturas; i++){
-            printf("Folio: %s \t\tDescripcion producto: %s\t\tEmpresa: %s\n", A->facturas[i].folio, A->facturas[i].nombreDescripcion, A->facturas[i].nombreEmisor);
+            for (j=0; j<5; j++){
+                if (A->facturas[i].MASPRODUCTOS[j].clave !=0){
+                    printf("Folio: %s ", A->facturas[i].folio);
+                    printf("\tDescripcion producto: %s", A->facturas[i].MASPRODUCTOS[j].nombreDescripcion);
+                    printf("\t\tEmpresa: %s\n", A->facturas[i].nombreEmisor);
+                }
+            }
         }
     }
     if (cantidadFacturas>0){
