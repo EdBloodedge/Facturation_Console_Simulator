@@ -567,7 +567,7 @@ int main() {
 
                 for(j=0; j<= 2; j++){
 
-                  if (strcmp(usuario, USUARIOS[0].usuario) == 0 && strcmp(clave, USUARIOS[0].clave) == 0){
+                  if (strcmp(usuario, USUARIOS[j].usuario) == 0 && strcmp(clave, USUARIOS[j].clave) == 0){
                       ingresa = 1;
                       break;
                   }
