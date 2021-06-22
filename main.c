@@ -20,6 +20,15 @@
 #define MAX_INTENTOS 3
 #define Tamanio 1 //Tamaño
 
+#define MORAL1 "Regimen General"
+#define MORAL2 "Sin Fines de Lucro"
+
+#define FISCAL1 "Asalariados"
+#define FISCAL2 "Honorarios"
+#define FISCAL3 "Arrendamientos de Inmuebles"
+#define FISCAL4 "Actividades Empresariales"
+#define FISCAL5 "Incorporacion Fiscal"
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIALIZACIÓN DE ESTRUCTURAS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //Domicilio
@@ -27,8 +36,6 @@ struct domicilio{
 
   char calle[20], colonia[20], ciudad[20], estado[20], pais[20];
   int numero, codigoPostal;
-  int Honorarios, ArrendamientoDeInmuebles, IncorporacionFiscal;
-  char personasMorales[20], Asalariado[30], ActividadesEmpresariales[20];
 
 };
 
@@ -37,9 +44,9 @@ struct domicilio{
 //Facturas
 struct factura{
 
-  char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[15], regimenEmisor[20], nombreReceptor[30], RFCReceptor[15];
+  char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
   int clave, cantidad, enviado;
-  char folio[15], nombreDescripcion[50];
+  char folio[15], nombreDescripcion[50], emisorMorales[30], emisorFiscales[30], receptorMorales[30], receptorFiscales[30];
   float precioUnitario, subtotal, IVA, total;
   struct domicilio domEmisor, domReceptor;
 
@@ -99,7 +106,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
 
   int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2;
   char enye = 168;
-  int claveBuscada, k, salir;
+  int claveBuscada, k, salir, moral=0, fiscal=0;
 
   system("CLS");
   if(a!=0){
@@ -120,7 +127,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
     strcpy(A->facturas[a].domEmisor.colonia, A->facturas[a-1].domEmisor.colonia);
     strcpy(A->facturas[a].domEmisor.estado, A->facturas[a-1].domEmisor.estado);
     strcpy(A->facturas[a].domEmisor.pais, A->facturas[a-1].domEmisor.pais);
-    strcpy(A->facturas[a].regimenEmisor, A->facturas[a-1].regimenEmisor);
+    strcpy(A->facturas[a].emisorMorales, A->facturas[a-1].emisorMorales);
     A->facturas[a].domEmisor.numero = A->facturas[a-1].domEmisor.numero;
     A->facturas[a].domEmisor.codigoPostal = A->facturas[a-1].domEmisor.codigoPostal;
   } else {
@@ -170,32 +177,47 @@ int crear(struct Usuario *A, int a, struct producto *B){
 
   if(longitud1 == 12){
     printf("\n-PERSONAS MORALES\n\n");
-    printf("%cQue tipo de personas morales son? (R%cgimen General/ Sin Fines De Lucro): ",enye, 130);
+    printf("%cQue tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines De Lucro)\n ",enye, 130);
     fflush(stdin);
-    gets(A->facturas[a].domEmisor.personasMorales);
+    scanf("%d", &moral);
+    switch(moral){
+        case 1:
+            strcpy(A->facturas[a].emisorMorales, MORAL1);
+            break;
+        case 2:
+            strcpy(A->facturas[a].emisorMorales, MORAL2);
+            break;
+        default:
+            printf("Opcion no valida");
+            break;
+        }
     }
 
   if(longitud1 == 13){
     printf("\n-PERSONAS FISCALES\n\n");
-    printf("%cQui%cn es la persona Asalariada? ",enye, 130);
+    printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n",enye);
     fflush(stdin);
-    gets(A->facturas[a].domEmisor.Asalariado);
+    scanf("%d", &fiscal);
+    switch(fiscal){
+        case 1:
+            strcpy(A->facturas[a].emisorFiscales, FISCAL1);
+            break;
+        case 2:
+            strcpy(A->facturas[a].emisorFiscales, FISCAL2);
+            break;
+        case 3:
+            strcpy(A->facturas[a].emisorFiscales, FISCAL3);
+            break;
+        case 4:
+            strcpy(A->facturas[a].emisorFiscales, FISCAL4);
+            break;
+        case 5:
+            strcpy(A->facturas[a].emisorFiscales, FISCAL5);
+            break;
+        default:
 
-    printf("%cCu%cles son los honorarios? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domEmisor.Honorarios);
-
-    printf("%cCu%cl es el arrendamiento de inmuebles? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domEmisor.ArrendamientoDeInmuebles);
-
-    printf("%cCu%cl es la Incorporacion Fiscal? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domEmisor.IncorporacionFiscal);
-
-    printf("%cCu%cles son las Actividades Empresariales? ",enye, 160);
-    fflush(stdin);
-    gets(A->facturas[a].domEmisor.ActividadesEmpresariales);
+            break;
+        }
     }
     system("CLS");
 
@@ -242,32 +264,47 @@ int crear(struct Usuario *A, int a, struct producto *B){
   system("CLS");
   if(longitud2 == 12){
     printf("\n-PERSONAS MORALES\n\n");
-    printf("%cQue tipo de personas morales son? (R%cgimen General/ Sin Fines De Lucro): ",enye, 130);
+    printf("%cQue tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines De Lucro)\n ",enye, 130);
     fflush(stdin);
-    gets(A->facturas[a].domReceptor.personasMorales);
+    scanf("%d", &moral);
+    switch(moral){
+        case 1:
+            strcpy(A->facturas[a].receptorMorales, MORAL1);
+            break;
+        case 2:
+            strcpy(A->facturas[a].receptorMorales, MORAL2);
+            break;
+        default:
+            printf("Opcion no valida");
+            break;
+        }
     }
 
   if(longitud2 == 13){
     printf("\n-PERSONAS FISCALES\n\n");
-    printf("%cQui%cn es la persona Asalariada? ",enye, 130);
+    printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n",enye);
     fflush(stdin);
-    gets(A->facturas[a].domReceptor.Asalariado);
+    scanf("%d", &fiscal);
+    switch(fiscal){
+        case 1:
+            strcpy(A->facturas[a].receptorFiscales, FISCAL1);
+            break;
+        case 2:
+            strcpy(A->facturas[a].receptorFiscales, FISCAL2);
+            break;
+        case 3:
+            strcpy(A->facturas[a].receptorFiscales, FISCAL3);
+            break;
+        case 4:
+            strcpy(A->facturas[a].receptorFiscales, FISCAL4);
+            break;
+        case 5:
+            strcpy(A->facturas[a].receptorFiscales, FISCAL5);
+            break;
+        default:
 
-    printf("%cCu%cles son los honorarios? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domReceptor.Honorarios);
-
-    printf("%cCu%cl es el arrendamiento de inmuebles? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domReceptor.ArrendamientoDeInmuebles);
-
-    printf("%cCu%cl es la Incorporacion Fiscal? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domReceptor.IncorporacionFiscal);
-
-    printf("%cCu%cles son las Actividades Empresariales? ",enye, 160);
-    fflush(stdin);
-    gets(A->facturas[a].domReceptor.ActividadesEmpresariales);
+            break;
+        }
     }
 
 //------------------------------DATOS DE LOS PRODUCTOS Y SERVICIOS---------------------------------------------
@@ -356,18 +393,13 @@ int mostrar(struct Usuario *A, int a){
     longitud2 = strlen(A->facturas[a].RFCEmisor);
     if(longitud1 == 12){
         printf("\n-PERSONAS MORALES\n\n");
-        printf("\nLa persona moral es:  %s ", A->facturas[a].domEmisor.personasMorales);
+        printf("\nLa persona moral es:  %s ", A->facturas[a].emisorMorales);
         }
 
     if(longitud1 == 13){
         printf("\n-PERSONAS FISCALES\n\n");
-        printf("\nla persona Asalariada es:  %s ", A->facturas[a].domEmisor.Asalariado);
-        printf("\nEl honorario es de:  %i ", A->facturas[a].domEmisor.Honorarios);
-        printf("\nEl arrendimento de inmuebles es de:  %i ", A->facturas[a].domEmisor.ArrendamientoDeInmuebles);
-        printf("\nLa incorporacion fiscal es de: %i", A->facturas[a].domEmisor.IncorporacionFiscal);
-        printf("\nLas actividades empresariales son:  %s ", A->facturas[a].domEmisor.ActividadesEmpresariales);
+        printf("\nLa persona fiscal es:  %s ", A->facturas[a].emisorFiscales);
         }
-    printf("\n\n-R%cGIMEN FISCAL\n",144);
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~RECEPTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -383,16 +415,12 @@ int mostrar(struct Usuario *A, int a){
 
     if(longitud2 == 12){
         printf("\n-PERSONAS MORALES\n\n");
-        printf("\nLa persona moral es:  %s ", A->facturas[a].domReceptor.personasMorales);
+        printf("\nLa persona moral es:  %s ", A->facturas[a].receptorMorales);
         }
 
     if(longitud2 == 13){
         printf("\n-PERSONAS FISCALES\n\n");
-        printf("\nla persona Asalariada es:  %s ", A->facturas[a].domReceptor.Asalariado);
-        printf("\nEl honorario es de:  %i ", A->facturas[a].domReceptor.Honorarios);
-        printf("\nEl arrendimento de inmuebles es de:  %i ", A->facturas[a].domReceptor.ArrendamientoDeInmuebles);
-        printf("\nLa incorporacion fiscal es de: %i", A->facturas[a].domReceptor.IncorporacionFiscal);
-        printf("\nLas actividades empresariales son:  %s ", A->facturas[a].domReceptor.ActividadesEmpresariales);
+        printf("\nLa persona fiscal es:  %s ", A->facturas[a].receptorFiscales);
         }
     printf("\nClave: %d", A->facturas[a].clave);
     printf("\nDescripcion: %s", A->facturas[a].nombreDescripcion);
@@ -407,9 +435,15 @@ printf("\n\n");
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BUSCAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-int buscar(struct Usuario *A, int cantidadFacturas){
-    int k, encontrado=26;
+int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
+    int k, encontrado=26, i;
     char folioBuscado[15];
+    if (MenuPrincipal!=1){
+        printf("\t\t\t\tFacturas Disponibles\n");
+        for (i=0; i<cantidadFacturas; i++){
+            printf("Folio: %s \t\tDescripcion producto: %s\t\tEmpresa: %s\n", A->facturas[i].folio, A->facturas[i].nombreDescripcion, A->facturas[i].nombreEmisor);
+        }
+    }
     if (cantidadFacturas>0){
         printf("Ingresa el folio del que quiere consultar-> ");
         scanf(" %s",&folioBuscado);
@@ -441,6 +475,9 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
                 scanf("%d",&Enviar);
                 if (Enviar!=1 && Enviar!=2){
                     printf("Opcion no valida\n");
+                }
+                if (Enviar==1){
+                    printf("Factura enviada\n");
                 }
             }while(Enviar!=1 && Enviar!=2);
         }
@@ -614,7 +651,7 @@ int main() {
 
                     case 2:
 
-                        k=buscar(&(USUARIOS[0]), cantidadFacturas);
+                        k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
                             mostrar(USUARIOS, k);
                             system("pause");
@@ -623,7 +660,7 @@ int main() {
 
                     case 3:
 
-                        k=buscar(&(USUARIOS[0]), cantidadFacturas);
+                        k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
                             mostrar(USUARIOS, k);
                             system("pause");
