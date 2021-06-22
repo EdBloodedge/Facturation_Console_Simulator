@@ -177,47 +177,49 @@ int crear(struct Usuario *A, int a, struct producto *B){
 
   if(longitud1 == 12){
     printf("\n-PERSONAS MORALES\n\n");
-    printf("%cQue tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines De Lucro)\n ",enye, 130);
-    fflush(stdin);
-    scanf("%d", &moral);
-    switch(moral){
-        case 1:
-            strcpy(A->facturas[a].emisorMorales, MORAL1);
-            break;
-        case 2:
-            strcpy(A->facturas[a].emisorMorales, MORAL2);
-            break;
-        default:
-            printf("Opcion no valida");
-            break;
-        }
+    do{
+        printf("%cQue tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines De Lucro)\n -> ",enye, 130);
+        scanf(" %d", &moral);
+        switch(moral){
+            case 1:
+                strcpy(A->facturas[a].emisorMorales, MORAL1);
+                break;
+            case 2:
+                strcpy(A->facturas[a].emisorMorales, MORAL2);
+                break;
+            default:
+                printf("Opcion no valida\n");
+                break;
+            }
+    }while(moral!=1 && moral!=2);
     }
 
   if(longitud1 == 13){
     printf("\n-PERSONAS FISCALES\n\n");
-    printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n",enye);
-    fflush(stdin);
-    scanf("%d", &fiscal);
-    switch(fiscal){
-        case 1:
-            strcpy(A->facturas[a].emisorFiscales, FISCAL1);
-            break;
-        case 2:
-            strcpy(A->facturas[a].emisorFiscales, FISCAL2);
-            break;
-        case 3:
-            strcpy(A->facturas[a].emisorFiscales, FISCAL3);
-            break;
-        case 4:
-            strcpy(A->facturas[a].emisorFiscales, FISCAL4);
-            break;
-        case 5:
-            strcpy(A->facturas[a].emisorFiscales, FISCAL5);
-            break;
-        default:
-
-            break;
+    do{
+        printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
+        scanf(" %d", &fiscal);
+        switch(fiscal){
+            case 1:
+                strcpy(A->facturas[a].emisorFiscales, FISCAL1);
+                break;
+            case 2:
+                strcpy(A->facturas[a].emisorFiscales, FISCAL2);
+                break;
+            case 3:
+                strcpy(A->facturas[a].emisorFiscales, FISCAL3);
+                break;
+            case 4:
+                strcpy(A->facturas[a].emisorFiscales, FISCAL4);
+                break;
+            case 5:
+                strcpy(A->facturas[a].emisorFiscales, FISCAL5);
+                break;
+            default:
+                printf("Opcion no valida\n");
+                break;
         }
+    }while(fiscal!=1 && fiscal!=2 && fiscal!=3 && fiscal!=4 && fiscal!=5);
     }
     system("CLS");
 
@@ -264,47 +266,49 @@ int crear(struct Usuario *A, int a, struct producto *B){
   system("CLS");
   if(longitud2 == 12){
     printf("\n-PERSONAS MORALES\n\n");
-    printf("%cQue tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines De Lucro)\n ",enye, 130);
-    fflush(stdin);
-    scanf("%d", &moral);
-    switch(moral){
-        case 1:
-            strcpy(A->facturas[a].receptorMorales, MORAL1);
-            break;
-        case 2:
-            strcpy(A->facturas[a].receptorMorales, MORAL2);
-            break;
-        default:
-            printf("Opcion no valida");
-            break;
+    do{
+        printf("%cQue tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines De Lucro)\n -> ",enye, 130);
+        scanf(" %d", &moral);
+        switch(moral){
+            case 1:
+                strcpy(A->facturas[a].receptorMorales, MORAL1);
+                break;
+            case 2:
+                strcpy(A->facturas[a].receptorMorales, MORAL2);
+                break;
+            default:
+                printf("Opcion no valida\n");
+                break;
         }
+    }while(moral!=1 && moral!=2);
     }
 
   if(longitud2 == 13){
     printf("\n-PERSONAS FISCALES\n\n");
-    printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n",enye);
-    fflush(stdin);
-    scanf("%d", &fiscal);
-    switch(fiscal){
-        case 1:
-            strcpy(A->facturas[a].receptorFiscales, FISCAL1);
-            break;
-        case 2:
-            strcpy(A->facturas[a].receptorFiscales, FISCAL2);
-            break;
-        case 3:
-            strcpy(A->facturas[a].receptorFiscales, FISCAL3);
-            break;
-        case 4:
-            strcpy(A->facturas[a].receptorFiscales, FISCAL4);
-            break;
-        case 5:
-            strcpy(A->facturas[a].receptorFiscales, FISCAL5);
-            break;
-        default:
-
-            break;
+    do{
+        printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
+        scanf(" %d", &fiscal);
+        switch(fiscal){
+            case 1:
+                strcpy(A->facturas[a].receptorFiscales, FISCAL1);
+                break;
+            case 2:
+                strcpy(A->facturas[a].receptorFiscales, FISCAL2);
+                break;
+            case 3:
+                strcpy(A->facturas[a].receptorFiscales, FISCAL3);
+                break;
+            case 4:
+                strcpy(A->facturas[a].receptorFiscales, FISCAL4);
+                break;
+            case 5:
+                strcpy(A->facturas[a].receptorFiscales, FISCAL5);
+                break;
+            default:
+                printf("Opcion no valida\n");
+                break;
         }
+    }while(fiscal!=1 && fiscal!=2 && fiscal!=3 && fiscal!=4 && fiscal!=5);
     }
 
 //------------------------------DATOS DE LOS PRODUCTOS Y SERVICIOS---------------------------------------------
