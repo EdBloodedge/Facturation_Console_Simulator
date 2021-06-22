@@ -309,39 +309,39 @@ int crear(struct Usuario *A, int a, struct producto *B){
 
 //------------------------------DATOS DE LOS PRODUCTOS Y SERVICIOS---------------------------------------------
 
-    printf("\n\n\n\n-------------PRODUCTOS Y SERVICIOS-----------\n\n");
-    printf(" CLAVES           PRODUCTOS\n\n");
-    printf("45121503       C%cmaras desechables\n", 160);
-    printf("45121504       C%cmaras digitales\n", 160);
-    printf("45121505       C%maras cinematogr%cficas\n",160, 160);
-    printf("45121506       C%cmaras de video conferencia\n",160);
-    printf("45121510       C%cmaras a%creas\n",160, 130);
-    printf("45121511       C%cmaras de alta velocidad\n",160);
-    printf("45121520       C%cmaras de web\n",160);
-    printf("45121521       C%cmaras de inspecci%cn\n",160, 162);
-    printf("45121522       C%cmaras infrarrojas\n",160);
-    printf("45121523       C%cmaras astron%cmicas\n",160, 162);
-    printf("45121601       Flashes o iluminaci%cn para c%cmaras\n",162, 160);
-    printf("45121602       Tr%cpodes para c%cmaras (Tripi%cs para c%cmara)\n",161, 160,130, 160);
-    printf("45121603       Lentes para c%cmaras\n", 160);
-    printf("45121604       Oclusores para c%cmaras\n",160);
-    printf("45121605       Marcos de pantalla\n\n\n");
+    printf("\n\n\n\n\t\t-------------PRODUCTOS Y SERVICIOS-----------\n\n");
+    printf(" CLAVES           PRODUCTOS                                          PRECIOS\n\n");
+    printf("45121503       C%cmaras desechables                                    247.70\n", 160);
+    printf("45121504       C%cmaras digitales                                      6999.00\n", 160);
+    printf("45121505       C%maras cinematogr%cficas                                13999.00\n",160, 160);
+    printf("45121506       C%cmaras de video conferencia                           10569.00\n",160);
+    printf("45121510       C%cmaras a%creas                                         24999.00\n",160, 130);
+    printf("45121511       C%cmaras de alta velocidad                              10799.00\n",160);
+    printf("45121520       C%cmaras de web                                         1209.00\n",160);
+    printf("45121521       C%cmaras de inspecci%cn                                  354.00\n",160, 162);
+    printf("45121522       C%cmaras infrarrojas                                    950.17\n",160);
+    printf("45121523       C%cmaras astron%cmicas                                   3076.00\n",160, 162);
+    printf("45121601       Flashes o iluminaci%cn para c%cmaras                     1249.00\n",162, 160);
+    printf("45121602       Tr%cpodes para c%cmaras (Tripi%cs para c%cmara)             799.00\n",161, 160,130, 160);
+    printf("45121603       Lentes para c%cmaras                                    63.85\n", 160);
+    printf("45121604       Oclusores para c%cmaras                                 267.24\n",160);
+    printf("45121605       Marcos de pantalla                                     7400.00\n\n\n");
 
     printf(" CLAVES                SERVICIOS \n\n");
-    printf("82131601       Servicios de fotograf%ca a%crea\n",161, 130);
-    printf("82131602       Cinematograf%ca\n",161);
-    printf("82131603       Servicios de producci%cn de v%cdeos\n",162,161);
-    printf("82131604       Servicios de estudio fotogr%cfico o fotos fijas\n",160);
-    printf("82131501       Elaboraci%cn o reproducci%cn de pel%ccula fija\n",162, 162, 161);
-    printf("82131502       Elaboraci%cn o reproducci%cn de pel%cculas de cine\n",162, 162, 161);
-    printf("82131503       Servicios de microficha\n");
-    printf("82131504       Separación de colores\n");
-    printf("82131505       Servicio de posproducci%cn de pel%cculas\n",162, 160);
-    printf("82131506       Servicio de fotos de graduacion\n");
+    printf("82131601       Servicios de fotograf%ca a%crea                          6500.00\n",161, 130);
+    printf("82131602       Cinematograf%ca                                         6315.00\n",161);
+    printf("82131603       Servicios de producci%cn de v%cdeos                      4950.00\n",162,161);
+    printf("82131604       Servicios de estudio fotogr%cfico o fotos fijas         3500.00\n",160);
+    printf("82131501       Elaboraci%cn o reproducci%cn de pel%ccula fija            7500.00\n",162, 162, 161);
+    printf("82131502       Elaboraci%cn o reproducci%cn de pel%cculas de cine        6315.00\n",162, 162, 161);
+    printf("82131503       Servicios de microficha                                2572.90\n");
+    printf("82131504       Separaci%cn de colores                                  175.90\n",162);
+    printf("82131505       Servicio de posproducci%cn de pel%cculas                 3750.00\n",162, 160);
+    printf("82131506       Servicio de fotos de graduaci%cn                        2950.00\n",162);
 
     do{
         salir=0;
-        printf("\n\n\n%cQu%c producto(s) o servicio(s) quieres comprar?  ",168, 130);
+        printf("\n\n\nIngrese la clave del producto(s) o servicio(s) que quieres comprar ->  ");
         fflush(stdin);
         scanf("%d",&claveBuscada);
         for (k=0; k<=25; k++){
@@ -429,7 +429,7 @@ int mostrar(struct Usuario *A, int a){
     printf("\nSubTotal: %.2f", A->facturas[a].subtotal);
     printf("\nIVA: %.2f", A->facturas[a].IVA);
     printf("\nTotal: %.2f", A->facturas[a].total);
-printf("\n\n");
+    printf("\n\n");
 
     printf("Su folio: %s\n", A->facturas[a].folio);
 }
@@ -445,7 +445,7 @@ int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
         }
     }
     if (cantidadFacturas>0){
-        printf("Ingresa el folio del que quiere consultar-> ");
+        printf("\n\nIngresa el folio del que quiere consultar-> ");
         scanf(" %s",&folioBuscado);
         for (k=0; k<=cantidadFacturas; k++){
             if (strcmpi(A->facturas[k].folio, folioBuscado)==0){
@@ -601,9 +601,18 @@ int main() {
                         printf("\t\t\t\t        |\n\t\t\t\t    |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica los SAT-anes  |\n",162, 162);//ó
                         printf("\t\t\t\t    |\t\t\t\t                             \t\t|\n");
                         printf("\t\t\t\t     --------------------------------------------------------------------\n");
-                        printf("\n\n\t\t\t\tEquipos y Suministros para Impresi%cn, Fotografia y Audiovisuales",162);
-                        sleep(1);
+                        printf("\n\n\t\t\t\tTienda de equipos y Suministros para Impresi%cn, Fotografia y Audiovisuales\n\n",162);
+
                     }
+                        printf("\t\t\t\t\t\t           Sonrie :)\n\n");
+                        sleep(3);
+                        Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+
+                        printf("\t\t\t\t\t\t\t------------------\n");
+                        printf("\t\t\t\t\t\t\t| ||||\t      -- |\n\t\t\t\t\t\t\t|    ______\t |\n\t\t\t\t\t\t\t|   | \\__/ |\t |\n\t\t\t\t\t\t\t|   | |__| |     |\n\t\t\t\t\t\t\t|   | /\t \\ |\t |\n\t\t\t\t\t\t\t|   --------\t |\n");
+                        printf("\t\t\t\t\t\t\t------------------");
+                        sleep(1);
+
 
                     printf("\n1)Crear Factura\n");
                     printf("\n2)Mostrar Factura\n");
