@@ -40,7 +40,7 @@ struct domicilio{
 };
 
 struct productos{
-    float precioUnitario, subtotal, IVA, total;
+    float importe, precioUnitario;
     int cantidad, clave;
     char nombreDescripcion[50];
 };
@@ -50,6 +50,7 @@ struct factura{
 
   char logo[20][10], nombreEmisor[30], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
   int enviado;
+  float subtotal, IVA, total;
   char folio[15], emisorFiscales[30], receptorFiscales[30];
   struct domicilio domEmisor, domReceptor;
   struct productos MASPRODUCTOS[5];
@@ -291,6 +292,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
     printf("\n-PERSONAS FISCALES\n\n");
     do{
         printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
+        fflush(stdin);
         scanf(" %d", &fiscal);
         switch(fiscal){
             case 1:
@@ -374,12 +376,15 @@ int crear(struct Usuario *A, int a, struct producto *B){
     for (i=0; i<cantidadProductos; i++){
         if (A->facturas[a].MASPRODUCTOS[i].clave !=0){
             if (A->facturas[a].MASPRODUCTOS[i].cantidad>0){
-                A->facturas[a].MASPRODUCTOS[i].subtotal=(A->facturas[a].MASPRODUCTOS[i].precioUnitario*A->facturas[a].MASPRODUCTOS[i].cantidad);
-                A->facturas[a].MASPRODUCTOS[i].IVA=(A->facturas[a].MASPRODUCTOS[i].subtotal*0.16);
-                A->facturas[a].MASPRODUCTOS[i].total=(A->facturas[a].MASPRODUCTOS[i].subtotal+A->facturas[a].MASPRODUCTOS[i].IVA);
+                A->facturas[a].MASPRODUCTOS[i].importe=(A->facturas[a].MASPRODUCTOS[i].precioUnitario*A->facturas[a].MASPRODUCTOS[i].cantidad);
             }
         }
     }
+    for (i=0; i<5; i++){
+        A->facturas[a].subtotal+=A->facturas[a].MASPRODUCTOS[i].importe;
+    }
+    A->facturas[a].IVA=(A->facturas[a].subtotal*0.16);
+    A->facturas[a].total=(A->facturas[a].subtotal+A->facturas[a].IVA);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -439,12 +444,13 @@ int mostrar(struct Usuario *A, int a){
             printf("\nDescripcion: %s", A->facturas[a].MASPRODUCTOS[i].nombreDescripcion);
             printf("\nCantidad: %d", A->facturas[a].MASPRODUCTOS[i].cantidad);
             printf("\nPrecio Unitario: %.2f", A->facturas[a].MASPRODUCTOS[i].precioUnitario);
-            printf("\nSubTotal: %.2f", A->facturas[a].MASPRODUCTOS[i].subtotal);
-            printf("\nIVA: %.2f", A->facturas[a].MASPRODUCTOS[i].IVA);
-            printf("\nTotal: %.2f", A->facturas[a].MASPRODUCTOS[i].total);
+            printf("\nImporte: %.2f", A->facturas[a].MASPRODUCTOS[i].importe);
             printf("\n\n");
         }
     }
+    printf("\nSubTotal: %.2f", A->facturas[a].subtotal);
+    printf("\nIVA: %.2f", A->facturas[a].IVA);
+    printf("\nTotal: %.2f\n", A->facturas[a].total);
 
 
     printf("Su folio: %s\n", A->facturas[a].folio);
@@ -516,7 +522,7 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ELIMINAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int eliminar(struct Usuario *A, int cantidadFacturas, int k){
-    int eliminar=0, cantidadProductos=0;
+    int eliminar=0, cantidadProductos=0, cantidadProductos2=0;
     if (cantidadFacturas>0){
         printf("seguro que quieres eliminarlo? \n1)Si\nOtra tecla \n-> ");
         scanf("%d", &eliminar);
@@ -526,15 +532,22 @@ int eliminar(struct Usuario *A, int cantidadFacturas, int k){
                     if (A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].clave !=0){
                         cantidadProductos++;
                     }
+                    if (A->facturas[k].MASPRODUCTOS[j].clave !=0){
+                        cantidadProductos2++;
+                    }
+                }
+                if (cantidadProductos<cantidadProductos2){
+                    cantidadProductos=cantidadProductos2;
                 }
                 for (int j=0; j<cantidadProductos; j++){
                     A->facturas[k].MASPRODUCTOS[j].clave=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].clave;
                     strcpy(A->facturas[k].MASPRODUCTOS[j].nombreDescripcion, A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].nombreDescripcion);
                     A->facturas[k].MASPRODUCTOS[j].cantidad=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].cantidad;
                     A->facturas[k].MASPRODUCTOS[j].precioUnitario=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].precioUnitario;
-                    A->facturas[k].MASPRODUCTOS[j].subtotal=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].subtotal;
-                    A->facturas[k].MASPRODUCTOS[j].IVA=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].IVA;
-                    A->facturas[k].MASPRODUCTOS[j].total=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].total;
+                    A->facturas[k].MASPRODUCTOS[j].importe=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].importe;
+                    A->facturas[k].subtotal=A->facturas[cantidadFacturas-1].subtotal;
+                    A->facturas[k].IVA=A->facturas[cantidadFacturas-1].IVA;
+                    A->facturas[k].total=A->facturas[cantidadFacturas-1].total;
                 }
                 //Emisor
                 strcpy(A->facturas[k].nombreEmisor, A->facturas[cantidadFacturas-1].nombreEmisor);
