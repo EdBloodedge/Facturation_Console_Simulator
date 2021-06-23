@@ -50,7 +50,7 @@ struct factura{
 
   char logo[20][10], nombreEmisor[30], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
   int enviado;
-  char folio[15], emisorMorales[30], emisorFiscales[30], receptorMorales[30], receptorFiscales[30];
+  char folio[15], emisorFiscales[30], receptorFiscales[30];
   struct domicilio domEmisor, domReceptor;
   struct productos MASPRODUCTOS[5];
 
@@ -131,7 +131,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
     strcpy(A->facturas[a].domEmisor.colonia, A->facturas[a-1].domEmisor.colonia);
     strcpy(A->facturas[a].domEmisor.estado, A->facturas[a-1].domEmisor.estado);
     strcpy(A->facturas[a].domEmisor.pais, A->facturas[a-1].domEmisor.pais);
-    strcpy(A->facturas[a].emisorMorales, A->facturas[a-1].emisorMorales);
+    strcpy(A->facturas[a].emisorFiscales, A->facturas[a-1].emisorFiscales);
     A->facturas[a].domEmisor.numero = A->facturas[a-1].domEmisor.numero;
     A->facturas[a].domEmisor.codigoPostal = A->facturas[a-1].domEmisor.codigoPostal;
   } else {
@@ -186,10 +186,10 @@ int crear(struct Usuario *A, int a, struct producto *B){
         scanf(" %d", &moral);
         switch(moral){
             case 1:
-                strcpy(A->facturas[a].emisorMorales, MORAL1);
+                strcpy(A->facturas[a].emisorFiscales, MORAL1);
                 break;
             case 2:
-                strcpy(A->facturas[a].emisorMorales, MORAL2);
+                strcpy(A->facturas[a].emisorFiscales, MORAL2);
                 break;
             default:
                 printf("Opcion no valida\n");
@@ -275,10 +275,10 @@ int crear(struct Usuario *A, int a, struct producto *B){
         scanf(" %d", &moral);
         switch(moral){
             case 1:
-                strcpy(A->facturas[a].receptorMorales, MORAL1);
+                strcpy(A->facturas[a].receptorFiscales, MORAL1);
                 break;
             case 2:
-                strcpy(A->facturas[a].receptorMorales, MORAL2);
+                strcpy(A->facturas[a].receptorFiscales, MORAL2);
                 break;
             default:
                 printf("Opcion no valida\n");
@@ -368,7 +368,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 printf("Clave no existente\n");
             }
         }
-        printf("Quieres agregar otro producto? \n1)Si \nCualquier tecla)No \n-> ");
+        printf("Quieres agregar otro producto? \n1)Si \nOtra tecla)No \n-> ");
         scanf("%d", &salir);
     }while(salir==1);
     for (i=0; i<cantidadProductos; i++){
@@ -400,10 +400,10 @@ int mostrar(struct Usuario *A, int a){
 
 //~~~~~~~~~~~~~~~~~~~~~~REGIMEN FISCAL~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     longitud1 = strlen(A->facturas[a].RFCEmisor);
-    longitud2 = strlen(A->facturas[a].RFCEmisor);
+    longitud2 = strlen(A->facturas[a].RFCReceptor);
     if(longitud1 == 12){
         printf("\n-PERSONAS MORALES\n\n");
-        printf("\nLa persona moral es:  %s ", A->facturas[a].emisorMorales);
+        printf("\nLa persona moral es:  %s ", A->facturas[a].emisorFiscales);
         }
 
     if(longitud1 == 13){
@@ -425,12 +425,12 @@ int mostrar(struct Usuario *A, int a){
 
     if(longitud2 == 12){
         printf("\n-PERSONAS MORALES\n\n");
-        printf("\nLa persona moral es:  %s ", A->facturas[a].receptorMorales);
+        printf("\nLa persona moral es:  %s ", A->facturas[a].receptorFiscales);
         }
 
     if(longitud2 == 13){
         printf("\n-PERSONAS FISCALES\n\n");
-        printf("\nLa persona fiscal es:  %s ", A->facturas[a].receptorFiscales);
+        printf("\nLa persona fiscal es:  %s \n", A->facturas[a].receptorFiscales);
         }
     for (i=0; i<5; i++){
         if (A->facturas[a].MASPRODUCTOS[i].clave !=0){
@@ -467,7 +467,7 @@ int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
         }
     }
     if (cantidadFacturas>0){
-        printf("\n\nIngresa el folio del que quiere consultar-> ");
+        printf("\n\nIngresa el folio que quieres usar-> ");
         scanf(" %s",&folioBuscado);
         for (k=0; k<=cantidadFacturas; k++){
             if (strcmpi(A->facturas[k].folio, folioBuscado)==0){
@@ -510,10 +510,74 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
     else{
         printf("No hay facturas registradas\n");
     }
+    return Enviar;
 }
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ELIMINAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+int eliminar(struct Usuario *A, int cantidadFacturas, int k){
+    int eliminar=0, cantidadProductos=0;
+    if (cantidadFacturas>0){
+        printf("seguro que quieres eliminarlo? \n1)Si\nOtra tecla \n-> ");
+        scanf("%d", &eliminar);
+        if (eliminar==1){
+            if (A->facturas[k].enviado!=1){
+                for (int j=0; j<5; j++){
+                    if (A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].clave !=0){
+                        cantidadProductos++;
+                    }
+                }
+                for (int j=0; j<cantidadProductos; j++){
+                    A->facturas[k].MASPRODUCTOS[j].clave=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].clave;
+                    strcpy(A->facturas[k].MASPRODUCTOS[j].nombreDescripcion, A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].nombreDescripcion);
+                    A->facturas[k].MASPRODUCTOS[j].cantidad=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].cantidad;
+                    A->facturas[k].MASPRODUCTOS[j].precioUnitario=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].precioUnitario;
+                    A->facturas[k].MASPRODUCTOS[j].subtotal=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].subtotal;
+                    A->facturas[k].MASPRODUCTOS[j].IVA=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].IVA;
+                    A->facturas[k].MASPRODUCTOS[j].total=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].total;
+                }
+                //Emisor
+                strcpy(A->facturas[k].nombreEmisor, A->facturas[cantidadFacturas-1].nombreEmisor);
+                strcpy(A->facturas[k].RFCEmisor, A->facturas[cantidadFacturas-1].RFCEmisor);
+                strcpy(A->facturas[k].domEmisor.calle, A->facturas[cantidadFacturas-1].domEmisor.calle);
+                strcpy(A->facturas[k].domEmisor.ciudad, A->facturas[cantidadFacturas-1].domEmisor.ciudad);
+                strcpy(A->facturas[k].domEmisor.colonia, A->facturas[cantidadFacturas-1].domEmisor.colonia);
+                strcpy(A->facturas[k].domEmisor.estado, A->facturas[cantidadFacturas-1].domEmisor.estado);
+                strcpy(A->facturas[k].domEmisor.pais, A->facturas[cantidadFacturas-1].domEmisor.pais);
+                strcpy(A->facturas[k].emisorFiscales, A->facturas[cantidadFacturas-1].emisorFiscales);
+                A->facturas[k].domEmisor.numero = A->facturas[cantidadFacturas-1].domEmisor.numero;
+                A->facturas[k].domEmisor.codigoPostal = A->facturas[cantidadFacturas-1].domEmisor.codigoPostal;
+
+                //Receptor
+                strcpy(A->facturas[k].nombreReceptor, A->facturas[cantidadFacturas-1].nombreReceptor);
+                strcpy(A->facturas[k].RFCReceptor, A->facturas[cantidadFacturas-1].RFCReceptor);
+                strcpy(A->facturas[k].domReceptor.calle, A->facturas[cantidadFacturas-1].domReceptor.calle);
+                strcpy(A->facturas[k].domReceptor.ciudad, A->facturas[cantidadFacturas-1].domReceptor.ciudad);
+                strcpy(A->facturas[k].domReceptor.colonia, A->facturas[cantidadFacturas-1].domReceptor.colonia);
+                strcpy(A->facturas[k].domReceptor.estado, A->facturas[cantidadFacturas-1].domReceptor.estado);
+                strcpy(A->facturas[k].domReceptor.pais, A->facturas[cantidadFacturas-1].domReceptor.pais);
+                strcpy(A->facturas[k].receptorFiscales, A->facturas[cantidadFacturas-1].receptorFiscales);
+                A->facturas[k].domReceptor.numero = A->facturas[cantidadFacturas-1].domReceptor.numero;
+                A->facturas[k].domReceptor.codigoPostal = A->facturas[cantidadFacturas-1].domReceptor.codigoPostal;
+                strcpy(A->facturas[k].folio, A->facturas[cantidadFacturas-1].folio);
+                A->facturas[k].enviado=A->facturas[cantidadFacturas-1].enviado;
+                cantidadFacturas=cantidadFacturas-2;
+                cantidadFacturas++;
+                printf("Se ha eliminado la factura");
+            }
+            else{
+                printf("No se puede eliminar la factura porque ya fue enviada");
+            }
+        }
+        else if (eliminar !=1){
+            printf("No se ha eliminado");
+        }
+    }
+    else{
+        printf("No hay facturas registradas\n");
+    }
+    return cantidadFacturas;
+}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO MAIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -703,7 +767,12 @@ int main() {
 
                     case 4:
 
-                        //eliminar();
+                        k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
+                        if (k!=26){
+                            mostrar(USUARIOS, k);
+                            system("pause");
+                            cantidadFacturas=eliminar(&(USUARIOS[0]), cantidadFacturas, k);
+                        }
                         sleep(1);
 
                     break;
