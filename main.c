@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h> /* gets, strcmp */
 #include <stdlib.h> /* system */
+#include <time.h>
 
 #define USUARIO "Usuario1"
 #define CLAVE "contra1"
@@ -55,7 +56,7 @@ struct productos{
 struct factura{
 
   char logo[20][10], nombreEmisor[30], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
-  int enviado;
+  int enviado, hora[128];
   float subtotal, IVA, total;
   char folio[15], emisorFiscales[30], receptorFiscales[30];
   struct domicilio domEmisor, domReceptor;
@@ -85,7 +86,7 @@ struct producto{
 {45121504, 6999.00, "Camaras digitales"},
 {45121505, 13999.00, "Camaras cinematograficas"},
 {45121506, 10569.00, "Camaras de video conferencia"},
-{451215010, 24999.00, "Camaras aereas"},
+{45121510, 24999.00, "Camaras aereas"},
 {45121511, 10799.00, "Camaras de alta velocidad"},
 {45121520, 1209.00, "Camaras web"},
 {45121521, 354.00, "Camaras de inspeccion"},
@@ -458,7 +459,7 @@ int mostrar(struct Usuario *A, int a){
     printf("\nIVA: %.2f", A->facturas[a].IVA);
     printf("\nTotal: %.2f\n", A->facturas[a].total);
 
-
+    printf("\nHora: %s\n", A->facturas[a].hora);
     printf("Su folio: %s\n", A->facturas[a].folio);
 }
 
@@ -596,6 +597,15 @@ int eliminar(struct Usuario *A, int cantidadFacturas, int k){
         printf("No hay facturas registradas\n");
     }
     return cantidadFacturas;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HORA ACTUAL~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+int tiempo(struct Usuario *A, int a){
+    time_t tiempo = time(0);
+    struct tm *tlocal = localtime(&tiempo);
+    char output[128];
+    strftime(output,128,"%H:%M:%S",tlocal);
+    strcpy(A->facturas[a].hora, output);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO MAIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -764,6 +774,7 @@ int main() {
 
                         strcpy(USUARIOS[0].facturas[cantidadFacturas].folio, folioChar);
                         crear(&(USUARIOS[0]), cantidadFacturas, PRODUCTOS);
+                        tiempo(&(USUARIOS[0]), cantidadFacturas);
                         cantidadFacturas++;
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
