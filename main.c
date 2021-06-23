@@ -4,12 +4,18 @@
 
 #define USUARIO "Usuario1"
 #define CLAVE "contra1"
+#define FIRMA "UsuarCtr1"
+#define QR "# ## #\n# ## #\n#    #\n #### "
 
 #define USUARIO2 "Jaimito"
 #define CLAVE2 "tangamandapio"
+#define FIRMA2 "CarteritoPerron "
+#define QR2 "#####\n  #  \n  #  \n ##  \n##   "
 
 #define USUARIO3 "LosSAT-anes"
 #define CLAVE3 "SAT-anes"
+#define FIRMA3 "SATdelDevil"
+#define QR3 "#####\n#    #\n#    #\n#    #\n#####"
 
 #define TECLA_ENTER 13
 #define TECLA_BACKSPACE 8
@@ -59,7 +65,7 @@ struct factura{
 
 //Usuario.
 struct Usuario{
-  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20];
+  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20], firma[70], qr[50];
   struct factura facturas[LimiteFact];
 };
 
@@ -492,6 +498,7 @@ int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
     system("pause");
     return encontrado;
 }
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENVIAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int enviar(struct Usuario *A, int cantidadFacturas, int k){
     int Enviar;
@@ -518,7 +525,6 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
     }
     return Enviar;
 }
-
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ELIMINAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int eliminar(struct Usuario *A, int cantidadFacturas, int k){
@@ -613,10 +619,20 @@ int main() {
   //Asignación de datos del primer usuario
   strcpy(USUARIOS[0].usuario, USUARIO);
   strcpy(USUARIOS[0].clave, CLAVE);
+  strcpy(USUARIOS[0].firma, FIRMA);
+  strcpy(USUARIOS[0].qr, QR);
+
+  //Asignación de datos del segundo usuario
   strcpy(USUARIOS[1].usuario, USUARIO2);
   strcpy(USUARIOS[1].clave, CLAVE2);
+  strcpy(USUARIOS[1].firma, FIRMA2);
+  strcpy(USUARIOS[1].qr, QR2);
+
+  //Asignación de datos del tercer usuario
   strcpy(USUARIOS[2].usuario, USUARIO3);
   strcpy(USUARIOS[2].clave, CLAVE3);
+  strcpy(USUARIOS[2].firma, FIRMA3);
+  strcpy(USUARIOS[2].qr, QR3);
 
 
   do{
@@ -624,7 +640,6 @@ int main() {
     repetir = 0;
     system("cls");
     entrar=0;
-
 		printf("\n\n\n\t\t\t\t1)Iniciar Sesion \n\n\t\t\t\t2)Salir\n\n\t\t\t\t->");
 		scanf("%d",&entrar);
 		if (entrar==1){
