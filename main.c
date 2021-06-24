@@ -324,34 +324,34 @@ int crear(struct Usuario *A, int a, struct producto *B){
 //------------------------------DATOS DE LOS PRODUCTOS Y SERVICIOS---------------------------------------------
 
     printf("\n\n\n\n\t\t-------------PRODUCTOS Y SERVICIOS-----------\n\n");
-    printf(" CLAVES           PRODUCTOS                                          PRECIOS\n\n");
-    printf("45121503       C%cmaras desechables                                    247.70\n", 160);
-    printf("45121504       C%cmaras digitales                                      6999.00\n", 160);
-    printf("45121505       C%maras cinematogr%cficas                                13999.00\n",160, 160);
-    printf("45121506       C%cmaras de video conferencia                           10569.00\n",160);
-    printf("45121510       C%cmaras a%creas                                         24999.00\n",160, 130);
-    printf("45121511       C%cmaras de alta velocidad                              10799.00\n",160);
-    printf("45121520       C%cmaras de web                                         1209.00\n",160);
-    printf("45121521       C%cmaras de inspecci%cn                                  354.00\n",160, 162);
-    printf("45121522       C%cmaras infrarrojas                                    950.17\n",160);
-    printf("45121523       C%cmaras astron%cmicas                                   3076.00\n",160, 162);
-    printf("45121601       Flashes o iluminaci%cn para c%cmaras                     1249.00\n",162, 160);
-    printf("45121602       Tr%cpodes para c%cmaras (Tripi%cs para c%cmara)             799.00\n",161, 160,130, 160);
-    printf("45121603       Lentes para c%cmaras                                    63.85\n", 160);
-    printf("45121604       Oclusores para c%cmaras                                 267.24\n",160);
-    printf("45121605       Marcos de pantalla                                     7400.00\n\n\n");
+    printf(" CLAVES           PRODUCTOS                                            PRECIOS\n\n");
+    printf("45121503       C%cmaras desechables                                    $247.70\n", 160);
+    printf("45121504       C%cmaras digitales                                      $6999.00\n", 160);
+    printf("45121505       C%maras cinematogr%cficas                               $13999.00\n",160, 160);
+    printf("45121506       C%cmaras de video conferencia                           $10569.00\n",160);
+    printf("45121510       C%cmaras a%creas                                        $24999.00\n",160, 130);
+    printf("45121511       C%cmaras de alta velocidad                              $10799.00\n",160);
+    printf("45121520       C%cmaras de web                                         $1209.00\n",160);
+    printf("45121521       C%cmaras de inspecci%cn                                 $354.00\n",160, 162);
+    printf("45121522       C%cmaras infrarrojas                                    $950.17\n",160);
+    printf("45121523       C%cmaras astron%cmicas                                  $3076.00\n",160, 162);
+    printf("45121601       Flashes o iluminaci%cn para c%cmaras                    $1249.00\n",162, 160);
+    printf("45121602       Tr%cpodes para c%cmaras (Tripi%cs para c%cmara)         $799.00\n",161, 160,130, 160);
+    printf("45121603       Lentes para c%cmaras                                    $63.85\n", 160);
+    printf("45121604       Oclusores para c%cmaras                                 $267.24\n",160);
+    printf("45121605       Marcos de pantalla                                      $7400.00\n\n\n");
 
-    printf(" CLAVES                SERVICIOS                                      PRECIOS\n\n");
-    printf("82131601       Servicios de fotograf%ca a%crea                          6500.00\n",161, 130);
-    printf("82131602       Cinematograf%ca                                         6315.00\n",161);
-    printf("82131603       Servicios de producci%cn de v%cdeos                      4950.00\n",162,161);
-    printf("82131604       Servicios de estudio fotogr%cfico o fotos fijas         3500.00\n",160);
-    printf("82131501       Elaboraci%cn o reproducci%cn de pel%ccula fija            7500.00\n",162, 162, 161);
-    printf("82131502       Elaboraci%cn o reproducci%cn de pel%cculas de cine        6315.00\n",162, 162, 161);
-    printf("82131503       Servicios de microficha                                2572.90\n");
-    printf("82131504       Separaci%cn de colores                                  175.90\n",162);
-    printf("82131505       Servicio de posproducci%cn de pel%cculas                 3750.00\n",162, 160);
-    printf("82131506       Servicio de fotos de graduaci%cn                        2950.00\n",162);
+    printf(" CLAVES                SERVICIOS                                       PRECIOS\n\n");
+    printf("82131601       Servicios de fotograf%ca a%crea                         $6500.00\n",161, 130);
+    printf("82131602       Cinematograf%ca                                         $6315.00\n",161);
+    printf("82131603       Servicios de producci%cn de v%cdeos                     $4950.00\n",162,161);
+    printf("82131604       Servicios de estudio fotogr%cfico o fotos fijas         $3500.00\n",160);
+    printf("82131501       Elaboraci%cn o reproducci%cn de pel%ccula fija          $7500.00\n",162, 162, 161);
+    printf("82131502       Elaboraci%cn o reproducci%cn de pel%cculas de cine      $6315.00\n",162, 162, 161);
+    printf("82131503       Servicios de microficha                                 $2572.90\n");
+    printf("82131504       Separaci%cn de colores                                  $175.90\n",162);
+    printf("82131505       Servicio de posproducci%cn de pel%cculas                $3750.00\n",162, 160);
+    printf("82131506       Servicio de fotos de graduaci%cn                        $2950.00\n",162);
 
     do{
         salir=0;
