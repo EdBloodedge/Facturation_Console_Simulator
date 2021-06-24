@@ -726,8 +726,8 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
             }while(Enviar!=1 && Enviar!=2);
         }
         else{
-            printf("\n\nLa factura ya fue enviada.");
-            systen("pause");
+            printf("\n\nLa factura ya fue enviada");
+            system("pause");
         }
     }
     else{
@@ -930,10 +930,10 @@ int main() {
                     for(i=0; i<=1; i++){
                         system("cls");
                         system("COLOR FD");
-                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s \\(^o^\\)", 173,usuario);
+                        printf("\n\n\t\t\t\t\t\t\t %cHola %s! \\(^o^\\)", 173,usuario);
                         sleep(1);
                         system("cls");
-                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s ~(^u^~)", 173,usuario);
+                        printf("\n\n\t\t\t\t\t\t\t %cHola %s! ~(^u^~)", 173,usuario);
                         sleep(1);
 
                     }
