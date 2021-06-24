@@ -342,7 +342,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
     printf("45121604       Oclusores para c%cmaras                                 $267.24\n",160);
     printf("45121605       Marcos de pantalla                                     $7400.00\n\n\n");
 
-    printf(" CLAVES                SERVICIOS                                     PRECIOS\n\n");
+    printf(" CLAVES                SERVICIOS                                      PRECIOS\n\n");
     printf("82131601       Servicios de fotograf%ca a%crea                          $6500.00\n",161, 130);
     printf("82131602       Cinematograf%ca                                         $6315.00\n",161);
     printf("82131603       Servicios de producci%cn de v%cdeos                      $4950.00\n",162,161);
@@ -355,7 +355,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
     printf("82131506       Servicio de fotos de graduaci%cn                        $2950.00\n",162);
 
     do{
-        salir=0;
+        salir=1;
         printf("\n\n\nIngrese la clave del producto(s) o servicio(s) que quieres comprar ->  ");
         fflush(stdin);
         scanf("%d",&claveBuscada);
@@ -375,8 +375,14 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 printf("Clave no existente\n");
             }
         }
-        printf("Quieres agregar otro producto? \n1)Si \nOtra tecla)No \n-> ");
-        scanf("%d", &salir);
+
+        if(k==27){
+          printf("Quieres agregar otro producto? \n1)Si \nOtra tecla)No \n-> ");
+          if(scanf("%d", &salir) == 0)
+            salir = 0;
+        } else if(k==26){
+          salir = 1;
+        }
     }while(salir==1);
     for (i=0; i<cantidadProductos; i++){
         if (A->facturas[a].MASPRODUCTOS[i].clave !=0){
@@ -732,14 +738,19 @@ int main() {
                         printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s (/^o^)/", 173,usuario);
                         sleep(1);
                         system("cls");
-                        printf("\t\t\t\t    ---------------------------------------------------------------------\n");
-                        printf("\t\t\t\t    |\t\t\t\t");
-                        printf("\t\t\t\t        |\n\t\t\t\t    |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica los SAT-anes  |\n",162, 162);//ó
-                        printf("\t\t\t\t    |\t\t\t\t                             \t\t|\n");
-                        printf("\t\t\t\t     --------------------------------------------------------------------\n");
-                        printf("\n\n\t\t\t\tTienda de equipos y Suministros para Impresi%cn, Fotografia y Audiovisuales\n\n",162);
+                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s (~^u^)~", 173,usuario);
+                        sleep(1);
 
                     }
+
+                    system("cls");
+                    printf("\t\t\t\t    ---------------------------------------------------------------------\n");
+                    printf("\t\t\t\t    |\t\t\t\t");
+                    printf("\t\t\t\t        |\n\t\t\t\t    |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica los SAT-anes  |\n",162, 162);//ó
+                    printf("\t\t\t\t    |\t\t\t\t                             \t\t|\n");
+                    printf("\t\t\t\t     --------------------------------------------------------------------\n");
+                    printf("\n\n\t\t\t\tTienda de equipos y Suministros para Impresi%cn, Fotografia y Audiovisuales\n\n",162);
+
                         printf("\t\t\t\t\t\t           %cSonr%ce! :)\n\n", 173, 161);
                         sleep(3);
                         Beep(523,500); // 523 hertz (C5) for 500 milliseconds

@@ -68,7 +68,13 @@ int modificar(struct estudiante *a){
 
 int main(){
 
-  int i;
+  int i, a;
+
+  if(scanf("%d", &a) == 0){
+
+    printf("Es cero.\n");
+
+  }
 
   for(i=0; i<25; i++){
 
