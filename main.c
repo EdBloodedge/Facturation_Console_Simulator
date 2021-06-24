@@ -1,24 +1,37 @@
 #include <stdio.h>
 #include <string.h> /* gets, strcmp */
 #include <stdlib.h> /* system */
+#include <time.h>
 
-#define USUARIO "Usuario1"
-#define CLAVE "contra1"
+#define USUARIO "Perry"
+#define CLAVE "ElOrnitorrinco"
+#define QR "# ## #\n# ## #\n#    #\n #### "
 
 #define USUARIO2 "Jaimito"
 #define CLAVE2 "tangamandapio"
+#define QR2 "#####\n  #  \n  #  \n ##  \n##   "
 
 #define USUARIO3 "LosSAT-anes"
 #define CLAVE3 "SAT-anes"
+#define QR3 "#####\n#    #\n#    #\n#    #\n#####"
 
 #define TECLA_ENTER 13
 #define TECLA_BACKSPACE 8
-#define NumUsers 2 //Número de usuarios
+#define NumUsers 3 //Número de usuarios
 #define LONGITUD 20 //Longitud usuario
 #define LONGCLAVE 15 //Longitud clave
 #define LimiteFact 20 //Cantidad maxima de facturas por usuario
 #define MAX_INTENTOS 3
 #define Tamanio 1 //Tamaño
+
+#define MORAL1 "Regimen General"
+#define MORAL2 "Sin Fines de Lucro"
+
+#define FISCAL1 "Asalariados"
+#define FISCAL2 "Honorarios"
+#define FISCAL3 "Arrendamientos de Inmuebles"
+#define FISCAL4 "Actividades Empresariales"
+#define FISCAL5 "Incorporacion Fiscal"
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIALIZACIÓN DE ESTRUCTURAS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -27,26 +40,30 @@ struct domicilio{
 
   char calle[20], colonia[20], ciudad[20], estado[20], pais[20];
   int numero, codigoPostal;
-  int Honorarios, ArrendamientoDeInmuebles, IncorporacionFiscal;
-  char personasMorales[20], Asalariado[30], ActividadesEmpresariales[20];
 
 };
 
-
+struct productos{
+    float importe, precioUnitario;
+    int cantidad, clave;
+    char nombreDescripcion[50];
+};
 
 //Facturas
 struct factura{
 
-  char logo[20][10], descripcion[30], nombreEmisor[30], RFCEmisor[11], regimenEmisor[20], nombreReceptor[30], RFCReceptor[11];
-  int clave, cantidad;
-  char folio[15];
+  char logo[20][10], nombreEmisor[30], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
+  int enviado, hora[128];
+  float subtotal, IVA, total;
+  char folio[15], emisorFiscales[30], receptorFiscales[30], firma[70];
   struct domicilio domEmisor, domReceptor;
+  struct productos MASPRODUCTOS[5];
 
 };
 
 //Usuario.
 struct Usuario{
-  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20];
+  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20], qr[50];
   struct factura facturas[LimiteFact];
 };
 
@@ -66,7 +83,7 @@ struct producto{
 {45121504, 6999.00, "Camaras digitales"},
 {45121505, 13999.00, "Camaras cinematograficas"},
 {45121506, 10569.00, "Camaras de video conferencia"},
-{451215010, 24999.00, "Camaras aereas"},
+{45121510, 24999.00, "Camaras aereas"},
 {45121511, 10799.00, "Camaras de alta velocidad"},
 {45121520, 1209.00, "Camaras web"},
 {45121521, 354.00, "Camaras de inspeccion"},
@@ -94,14 +111,11 @@ struct producto{
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-int crear(struct Usuario *A, int a){
+int crear(struct Usuario *A, int a, struct producto *B){
 
-  int copiar = 0;
-  int longi1 = 0;
-  int longi2 = 0;
-  int longitud1;
-  int longitud2;
-  char enye = 168;
+  int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2;
+  char enye = 168, firmaDigital[70];
+  int claveBuscada, k, salir, moral=0, fiscal=0, cantidadProductos=0, i, letraNumero=0, contador=0;
 
   system("CLS");
   if(a!=0){
@@ -122,7 +136,7 @@ int crear(struct Usuario *A, int a){
     strcpy(A->facturas[a].domEmisor.colonia, A->facturas[a-1].domEmisor.colonia);
     strcpy(A->facturas[a].domEmisor.estado, A->facturas[a-1].domEmisor.estado);
     strcpy(A->facturas[a].domEmisor.pais, A->facturas[a-1].domEmisor.pais);
-    strcpy(A->facturas[a].regimenEmisor, A->facturas[a-1].regimenEmisor);
+    strcpy(A->facturas[a].emisorFiscales, A->facturas[a-1].emisorFiscales);
     A->facturas[a].domEmisor.numero = A->facturas[a-1].domEmisor.numero;
     A->facturas[a].domEmisor.codigoPostal = A->facturas[a-1].domEmisor.codigoPostal;
   } else {
@@ -172,32 +186,49 @@ int crear(struct Usuario *A, int a){
 
   if(longitud1 == 12){
     printf("\n-PERSONAS MORALES\n\n");
-    printf("%cQue tipo de personas morales son? (R%cgimen General/ Sin Fines De Lucro): ",enye, 130);
-    fflush(stdin);
-    gets(A->facturas[a].domEmisor.personasMorales);
+    do{
+        printf("%cQue tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines De Lucro)\n -> ",enye, 130);
+        scanf(" %d", &moral);
+        switch(moral){
+            case 1:
+                strcpy(A->facturas[a].emisorFiscales, MORAL1);
+                break;
+            case 2:
+                strcpy(A->facturas[a].emisorFiscales, MORAL2);
+                break;
+            default:
+                printf("Opcion no valida\n");
+                break;
+            }
+    }while(moral!=1 && moral!=2);
     }
 
   if(longitud1 == 13){
     printf("\n-PERSONAS FISCALES\n\n");
-    printf("%cQui%cn es la persona Asalariada? ",enye, 130);
-    fflush(stdin);
-    gets(A->facturas[a].domEmisor.Asalariado);
-
-    printf("%cCu%cles son los honorarios? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domEmisor.Honorarios);
-
-    printf("%cCu%cl es el arrendamiento de inmuebles? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domEmisor.ArrendamientoDeInmuebles);
-
-    printf("%cCu%cl es la Incorporacion Fiscal? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domEmisor.IncorporacionFiscal);
-
-    printf("%cCu%cles son las Actividades Empresariales? ",enye, 160);
-    fflush(stdin);
-    gets(A->facturas[a].domEmisor.ActividadesEmpresariales);
+    do{
+        printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
+        scanf(" %d", &fiscal);
+        switch(fiscal){
+            case 1:
+                strcpy(A->facturas[a].emisorFiscales, FISCAL1);
+                break;
+            case 2:
+                strcpy(A->facturas[a].emisorFiscales, FISCAL2);
+                break;
+            case 3:
+                strcpy(A->facturas[a].emisorFiscales, FISCAL3);
+                break;
+            case 4:
+                strcpy(A->facturas[a].emisorFiscales, FISCAL4);
+                break;
+            case 5:
+                strcpy(A->facturas[a].emisorFiscales, FISCAL5);
+                break;
+            default:
+                printf("Opcion no valida\n");
+                break;
+        }
+    }while(fiscal!=1 && fiscal!=2 && fiscal!=3 && fiscal!=4 && fiscal!=5);
     }
     system("CLS");
 
@@ -244,83 +275,138 @@ int crear(struct Usuario *A, int a){
   system("CLS");
   if(longitud2 == 12){
     printf("\n-PERSONAS MORALES\n\n");
-    printf("%cQue tipo de personas morales son? (R%cgimen General/ Sin Fines De Lucro): ",enye, 130);
-    fflush(stdin);
-    gets(A->facturas[a].domReceptor.personasMorales);
+    do{
+        printf("%cQue tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines De Lucro)\n -> ",enye, 130);
+        scanf(" %d", &moral);
+        switch(moral){
+            case 1:
+                strcpy(A->facturas[a].receptorFiscales, MORAL1);
+                break;
+            case 2:
+                strcpy(A->facturas[a].receptorFiscales, MORAL2);
+                break;
+            default:
+                printf("Opcion no valida\n");
+                break;
+        }
+    }while(moral!=1 && moral!=2);
     }
 
   if(longitud2 == 13){
     printf("\n-PERSONAS FISCALES\n\n");
-    printf("%cQui%cn es la persona Asalariada? ",enye, 130);
-    fflush(stdin);
-    gets(A->facturas[a].domReceptor.Asalariado);
-
-    printf("%cCu%cles son los honorarios? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domReceptor.Honorarios);
-
-    printf("%cCu%cl es el arrendamiento de inmuebles? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domReceptor.ArrendamientoDeInmuebles);
-
-    printf("%cCu%cl es la Incorporacion Fiscal? ",enye, 160);
-    fflush(stdin);
-    scanf("%i",&A->facturas[a].domReceptor.IncorporacionFiscal);
-
-    printf("%cCu%cles son las Actividades Empresariales? ",enye, 160);
-    fflush(stdin);
-    gets(A->facturas[a].domReceptor.ActividadesEmpresariales);
+    do{
+        printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
+        fflush(stdin);
+        scanf(" %d", &fiscal);
+        switch(fiscal){
+            case 1:
+                strcpy(A->facturas[a].receptorFiscales, FISCAL1);
+                break;
+            case 2:
+                strcpy(A->facturas[a].receptorFiscales, FISCAL2);
+                break;
+            case 3:
+                strcpy(A->facturas[a].receptorFiscales, FISCAL3);
+                break;
+            case 4:
+                strcpy(A->facturas[a].receptorFiscales, FISCAL4);
+                break;
+            case 5:
+                strcpy(A->facturas[a].receptorFiscales, FISCAL5);
+                break;
+            default:
+                printf("Opcion no valida\n");
+                break;
+        }
+    }while(fiscal!=1 && fiscal!=2 && fiscal!=3 && fiscal!=4 && fiscal!=5);
     }
 
 //------------------------------DATOS DE LOS PRODUCTOS Y SERVICIOS---------------------------------------------
 
-    printf("\n\n\n\n-------------PRODUCTOS Y SERVICIOS-----------\n\n");
-    printf("----------------------PRODUCTOS---------------------\n\n");
-    printf("45121503 C%cmaras desechables\n", 160);
-    printf("45121504 C%cmaras digitales\n", 160);
-    printf("45121505 C%maras cinematogr%cficas\n",160, 160);
-    printf("45121506 C%cmaras de video conferencia\n",160);
-    printf("45121510 C%cmaras a%creas\n",160, 130);
-    printf("45121511 C%cmaras de alta velocidad\n",160);
-    printf("45121520 C%cmaras de web\n",160);
-    printf("45121521 C%cmaras de inspecci%cn\n",160, 162);
-    printf("45121522 C%cmaras infrarrojas\n",160);
-    printf("45121523 C%cmaras astron%cmicas\n",160, 162);
-    printf("45121601 Flashes o iluminaci%cn para c%cmaras\n",162, 160);
-    printf("45121602 Tr%cpodes para c%cmaras (Tripi%cs para c%cmara)\n",161, 160,130, 160);
-    printf("45121603 Lentes para c%cmaras\n", 160);
-    printf("45121604 Oclusores para c%cmaras\n",160);
-    printf("45121605 Marcos de pantalla\n\n\n");
+    printf("\n\n\n\n\t\t-------------PRODUCTOS Y SERVICIOS-----------\n\n");
+    printf(" CLAVES           PRODUCTOS                                          PRECIOS\n\n");
+    printf("45121503       C%cmaras desechables                                    247.70\n", 160);
+    printf("45121504       C%cmaras digitales                                      6999.00\n", 160);
+    printf("45121505       C%maras cinematogr%cficas                                13999.00\n",160, 160);
+    printf("45121506       C%cmaras de video conferencia                           10569.00\n",160);
+    printf("45121510       C%cmaras a%creas                                         24999.00\n",160, 130);
+    printf("45121511       C%cmaras de alta velocidad                              10799.00\n",160);
+    printf("45121520       C%cmaras de web                                         1209.00\n",160);
+    printf("45121521       C%cmaras de inspecci%cn                                  354.00\n",160, 162);
+    printf("45121522       C%cmaras infrarrojas                                    950.17\n",160);
+    printf("45121523       C%cmaras astron%cmicas                                   3076.00\n",160, 162);
+    printf("45121601       Flashes o iluminaci%cn para c%cmaras                     1249.00\n",162, 160);
+    printf("45121602       Tr%cpodes para c%cmaras (Tripi%cs para c%cmara)             799.00\n",161, 160,130, 160);
+    printf("45121603       Lentes para c%cmaras                                    63.85\n", 160);
+    printf("45121604       Oclusores para c%cmaras                                 267.24\n",160);
+    printf("45121605       Marcos de pantalla                                     7400.00\n\n\n");
 
-    printf("---------------------SERVICIOS------------------------\n\n");
-    printf("82131601 Servicios de fotograf%ca a%crea\n",161, 130);
-    printf("82131602 Cinematograf%ca\n",161);
-    printf("82131603 Servicios de producci%cn de v%cdeos\n",162,161);
-    printf("82131604 Servicios de estudio fotogr%cfico o fotos fijas\n",160);
-    printf("82131501 Elaboraci%cn o reproducci%cn de pel%ccula fija\n",162, 162, 161);
-    printf("82131502 Elaboraci%cn o reproducci%cn de pel%cculas de cine\n",162, 162, 161);
-    printf("82131503 Servicios de microficha\n");
-    printf("82131504 Separación de colores\n");
-    printf("82131505 Servicio de posproducci%cn de pel%cculas\n",162, 160);
-    printf("82131506 Servicio de fotos de graduacion\n");
+    printf(" CLAVES                SERVICIOS                                      PRECIOS\n\n");
+    printf("82131601       Servicios de fotograf%ca a%crea                          6500.00\n",161, 130);
+    printf("82131602       Cinematograf%ca                                         6315.00\n",161);
+    printf("82131603       Servicios de producci%cn de v%cdeos                      4950.00\n",162,161);
+    printf("82131604       Servicios de estudio fotogr%cfico o fotos fijas         3500.00\n",160);
+    printf("82131501       Elaboraci%cn o reproducci%cn de pel%ccula fija            7500.00\n",162, 162, 161);
+    printf("82131502       Elaboraci%cn o reproducci%cn de pel%cculas de cine        6315.00\n",162, 162, 161);
+    printf("82131503       Servicios de microficha                                2572.90\n");
+    printf("82131504       Separaci%cn de colores                                  175.90\n",162);
+    printf("82131505       Servicio de posproducci%cn de pel%cculas                 3750.00\n",162, 160);
+    printf("82131506       Servicio de fotos de graduaci%cn                        2950.00\n",162);
 
-    printf("\n\n\n%cQu%c producto(s) o servicio(s) quieres comprar?  ",168, 130);
-    fflush(stdin);
-    scanf("%d", &(A->facturas[a].clave));
-
-    printf("Cantidad: ");
-    fflush(stdin);
-    scanf("%d", &(A->facturas[a].cantidad));
-
-    int clave = 0;
-
+    do{
+        salir=0;
+        printf("\n\n\nIngrese la clave del producto(s) o servicio(s) que quieres comprar ->  ");
+        fflush(stdin);
+        scanf("%d",&claveBuscada);
+        for (k=0; k<=25; k++){
+            if ((B[k].clave) == claveBuscada){
+                    A->facturas[a].MASPRODUCTOS[cantidadProductos].clave=B[k].clave;
+                    strcpy(A->facturas[a].MASPRODUCTOS[cantidadProductos].nombreDescripcion, B[k].descripcion);
+                    A->facturas[a].MASPRODUCTOS[cantidadProductos].precioUnitario=B[k].precio;
+                    printf("Producto/Servicio guardado\n");
+                    printf("Cantidad: ");
+                    fflush(stdin);
+                    scanf("%d", &(A->facturas[a].MASPRODUCTOS[cantidadProductos].cantidad));
+                    k=26;
+                    cantidadProductos++;
+            }
+            else if (k==25){
+                printf("Clave no existente\n");
+            }
+        }
+        printf("Quieres agregar otro producto? \n1)Si \nOtra tecla)No \n-> ");
+        scanf("%d", &salir);
+    }while(salir==1);
+    for (i=0; i<cantidadProductos; i++){
+        if (A->facturas[a].MASPRODUCTOS[i].clave !=0){
+            if (A->facturas[a].MASPRODUCTOS[i].cantidad>0){
+                A->facturas[a].MASPRODUCTOS[i].importe=(A->facturas[a].MASPRODUCTOS[i].precioUnitario*A->facturas[a].MASPRODUCTOS[i].cantidad);
+            }
+        }
+    }
+    for (i=0; i<5; i++){
+        A->facturas[a].subtotal+=A->facturas[a].MASPRODUCTOS[i].importe;
+    }
+    A->facturas[a].IVA=(A->facturas[a].subtotal*0.16);
+    A->facturas[a].total=(A->facturas[a].subtotal+A->facturas[a].IVA);
+    srand (time(NULL));
+    do{
+        letraNumero=rand() % 10;
+        if (letraNumero>=0 && letraNumero<=5){
+            firmaDigital[contador] = 48+ rand() % 10;
+        }
+        if (letraNumero>5 && letraNumero<10){
+            firmaDigital[contador] = 65 + rand() % 25;
+        }
+        contador++;
+    }while(contador<70);
+    strcpy(A->facturas[a].firma, firmaDigital);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int mostrar(struct Usuario *A, int a){
     system("CLS");
-    int longitud1;
-    int longitud2;
+    int longitud1, longitud2, i, contadorCantidad=0;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~EMISOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     printf("\n\n----------EMISOR----------\n\nNombre de la empresa: %s\n", A->facturas[a].nombreEmisor);
     printf("RFC: %s\n", A->facturas[a].RFCEmisor);
@@ -335,21 +421,16 @@ int mostrar(struct Usuario *A, int a){
 
 //~~~~~~~~~~~~~~~~~~~~~~REGIMEN FISCAL~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     longitud1 = strlen(A->facturas[a].RFCEmisor);
-    longitud2 = strlen(A->facturas[a].RFCEmisor);
+    longitud2 = strlen(A->facturas[a].RFCReceptor);
     if(longitud1 == 12){
         printf("\n-PERSONAS MORALES\n\n");
-        printf("\nLa persona moral es:  %s ", A->facturas[a].domEmisor.personasMorales);
+        printf("\nLa persona moral es:  %s ", A->facturas[a].emisorFiscales);
         }
 
     if(longitud1 == 13){
         printf("\n-PERSONAS FISCALES\n\n");
-        printf("\nla persona Asalariada es:  %s ", A->facturas[a].domEmisor.Asalariado);
-        printf("\nEl honorario es de:  %i ", A->facturas[a].domEmisor.Honorarios);
-        printf("\nEl arrendimento de inmuebles es de:  %i ", A->facturas[a].domEmisor.ArrendamientoDeInmuebles);
-        printf("\nLa incorporacion fiscal es de: %i", A->facturas[a].domEmisor.IncorporacionFiscal);
-        printf("\nLas actividades empresariales son:  %s ", A->facturas[a].domEmisor.ActividadesEmpresariales);
+        printf("\nLa persona fiscal es:  %s ", A->facturas[a].emisorFiscales);
         }
-    printf("\n\n-R%cGIMEN FISCAL\n",144);
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~RECEPTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -365,29 +446,51 @@ int mostrar(struct Usuario *A, int a){
 
     if(longitud2 == 12){
         printf("\n-PERSONAS MORALES\n\n");
-        printf("\nLa persona moral es:  %s ", A->facturas[a].domReceptor.personasMorales);
+        printf("\nLa persona moral es:  %s ", A->facturas[a].receptorFiscales);
         }
 
     if(longitud2 == 13){
         printf("\n-PERSONAS FISCALES\n\n");
-        printf("\nla persona Asalariada es:  %s ", A->facturas[a].domReceptor.Asalariado);
-        printf("\nEl honorario es de:  %i ", A->facturas[a].domReceptor.Honorarios);
-        printf("\nEl arrendimento de inmuebles es de:  %i ", A->facturas[a].domReceptor.ArrendamientoDeInmuebles);
-        printf("\nLa incorporacion fiscal es de: %i", A->facturas[a].domReceptor.IncorporacionFiscal);
-        printf("\nLas actividades empresariales son:  %s ", A->facturas[a].domReceptor.ActividadesEmpresariales);
+        printf("\nLa persona fiscal es:  %s \n", A->facturas[a].receptorFiscales);
         }
+    for (i=0; i<5; i++){
+        if (A->facturas[a].MASPRODUCTOS[i].clave !=0){
+            printf("\nProducto/Servicio %d", i+1);
+            printf("\nClave: %d", A->facturas[a].MASPRODUCTOS[i].clave);
+            printf("\nDescripcion: %s", A->facturas[a].MASPRODUCTOS[i].nombreDescripcion);
+            printf("\nCantidad: %d", A->facturas[a].MASPRODUCTOS[i].cantidad);
+            printf("\nPrecio Unitario: %.2f", A->facturas[a].MASPRODUCTOS[i].precioUnitario);
+            printf("\nImporte: %.2f", A->facturas[a].MASPRODUCTOS[i].importe);
+            printf("\n\n");
+        }
+    }
+    printf("\nSubTotal: %.2f", A->facturas[a].subtotal);
+    printf("\nIVA: %.2f", A->facturas[a].IVA);
+    printf("\nTotal: %.2f\n", A->facturas[a].total);
 
-printf("\n\n");
-
+    printf("\nHora: %s\n", A->facturas[a].hora);
     printf("Su folio: %s\n", A->facturas[a].folio);
+    printf("\nFirma: %s\n", A->facturas[a].firma);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BUSCAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-int buscar(struct Usuario *A, int cantidadFacturas){
-    int k, encontrado=26;
+int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
+    int k, encontrado=26, i, j, contadorCantidad=0;
     char folioBuscado[15];
+    if (MenuPrincipal!=1){
+        printf("\t\t\t\t\tFacturas Disponibles\n");
+        for (i=0; i<cantidadFacturas; i++){
+            for (j=0; j<5; j++){
+                if (A->facturas[i].MASPRODUCTOS[j].clave !=0){
+                    printf("Folio: %s ", A->facturas[i].folio);
+                    printf("\tDescripcion producto: %s", A->facturas[i].MASPRODUCTOS[j].nombreDescripcion);
+                    printf("\t\tEmpresa: %s\n", A->facturas[i].nombreEmisor);
+                }
+            }
+        }
+    }
     if (cantidadFacturas>0){
-        printf("Ingresa el folio del que quiere consultar-> ");
+        printf("\n\nIngresa el folio que quieres usar-> ");
         scanf(" %s",&folioBuscado);
         for (k=0; k<=cantidadFacturas; k++){
             if (strcmpi(A->facturas[k].folio, folioBuscado)==0){
@@ -406,7 +509,118 @@ int buscar(struct Usuario *A, int cantidadFacturas){
     system("pause");
     return encontrado;
 }
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENVIAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+int enviar(struct Usuario *A, int cantidadFacturas, int k){
+    int Enviar;
+    if (cantidadFacturas>0){
+        if (A->facturas[k].enviado==0 || A->facturas[k].enviado==2){
+            do{
+                printf("\n%cQuieres enviar la factura? \n1)Si \n2)No ", 168);
+                fflush(stdin);
+                scanf("%d",&Enviar);
+                if (Enviar!=1 && Enviar!=2){
+                    printf("Opcion no valida\n");
+                }
+                if (Enviar==1){
+                    printf("Factura enviada\n");
+                }
+            }while(Enviar!=1 && Enviar!=2);
+        }
+        else{
+            printf("La factura ya fue enviada");
+        }
+    }
+    else{
+        printf("No hay facturas registradas\n");
+    }
+    return Enviar;
+}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ELIMINAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+int eliminar(struct Usuario *A, int cantidadFacturas, int k){
+    int eliminar=0, cantidadProductos=0, cantidadProductos2=0;
+    if (cantidadFacturas>0){
+        printf("seguro que quieres eliminarlo? \n1)Si\nOtra tecla \n-> ");
+        scanf("%d", &eliminar);
+        if (eliminar==1){
+            if (A->facturas[k].enviado!=1){
+                for (int j=0; j<5; j++){
+                    if (A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].clave !=0){
+                        cantidadProductos++;
+                    }
+                    if (A->facturas[k].MASPRODUCTOS[j].clave !=0){
+                        cantidadProductos2++;
+                    }
+                }
+                if (cantidadProductos<cantidadProductos2){
+                    cantidadProductos=cantidadProductos2;
+                }
+                for (int j=0; j<cantidadProductos; j++){
+                    A->facturas[k].MASPRODUCTOS[j].clave=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].clave;
+                    strcpy(A->facturas[k].MASPRODUCTOS[j].nombreDescripcion, A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].nombreDescripcion);
+                    A->facturas[k].MASPRODUCTOS[j].cantidad=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].cantidad;
+                    A->facturas[k].MASPRODUCTOS[j].precioUnitario=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].precioUnitario;
+                    A->facturas[k].MASPRODUCTOS[j].importe=A->facturas[cantidadFacturas-1].MASPRODUCTOS[j].importe;
+                    A->facturas[k].subtotal=A->facturas[cantidadFacturas-1].subtotal;
+                    A->facturas[k].IVA=A->facturas[cantidadFacturas-1].IVA;
+                    A->facturas[k].total=A->facturas[cantidadFacturas-1].total;
+                }
+                //Emisor
+                strcpy(A->facturas[k].nombreEmisor, A->facturas[cantidadFacturas-1].nombreEmisor);
+                strcpy(A->facturas[k].RFCEmisor, A->facturas[cantidadFacturas-1].RFCEmisor);
+                strcpy(A->facturas[k].domEmisor.calle, A->facturas[cantidadFacturas-1].domEmisor.calle);
+                strcpy(A->facturas[k].domEmisor.ciudad, A->facturas[cantidadFacturas-1].domEmisor.ciudad);
+                strcpy(A->facturas[k].domEmisor.colonia, A->facturas[cantidadFacturas-1].domEmisor.colonia);
+                strcpy(A->facturas[k].domEmisor.estado, A->facturas[cantidadFacturas-1].domEmisor.estado);
+                strcpy(A->facturas[k].domEmisor.pais, A->facturas[cantidadFacturas-1].domEmisor.pais);
+                strcpy(A->facturas[k].emisorFiscales, A->facturas[cantidadFacturas-1].emisorFiscales);
+                A->facturas[k].domEmisor.numero = A->facturas[cantidadFacturas-1].domEmisor.numero;
+                A->facturas[k].domEmisor.codigoPostal = A->facturas[cantidadFacturas-1].domEmisor.codigoPostal;
+
+                //Receptor
+                strcpy(A->facturas[k].nombreReceptor, A->facturas[cantidadFacturas-1].nombreReceptor);
+                strcpy(A->facturas[k].RFCReceptor, A->facturas[cantidadFacturas-1].RFCReceptor);
+                strcpy(A->facturas[k].domReceptor.calle, A->facturas[cantidadFacturas-1].domReceptor.calle);
+                strcpy(A->facturas[k].domReceptor.ciudad, A->facturas[cantidadFacturas-1].domReceptor.ciudad);
+                strcpy(A->facturas[k].domReceptor.colonia, A->facturas[cantidadFacturas-1].domReceptor.colonia);
+                strcpy(A->facturas[k].domReceptor.estado, A->facturas[cantidadFacturas-1].domReceptor.estado);
+                strcpy(A->facturas[k].domReceptor.pais, A->facturas[cantidadFacturas-1].domReceptor.pais);
+                strcpy(A->facturas[k].receptorFiscales, A->facturas[cantidadFacturas-1].receptorFiscales);
+                A->facturas[k].domReceptor.numero = A->facturas[cantidadFacturas-1].domReceptor.numero;
+                A->facturas[k].domReceptor.codigoPostal = A->facturas[cantidadFacturas-1].domReceptor.codigoPostal;
+
+                strcpy(A->facturas[k].folio, A->facturas[cantidadFacturas-1].folio);
+                A->facturas[k].enviado=A->facturas[cantidadFacturas-1].enviado;
+                strcpy(A->facturas[k].hora, A->facturas[cantidadFacturas-1].hora);
+                strcpy(A->facturas[k].firma, A->facturas[cantidadFacturas-1].firma);
+
+                cantidadFacturas=cantidadFacturas-2;
+                cantidadFacturas++;
+                printf("Se ha eliminado la factura");
+            }
+            else{
+                printf("No se puede eliminar la factura porque ya fue enviada");
+            }
+        }
+        else if (eliminar !=1){
+            printf("No se ha eliminado");
+        }
+    }
+    else{
+        printf("No hay facturas registradas\n");
+    }
+    return cantidadFacturas;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HORA ACTUAL~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+int tiempo(struct Usuario *A, int a){
+    time_t tiempo = time(0);
+    struct tm *tlocal = localtime(&tiempo);
+    char output[128];
+    strftime(output,128,"%H:%M:%S",tlocal);
+    strcpy(A->facturas[a].hora, output);
+}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO MAIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -414,30 +628,32 @@ int main() {
 
   system ("COLOR 3F");
 
-  int MenuPrincipal;
-  int repetir;
-  int entrar=0;
+  int MenuPrincipal, repetir, entrar=0, cantidadFacturas=0, k, enviado;
   char folioBuscado[15], folioChar[15]={'0','0','0','0','-','2','0','2','1'};
   int folioInt1=0,folioInt2=0,folioInt3=0,folioInt4=0;
-  int cantidadFacturas=0,k;
 
   char usuario[LONGITUD + 1]; //Variable temporal para guardar el usuario ingresado
   char clave[LONGCLAVE + 1]; //Variable temporal para guardar la clave ingresada
 
-  int intento = 0;
-  int ingresa = 0;
+  int intento = 0, ingresa = 0, i= 0, j = 0;
   char caracter;
-  int i= 0, j = 0;
 
   struct Usuario USUARIOS[NumUsers];
 
   //Asignación de datos del primer usuario
   strcpy(USUARIOS[0].usuario, USUARIO);
   strcpy(USUARIOS[0].clave, CLAVE);
+  strcpy(USUARIOS[0].qr, QR);
+
+  //Asignación de datos del segundo usuario
   strcpy(USUARIOS[1].usuario, USUARIO2);
   strcpy(USUARIOS[1].clave, CLAVE2);
+  strcpy(USUARIOS[1].qr, QR2);
+
+  //Asignación de datos del tercer usuario
   strcpy(USUARIOS[2].usuario, USUARIO3);
   strcpy(USUARIOS[2].clave, CLAVE3);
+  strcpy(USUARIOS[2].qr, QR3);
 
 
   do{
@@ -445,7 +661,6 @@ int main() {
     repetir = 0;
     system("cls");
     entrar=0;
-
 		printf("\n\n\n\t\t\t\t1)Iniciar Sesion \n\n\t\t\t\t2)Salir\n\n\t\t\t\t->");
 		scanf("%d",&entrar);
 		if (entrar==1){
@@ -485,7 +700,7 @@ int main() {
 
                 //Comprobación del usuario en la base de datos
 
-                for(j=0; j<= NumUsers; j++){
+                for(j=0; j<= 2; j++){
 
                   if (strcmp(usuario, USUARIOS[j].usuario) == 0 && strcmp(clave, USUARIOS[j].clave) == 0){
                       ingresa = 1;
@@ -513,7 +728,7 @@ int main() {
                     system("cls");
                     for(i=0; i<=1; i++){
                         system("cls");
-                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! (/^o^)/", 173);
+                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s (/^o^)/", 173,usuario);
                         sleep(1);
                         system("cls");
                         printf("\t\t\t\t    ---------------------------------------------------------------------\n");
@@ -521,9 +736,18 @@ int main() {
                         printf("\t\t\t\t        |\n\t\t\t\t    |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica los SAT-anes  |\n",162, 162);//ó
                         printf("\t\t\t\t    |\t\t\t\t                             \t\t|\n");
                         printf("\t\t\t\t     --------------------------------------------------------------------\n");
-                        printf("\n\n\t\t\t\tEquipos y Suministros para Impresi%cn, Fotografia y Audiovisuales",162);
-                        sleep(1);
+                        printf("\n\n\t\t\t\tTienda de equipos y Suministros para Impresi%cn, Fotografia y Audiovisuales\n\n",162);
+
                     }
+                        printf("\t\t\t\t\t\t           Sonrie :)\n\n");
+                        sleep(3);
+                        Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+
+                        printf("\t\t\t\t\t\t\t------------------\n");
+                        printf("\t\t\t\t\t\t\t| ||||\t      -- |\n\t\t\t\t\t\t\t|    ______\t |\n\t\t\t\t\t\t\t|   | \\__/ |\t |\n\t\t\t\t\t\t\t|   | |__| |     |\n\t\t\t\t\t\t\t|   | /\t \\ |\t |\n\t\t\t\t\t\t\t|   --------\t |\n");
+                        printf("\t\t\t\t\t\t\t------------------");
+                        sleep(1);
+
 
                     printf("\n1)Crear Factura\n");
                     printf("\n2)Mostrar Factura\n");
@@ -559,34 +783,46 @@ int main() {
                         folioChar[2]=folioInt2+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
                         folioChar[3]=folioInt1+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
 
-                        strcpy(USUARIOS[j].facturas[cantidadFacturas].folio, folioChar);
-                        crear(&(USUARIOS[j]), cantidadFacturas);
+                        strcpy(USUARIOS[0].facturas[cantidadFacturas].folio, folioChar);
+                        crear(&(USUARIOS[0]), cantidadFacturas, PRODUCTOS);
+                        tiempo(&(USUARIOS[0]), cantidadFacturas);
                         cantidadFacturas++;
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
                         mostrar(USUARIOS, cantidadFacturas-1);
+                        USUARIOS[0].facturas[cantidadFacturas-1].enviado=enviar(USUARIOS, cantidadFacturas, cantidadFacturas-1);
                         system("pause");
                     break;
 
                     case 2:
 
-                        k=buscar(&(USUARIOS[j]), cantidadFacturas);
+                        k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
-                            mostrar(&(USUARIOS[j]), k);
+                            mostrar(USUARIOS, k);
                             system("pause");
                         }
                     break;
 
                     case 3:
 
-                        //enviar();
+                        k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
+                        if (k!=26){
+                            mostrar(USUARIOS, k);
+                            system("pause");
+                            USUARIOS[0].facturas[k].enviado=enviar(USUARIOS, cantidadFacturas, k);
+                        }
                         sleep(1);
 
                     break;
 
                     case 4:
 
-                        //eliminar();
+                        k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
+                        if (k!=26){
+                            mostrar(USUARIOS, k);
+                            system("pause");
+                            cantidadFacturas=eliminar(&(USUARIOS[0]), cantidadFacturas, k);
+                        }
                         sleep(1);
 
                     break;
@@ -612,7 +848,31 @@ int main() {
             }
             }while(MenuPrincipal!=5 && ingresa==1);
         } else if (entrar==2) {
-            printf("Saliendo del programa...");
+            system("cls");
+            printf("\n\n\nGracias por utilizar el Sistema de Facturaci%cn Electr%cnica de los SAT-anes\n\n\n",162, 162);//ó
+
+
+int a, b, line = 12;
+   for (a = line/2; a <= line; a = a+2) { //Para la parte superior del corazon
+      for (b = 1; b < line-a; b = b+2) //crear espacio antes de la primera prominencia
+         printf("  ");
+      for (b = 1; b <= a; b++) //imprimir la primera prominencia
+        printf(" *");
+      for (b = 1; b <= line-a; b++) //crear espacio antes de la segunda prominencia
+         printf("  ");
+      for (b = 1; b <= a-1; b++) //imprimir la segunda prominencia
+         printf(" *");
+      printf("\n");
+   }
+   for (a = line; a >= 0; a--) { //la base del corazon es un triangulo invertido
+      for (b = a; b < line; b++) //generar espacio antes del triangulo
+         printf("  ");
+      for (b = 1; b <= ((a * 2) - 1); b++) //imprimir el triangulo
+         printf(" *");
+      printf("\n");
+   }
+
+            printf("\n\n............Presiona cualquier tecla para salir.........");
             sleep(1);
             repetir = 1;
             } else{
