@@ -152,6 +152,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
         gets(A->facturas[a].RFCEmisor);
         longitud1 = strlen(A->facturas[a].RFCEmisor);//Mide la longitud de la cadena
         if (longitud1<12 || longitud1>13){
+            Beep(523,500); // 523 hertz (C5) for 500 milliseconds
             printf("\nEl RFC es incorrecto, vuelve a intentarlo\n");
             longi1=2;
         }
@@ -197,7 +198,10 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].emisorFiscales, MORAL2);
                 break;
             default:
+                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
+                fflush( stdin );
+                printf("\n\n");
                 break;
             }
     }while(moral!=1 && moral!=2);
@@ -225,7 +229,10 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].emisorFiscales, FISCAL5);
                 break;
             default:
+                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
+                fflush( stdin );
+                printf("\n\n");
                 break;
         }
     }while(fiscal!=1 && fiscal!=2 && fiscal!=3 && fiscal!=4 && fiscal!=5);
@@ -244,6 +251,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
     gets(A->facturas[a].RFCReceptor);
     longitud2 = strlen(A->facturas[a].RFCReceptor);//Mide la longitud de la cadena
     if (longitud2<12 || longitud2>13){
+        Beep(523,500); // 523 hertz (C5) for 500 milliseconds
         printf("\nEl RFC es incorrecto, vuelve a intentarlo\n");
         longi2=2;
     }
@@ -287,7 +295,10 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].receptorFiscales, MORAL2);
                 break;
             default:
+                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
+                fflush(stdin);
+                printf("\n\n");
                 break;
         }
     }while(moral!=1 && moral!=2);
@@ -316,7 +327,10 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].receptorFiscales, FISCAL5);
                 break;
             default:
+                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
+                fflush( stdin );
+                printf("\n\n");
                 break;
         }
     }while(fiscal!=1 && fiscal!=2 && fiscal!=3 && fiscal!=4 && fiscal!=5);
@@ -372,12 +386,13 @@ int crear(struct Usuario *A, int a, struct producto *B){
                     cantidadProductos++;
             }
             else if (k==25){
+                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Clave no existente\n");
             }
         }
 
         if(k==27){
-          printf("Quieres agregar otro producto? \n1)Si \nOtra tecla)No \n-> ");
+          printf("\n\nQuieres agregar otro producto? \n1)Si \nOtra tecla)No \n-> ");
           if(scanf("%d", &salir) == 0)
             salir = 0;
         } else if(k==26){
@@ -839,6 +854,7 @@ int main() {
 
 
   do{
+    system ("COLOR b0");
         //Inicio del programa
     repetir = 0;
     system("cls");
@@ -892,6 +908,7 @@ int main() {
                 }
 
                 if(ingresa!=1) {
+                    Beep(523,500); // 523 hertz (C5) for 500 milliseconds
                     printf("\n\tUsuario y/o clave son incorrectos.\n\tPresione enter para continuar.\n");
                     intento++;
                     getchar();
@@ -910,6 +927,7 @@ int main() {
                     system("cls");
                     for(i=0; i<=1; i++){
                         system("cls");
+                        system("COLOR FD");
                         printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s \\(^o^\\)", 173,usuario);
                         sleep(1);
                         system("cls");
@@ -933,6 +951,7 @@ int main() {
                         printf("\t\t\t\t\t\t\t------------------\n");
                         printf("\t\t\t\t\t\t\t| ||||\t      -- |\n\t\t\t\t\t\t\t|    ______\t |\n\t\t\t\t\t\t\t|   | \\__/ |\t |\n\t\t\t\t\t\t\t|   | |__| |     |\n\t\t\t\t\t\t\t|   | /\t \\ |\t |\n\t\t\t\t\t\t\t|   --------\t |\n");
                         printf("\t\t\t\t\t\t\t------------------");
+                        printf("\n\n\t\t\t\t\t\t\t    Foto tomada");
                         sleep(1);
 
 
@@ -1023,7 +1042,10 @@ int main() {
 
                     default:
 
-                        printf("Opcion no valida\n");
+                        Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                        printf("\t\t\t\t\t\tOpcion no valida\n");
+                        fflush( stdin );
+                        printf("\n\n");
                         sleep(1);
 
                     break;
@@ -1038,7 +1060,7 @@ int main() {
             system("cls");
             printf("\n\n\nGracias por utilizar el Sistema de Facturaci%cn Electr%cnica de los SAT-anes\n\n\n",162, 162);//ó
 
-
+system("COLOR F4");
 int a, b, line = 12;
    for (a = line/2; a <= line; a = a+2) { //Para la parte superior del corazon
       for (b = 1; b < line-a; b = b+2) //crear espacio antes de la primera prominencia
@@ -1066,6 +1088,8 @@ int a, b, line = 12;
                 printf("Opcion no valida\n");
                 sleep(1);
                 repetir = 0;
+                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                fflush( stdin );
             }
     } while (repetir==0);
 
