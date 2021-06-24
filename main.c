@@ -530,7 +530,182 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
                     printf("Opcion no valida\n");
                 }
                 if (Enviar==1){
-                    printf("Factura enviada\n");
+
+                  printf("   _______________\n");
+                  printf("  |               |\n");
+                  printf("  |               |\n");
+                  printf("  |               |\n");
+                  printf("/_|_______________|_\\\n");
+                  printf("| ====           #  |\n");
+                  printf("| ====              |\n");
+                  printf("|___________________|\n");
+
+                  Sleep(50);
+                  system("cls");
+                  printf("\n");
+                  printf("   _______________\n");
+                  printf("  |               |\n");
+                  printf("  |               |\n");
+                  printf("/_|_______________|_\\\n");
+                  printf("| ====           #  |\n");
+                  printf("| ====              |\n");
+                  printf("|___________________|\n");
+
+                  Sleep(50);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("   _______________\n");
+                  printf("  |               |\n");
+                  printf("/_|_______________|_\\\n");
+                  printf("| ====           #  |\n");
+                  printf("| ====              |\n");
+                  printf("|___________________|\n");
+
+                  Sleep(50);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("   _______________\n");
+                  printf("/_|_______________|_\\\n");
+                  printf("| ====           #  |\n");
+                  printf("| ====              |\n");
+                  printf("|___________________|\n");
+
+                  Sleep(50);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("  _________________\n");
+                  printf("/___________________\\\n");
+                  printf("| ====           #  |\n");
+                  printf("| ====              |\n");
+                  printf("|___________________|\n");
+
+                  Sleep(500);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf(" ___________________\n");
+                  printf("| ====           #  |\n");
+                  printf("| ====              |\n");
+                  printf("|___________________|\n");
+
+                  Sleep(200);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf(" ___________\n");
+                  printf("| ==     #  |\n");
+                  printf("|___________|\n");
+
+                  Sleep(200);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf(" ____\n");
+                  printf("|____|\n");
+                  printf("\n");
+
+                  Sleep(200);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("          ____________\n");
+                  printf(" ____   /   \\_______   \\\n");
+                  printf("|____|  |   |      V   |\n");
+                  printf("        |___|__________|\n");
+
+                  Sleep(200);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("          ____________\n");
+                  printf("   ____ /   \\_______   \\\n");
+                  printf("  |____||   |      V   |\n");
+                  printf("        |___|__________|\n");
+
+                  Sleep(100);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("          ____________\n");
+                  printf("      __/_  \\_______   \\\n");
+                  printf("     |____| |      V   |\n");
+                  printf("        |___|__________|\n");
+
+                  Sleep(100);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("          ____________\n");
+                  printf("        / __\\_______   \\\n");
+                  printf("        ||__|      V   |\n");
+                  printf("        |___|__________|\n");
+
+                  Sleep(100);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("          ____________\n");
+                  printf("        /   \\_______   \\\n");
+                  printf("        |  ||      V   |\n");
+                  printf("        |___|__________|\n");
+
+                  Sleep(100);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("          ____________\n");
+                  printf("        /   \\_______   \\\n");
+                  printf("        |   |      V   |\n");
+                  printf("        |___|__________|\n");
+
+                  Sleep(100);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("               />\n");
+                  printf("          ____/_______\n");
+                  printf("        /   \\/         \\\n");
+                  printf("        |   |          |\n");
+                  printf("        |___|__________|\n");
+
+                  Sleep(100);
+                  system("cls");
+                  printf("\n");
+                  printf("\n");
+                  printf("\n");
+                  printf("             |>\n");
+                  printf("          ___|________\n");
+                  printf("        /   \\|         \\\n");
+                  printf("        |   |          |\n");
+                  printf("        |___|__________|\n");
+                  printf("\n");
+                  printf("    Factura enviada exitosamente.\n");
                 }
             }while(Enviar!=1 && Enviar!=2);
         }

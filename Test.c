@@ -46,11 +46,11 @@ struct producto{
 
 //SERVICIOS
 
-{82131601, 6500.00, "Servivios de fotografia aerea"},
+{82131601, 650.00, "Servivios de fotografia aerea"},
 {82131602, 6315.00, "Cinematografia"},
 {82131603, 4950.00, "Servicios de produccion de videos"},
-{82131604, 3500.00, "Servicios de estudio fotografico o fotos fijas"},
-{82131501, 7500.00, "Elaboracion o reproduccion de pelicula fija"},
+{82131604, 350.00, "Servicios de estudio fotografico o fotos fijas"},
+{82131501, 750.00, "Elaboracion o reproduccion de pelicula fija"},
 {82131502, 6315.00, "Elaboracion o reproduccion de peliculas de cine"},
 {82131503, 2572.90, "Servicios de microficha"},
 {82131504, 175.90, "Separacion de colores"},
@@ -69,10 +69,283 @@ int modificar(struct estudiante *a){
 int main(){
 
   int i, a;
+/*
+   _______________
+  |               |
+  |               |
+  |               |
+/_|_______________|_\
+| ====           #  |
+| ====              |
+|___________________|
 
-  printf("Hola ");
-  Sleep(500);
-  printf("mundo");
+   _______________
+  |               |
+  |               |
+/_|_______________|_\
+| ====           #  |
+| ====              |
+|___________________|
+
+   _______________
+  |               |
+/_|_______________|_\
+| ====           #  |
+| ====              |
+|___________________|
+
+   _______________
+/_|_______________|_\
+| ====           #  |
+| ====              |
+|___________________|
+  _________________
+/___________________\
+| ====           #  |
+| ====              |
+|___________________|
+
+ ___________________
+| ====           #  |
+| ====              |
+|___________________|
+
+ ___________
+| ==     #  |
+|___________|
+
+ ____
+|____|
+
+          ___________
+ ____   /   \_______  \
+|____|  |   |      V   |
+        |___|__________|
+          ___________
+   ____ /   \_______  \
+  |____||   |      V   |
+        |___|__________|
+
+          ___________
+      __/_  \_______  \
+     |____| |      V   |
+        |___|__________|
+
+          ___________
+        / __\_______  \
+        ||__|      V   |
+        |___|__________|
+
+          ___________
+        /   \_______  \
+        |  ||      V   |
+        |___|__________|
+          ___________
+        /   \_______  \
+        |   |      V   |
+        |___|__________|
+
+               />
+          ____/______
+        /   \/        \
+        |   |          |
+        |___|__________|
+
+             |>
+          __ |_______
+        /   \|        \
+        |   |          |
+        |___|__________|
+
+*/
+
+system("pause");
+
+printf("   _______________\n");
+printf("  |               |\n");
+printf("  |               |\n");
+printf("  |               |\n");
+printf("/_|_______________|_\\\n");
+printf("| ====           #  |\n");
+printf("| ====              |\n");
+printf("|___________________|\n");
+
+Sleep(50);
+system("cls");
+printf("\n");
+printf("   _______________\n");
+printf("  |               |\n");
+printf("  |               |\n");
+printf("/_|_______________|_\\\n");
+printf("| ====           #  |\n");
+printf("| ====              |\n");
+printf("|___________________|\n");
+
+Sleep(50);
+system("cls");
+printf("\n");
+printf("\n");
+printf("   _______________\n");
+printf("  |               |\n");
+printf("/_|_______________|_\\\n");
+printf("| ====           #  |\n");
+printf("| ====              |\n");
+printf("|___________________|\n");
+
+Sleep(50);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("   _______________\n");
+printf("/_|_______________|_\\\n");
+printf("| ====           #  |\n");
+printf("| ====              |\n");
+printf("|___________________|\n");
+
+Sleep(50);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("  _________________\n");
+printf("/___________________\\\n");
+printf("| ====           #  |\n");
+printf("| ====              |\n");
+printf("|___________________|\n");
+
+Sleep(500);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf(" ___________________\n");
+printf("| ====           #  |\n");
+printf("| ====              |\n");
+printf("|___________________|\n");
+
+Sleep(200);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf(" ___________\n");
+printf("| ==     #  |\n");
+printf("|___________|\n");
+
+Sleep(200);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf(" ____\n");
+printf("|____|\n");
+printf("\n");
+
+Sleep(200);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("          ____________\n");
+printf(" ____   /   \\_______   \\\n");
+printf("|____|  |   |      V   |\n");
+printf("        |___|__________|\n");
+
+Sleep(200);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("          ____________\n");
+printf("   ____ /   \\_______   \\\n");
+printf("  |____||   |      V   |\n");
+printf("        |___|__________|\n");
+
+Sleep(100);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("          ____________\n");
+printf("      __/_  \\_______   \\\n");
+printf("     |____| |      V   |\n");
+printf("        |___|__________|\n");
+
+Sleep(100);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("          ____________\n");
+printf("        / __\\_______   \\\n");
+printf("        ||__|      V   |\n");
+printf("        |___|__________|\n");
+
+Sleep(100);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("          ____________\n");
+printf("        /   \\_______   \\\n");
+printf("        |  ||      V   |\n");
+printf("        |___|__________|\n");
+
+Sleep(100);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("          ____________\n");
+printf("        /   \\_______   \\\n");
+printf("        |   |      V   |\n");
+printf("        |___|__________|\n");
+
+Sleep(100);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("               />\n");
+printf("          ____/_______\n");
+printf("        /   \\/         \\\n");
+printf("        |   |          |\n");
+printf("        |___|__________|\n");
+
+Sleep(100);
+system("cls");
+printf("\n");
+printf("\n");
+printf("\n");
+printf("             |>\n");
+printf("          ___|________\n");
+printf("        /   \\|         \\\n");
+printf("        |   |          |\n");
+printf("        |___|__________|\n");
+
+
+/*
+          |>
+       __ |_______
+     /   \|        \
+     |   |          |
+     |___|__________|
+
+*/
+
+
 
 	return 0;
 
