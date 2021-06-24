@@ -735,10 +735,10 @@ int main() {
                     system("cls");
                     for(i=0; i<=1; i++){
                         system("cls");
-                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s (/^o^)/", 173,usuario);
+                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s \\(^o^\\)", 173,usuario);
                         sleep(1);
                         system("cls");
-                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s (~^u^)~", 173,usuario);
+                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s ~(^u^~)", 173,usuario);
                         sleep(1);
 
                     }

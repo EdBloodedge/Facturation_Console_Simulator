@@ -70,18 +70,9 @@ int main(){
 
   int i, a;
 
-  if(scanf("%d", &a) == 0){
-
-    printf("Es cero.\n");
-
-  }
-
-  for(i=0; i<25; i++){
-
-    printf("%d:\nClave = %d\nDescripcion = %s\nPrecio = $%.2f\n\n", i, PRODUCTOS[i].clave, PRODUCTOS[i].descripcion, PRODUCTOS[i].precio);
-
-  }
-
+  printf("Hola ");
+  Sleep(500);
+  printf("mundo");
 
 	return 0;
 
