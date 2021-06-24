@@ -152,7 +152,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
         gets(A->facturas[a].RFCEmisor);
         longitud1 = strlen(A->facturas[a].RFCEmisor);//Mide la longitud de la cadena
         if (longitud1<12 || longitud1>13){
-            Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+            Beep(300,500); // 523 hertz (C5) for 500 milliseconds
             printf("\nEl RFC es incorrecto, vuelve a intentarlo\n");
             longi1=2;
         }
@@ -198,7 +198,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].emisorFiscales, MORAL2);
                 break;
             default:
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
                 fflush( stdin );
                 printf("\n\n");
@@ -229,7 +229,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].emisorFiscales, FISCAL5);
                 break;
             default:
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
                 fflush( stdin );
                 printf("\n\n");
@@ -251,7 +251,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
     gets(A->facturas[a].RFCReceptor);
     longitud2 = strlen(A->facturas[a].RFCReceptor);//Mide la longitud de la cadena
     if (longitud2<12 || longitud2>13){
-        Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+        Beep(300,500); // 523 hertz (C5) for 500 milliseconds
         printf("\nEl RFC es incorrecto, vuelve a intentarlo\n");
         longi2=2;
     }
@@ -295,7 +295,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].receptorFiscales, MORAL2);
                 break;
             default:
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
                 fflush(stdin);
                 printf("\n\n");
@@ -327,7 +327,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].receptorFiscales, FISCAL5);
                 break;
             default:
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
                 fflush( stdin );
                 printf("\n\n");
@@ -386,7 +386,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                     cantidadProductos++;
             }
             else if (k==25){
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Clave no existente\n");
             }
         }
@@ -722,6 +722,8 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
                   printf("\t\t\t\t\t\t\t        |___|__________|\n");
                   printf("\t\t\t\t\t\t\t\n");
                   printf("\t\t\t\t\t\t\t  Factura enviada exitosamente.\n\n\n\n\n\n\n");
+                  Beep(500,250);
+                  Beep(700,250);
                 }
             }while(Enviar!=1 && Enviar!=2);
         }
@@ -910,7 +912,7 @@ int main() {
                 }
 
                 if(ingresa!=1) {
-                    Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                    Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                     printf("\n\tUsuario y/o clave son incorrectos.\n\tPresione enter para continuar.\n");
                     intento++;
                     getchar();
@@ -1044,7 +1046,7 @@ int main() {
 
                     default:
 
-                        Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                        Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                         printf("\t\t\t\t\t\tOpcion no valida\n");
                         fflush( stdin );
                         printf("\n\n");
@@ -1090,7 +1092,7 @@ int a, b, line = 12;
                 printf("Opcion no valida\n");
                 sleep(1);
                 repetir = 0;
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 fflush( stdin );
             }
     } while (repetir==0);
