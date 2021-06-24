@@ -5,17 +5,14 @@
 
 #define USUARIO "Perry"
 #define CLAVE "ElOrnitorrinco"
-#define FIRMA "AgenteP"
 #define QR "# ## #\n# ## #\n#    #\n #### "
 
 #define USUARIO2 "Jaimito"
 #define CLAVE2 "tangamandapio"
-#define FIRMA2 "CarteritoPerron "
 #define QR2 "#####\n  #  \n  #  \n ##  \n##   "
 
 #define USUARIO3 "LosSAT-anes"
 #define CLAVE3 "SAT-anes"
-#define FIRMA3 "SATdelDevil"
 #define QR3 "#####\n#    #\n#    #\n#    #\n#####"
 
 #define TECLA_ENTER 13
@@ -58,7 +55,7 @@ struct factura{
   char logo[20][10], nombreEmisor[30], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
   int enviado, hora[128];
   float subtotal, IVA, total;
-  char folio[15], emisorFiscales[30], receptorFiscales[30];
+  char folio[15], emisorFiscales[30], receptorFiscales[30], firma[70];
   struct domicilio domEmisor, domReceptor;
   struct productos MASPRODUCTOS[5];
 
@@ -66,7 +63,7 @@ struct factura{
 
 //Usuario.
 struct Usuario{
-  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20], firma[70], qr[50];
+  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20], qr[50];
   struct factura facturas[LimiteFact];
 };
 
@@ -117,8 +114,8 @@ struct producto{
 int crear(struct Usuario *A, int a, struct producto *B){
 
   int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2;
-  char enye = 168;
-  int claveBuscada, k, salir, moral=0, fiscal=0, cantidadProductos=0, i;
+  char enye = 168, firmaDigital[70];
+  int claveBuscada, k, salir, moral=0, fiscal=0, cantidadProductos=0, i, letraNumero=0, contador=0;
 
   system("CLS");
   if(a!=0){
@@ -392,6 +389,18 @@ int crear(struct Usuario *A, int a, struct producto *B){
     }
     A->facturas[a].IVA=(A->facturas[a].subtotal*0.16);
     A->facturas[a].total=(A->facturas[a].subtotal+A->facturas[a].IVA);
+    srand (time(NULL));
+    do{
+        letraNumero=rand() % 10;
+        if (letraNumero>=0 && letraNumero<=5){
+            firmaDigital[contador] = 48+ rand() % 10;
+        }
+        if (letraNumero>5 && letraNumero<10){
+            firmaDigital[contador] = 65 + rand() % 25;
+        }
+        contador++;
+    }while(contador<70);
+    strcpy(A->facturas[a].firma, firmaDigital);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -461,6 +470,7 @@ int mostrar(struct Usuario *A, int a){
 
     printf("\nHora: %s\n", A->facturas[a].hora);
     printf("Su folio: %s\n", A->facturas[a].folio);
+    printf("\nFirma: %s\n", A->facturas[a].firma);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BUSCAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -579,8 +589,12 @@ int eliminar(struct Usuario *A, int cantidadFacturas, int k){
                 strcpy(A->facturas[k].receptorFiscales, A->facturas[cantidadFacturas-1].receptorFiscales);
                 A->facturas[k].domReceptor.numero = A->facturas[cantidadFacturas-1].domReceptor.numero;
                 A->facturas[k].domReceptor.codigoPostal = A->facturas[cantidadFacturas-1].domReceptor.codigoPostal;
+
                 strcpy(A->facturas[k].folio, A->facturas[cantidadFacturas-1].folio);
                 A->facturas[k].enviado=A->facturas[cantidadFacturas-1].enviado;
+                strcpy(A->facturas[k].hora, A->facturas[cantidadFacturas-1].hora);
+                strcpy(A->facturas[k].firma, A->facturas[cantidadFacturas-1].firma);
+
                 cantidadFacturas=cantidadFacturas-2;
                 cantidadFacturas++;
                 printf("Se ha eliminado la factura");
@@ -629,19 +643,16 @@ int main() {
   //Asignación de datos del primer usuario
   strcpy(USUARIOS[0].usuario, USUARIO);
   strcpy(USUARIOS[0].clave, CLAVE);
-  strcpy(USUARIOS[0].firma, FIRMA);
   strcpy(USUARIOS[0].qr, QR);
 
   //Asignación de datos del segundo usuario
   strcpy(USUARIOS[1].usuario, USUARIO2);
   strcpy(USUARIOS[1].clave, CLAVE2);
-  strcpy(USUARIOS[1].firma, FIRMA2);
   strcpy(USUARIOS[1].qr, QR2);
 
   //Asignación de datos del tercer usuario
   strcpy(USUARIOS[2].usuario, USUARIO3);
   strcpy(USUARIOS[2].clave, CLAVE3);
-  strcpy(USUARIOS[2].firma, FIRMA3);
   strcpy(USUARIOS[2].qr, QR3);
 
 
