@@ -1,5 +1,3 @@
-#include <windows.h>   //For Beep & Sleep functions
-
 #include <stdio.h>
 #include <string.h> /* gets, strcmp */
 #include <stdlib.h> /* system */
@@ -154,7 +152,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
         gets(A->facturas[a].RFCEmisor);
         longitud1 = strlen(A->facturas[a].RFCEmisor);//Mide la longitud de la cadena
         if (longitud1<12 || longitud1>13){
-            Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+            Beep(300,500); // 523 hertz (C5) for 500 milliseconds
             printf("\nEl RFC es incorrecto, vuelve a intentarlo\n");
             longi1=2;
         }
@@ -200,7 +198,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].emisorFiscales, MORAL2);
                 break;
             default:
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
                 fflush( stdin );
                 printf("\n\n");
@@ -231,7 +229,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].emisorFiscales, FISCAL5);
                 break;
             default:
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
                 fflush( stdin );
                 printf("\n\n");
@@ -253,7 +251,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
     gets(A->facturas[a].RFCReceptor);
     longitud2 = strlen(A->facturas[a].RFCReceptor);//Mide la longitud de la cadena
     if (longitud2<12 || longitud2>13){
-        Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+        Beep(300,500); // 523 hertz (C5) for 500 milliseconds
         printf("\nEl RFC es incorrecto, vuelve a intentarlo\n");
         longi2=2;
     }
@@ -297,7 +295,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].receptorFiscales, MORAL2);
                 break;
             default:
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
                 fflush(stdin);
                 printf("\n\n");
@@ -329,7 +327,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 strcpy(A->facturas[a].receptorFiscales, FISCAL5);
                 break;
             default:
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
                 fflush( stdin );
                 printf("\n\n");
@@ -388,7 +386,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                     cantidadProductos++;
             }
             else if (k==25){
-                Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Clave no existente\n");
             }
         }
@@ -547,187 +545,191 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
                     printf("Opcion no valida\n");
                 }
                 if (Enviar==1){
-
-                  printf("   _______________\n");
-                  printf("  |               |\n");
-                  printf("  |               |\n");
-                  printf("  |               |\n");
-                  printf("/_|_______________|_\\\n");
-                  printf("| ====           #  |\n");
-                  printf("| ====              |\n");
-                  printf("|___________________|\n");
-
-                  Sleep(50);
                   system("cls");
-                  printf("\n");
-                  printf("   _______________\n");
-                  printf("  |               |\n");
-                  printf("  |               |\n");
-                  printf("/_|_______________|_\\\n");
-                  printf("| ====           #  |\n");
-                  printf("| ====              |\n");
-                  printf("|___________________|\n");
-
-                  Sleep(50);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("   _______________\n");
-                  printf("  |               |\n");
-                  printf("/_|_______________|_\\\n");
-                  printf("| ====           #  |\n");
-                  printf("| ====              |\n");
-                  printf("|___________________|\n");
-
-                  Sleep(50);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("   _______________\n");
-                  printf("/_|_______________|_\\\n");
-                  printf("| ====           #  |\n");
-                  printf("| ====              |\n");
-                  printf("|___________________|\n");
-
-                  Sleep(50);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("  _________________\n");
-                  printf("/___________________\\\n");
-                  printf("| ====           #  |\n");
-                  printf("| ====              |\n");
-                  printf("|___________________|\n");
+                  printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t   _______________\n");
+                  printf("\t\t\t\t\t\t\t  |               |\n");
+                  printf("\t\t\t\t\t\t\t  |               |\n");
+                  printf("\t\t\t\t\t\t\t  |               |\n");
+                  printf("\t\t\t\t\t\t\t/_|_______________|_\\\n");
+                  printf("\t\t\t\t\t\t\t| ====           #  |\n");
+                  printf("\t\t\t\t\t\t\t| ====              |\n");
+                  printf("\t\t\t\t\t\t\t|___________________|\n");
 
                   Sleep(500);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf(" ___________________\n");
-                  printf("| ====           #  |\n");
-                  printf("| ====              |\n");
-                  printf("|___________________|\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t   _______________\n");
+                  printf("\t\t\t\t\t\t\t  |               |\n");
+                  printf("\t\t\t\t\t\t\t  |               |\n");
+                  printf("\t\t\t\t\t\t\t/_|_______________|_\\\n");
+                  printf("\t\t\t\t\t\t\t| ====           #  |\n");
+                  printf("\t\t\t\t\t\t\t| ====              |\n");
+                  printf("\t\t\t\t\t\t\t|___________________|\n");
+
+                  Sleep(50);
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t   _______________\n");
+                  printf("\t\t\t\t\t\t\t  |               |\n");
+                  printf("\t\t\t\t\t\t\t/_|_______________|_\\\n");
+                  printf("\t\t\t\t\t\t\t| ====           #  |\n");
+                  printf("\t\t\t\t\t\t\t| ====              |\n");
+                  printf("\t\t\t\t\t\t\t|___________________|\n");
+
+                  Sleep(50);
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t   _______________\n");
+                  printf("\t\t\t\t\t\t\t/_|_______________|_\\\n");
+                  printf("\t\t\t\t\t\t\t| ====           #  |\n");
+                  printf("\t\t\t\t\t\t\t| ====              |\n");
+                  printf("\t\t\t\t\t\t\t|___________________|\n");
+
+                  Sleep(50);
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t  _________________\n");
+                  printf("\t\t\t\t\t\t\t/___________________\\\n");
+                  printf("\t\t\t\t\t\t\t| ====           #  |\n");
+                  printf("\t\t\t\t\t\t\t| ====              |\n");
+                  printf("\t\t\t\t\t\t\t|___________________|\n");
+
+                  Sleep(500);
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t ___________________\n");
+                  printf("\t\t\t\t\t\t\t| ====           #  |\n");
+                  printf("\t\t\t\t\t\t\t| ====              |\n");
+                  printf("\t\t\t\t\t\t\t|___________________|\n");
 
                   Sleep(200);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf(" ___________\n");
-                  printf("| ==     #  |\n");
-                  printf("|___________|\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t ___________\n");
+                  printf("\t\t\t\t\t\t\t| ==     #  |\n");
+                  printf("\t\t\t\t\t\t\t|___________|\n");
 
                   Sleep(200);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf(" ____\n");
-                  printf("|____|\n");
-                  printf("\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t ____\n");
+                  printf("\t\t\t\t\t\t\t|____|\n");
+                  printf("\t\t\t\t\t\t\t\n");
 
                   Sleep(200);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("          ____________\n");
-                  printf(" ____   /   \\_______   \\\n");
-                  printf("|____|  |   |      V   |\n");
-                  printf("        |___|__________|\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t          ____________\n");
+                  printf("\t\t\t\t\t\t\t ____   /   \\_______   \\\n");
+                  printf("\t\t\t\t\t\t\t|____|  |   |      V   |\n");
+                  printf("\t\t\t\t\t\t\t        |___|__________|\n");
 
                   Sleep(200);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("          ____________\n");
-                  printf("   ____ /   \\_______   \\\n");
-                  printf("  |____||   |      V   |\n");
-                  printf("        |___|__________|\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t          ____________\n");
+                  printf("\t\t\t\t\t\t\t   ____ /   \\_______   \\\n");
+                  printf("\t\t\t\t\t\t\t  |____||   |      V   |\n");
+                  printf("\t\t\t\t\t\t\t        |___|__________|\n");
 
                   Sleep(100);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("          ____________\n");
-                  printf("      __/_  \\_______   \\\n");
-                  printf("     |____| |      V   |\n");
-                  printf("        |___|__________|\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t          ____________\n");
+                  printf("\t\t\t\t\t\t\t      __/_  \\_______   \\\n");
+                  printf("\t\t\t\t\t\t\t     |____| |      V   |\n");
+                  printf("\t\t\t\t\t\t\t        |___|__________|\n");
 
                   Sleep(100);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("          ____________\n");
-                  printf("        / __\\_______   \\\n");
-                  printf("        ||__|      V   |\n");
-                  printf("        |___|__________|\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t          ____________\n");
+                  printf("\t\t\t\t\t\t\t        / __\\_______   \\\n");
+                  printf("\t\t\t\t\t\t\t        ||__|      V   |\n");
+                  printf("\t\t\t\t\t\t\t        |___|__________|\n");
 
                   Sleep(100);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("          ____________\n");
-                  printf("        /   \\_______   \\\n");
-                  printf("        |  ||      V   |\n");
-                  printf("        |___|__________|\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t          ____________\n");
+                  printf("\t\t\t\t\t\t\t        /   \\_______   \\\n");
+                  printf("\t\t\t\t\t\t\t        |  ||      V   |\n");
+                  printf("\t\t\t\t\t\t\t        |___|__________|\n");
 
                   Sleep(100);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("          ____________\n");
-                  printf("        /   \\_______   \\\n");
-                  printf("        |   |      V   |\n");
-                  printf("        |___|__________|\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t          ____________\n");
+                  printf("\t\t\t\t\t\t\t        /   \\_______   \\\n");
+                  printf("\t\t\t\t\t\t\t        |   |      V   |\n");
+                  printf("\t\t\t\t\t\t\t        |___|__________|\n");
 
                   Sleep(100);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("               />\n");
-                  printf("          ____/_______\n");
-                  printf("        /   \\/         \\\n");
-                  printf("        |   |          |\n");
-                  printf("        |___|__________|\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t               />\n");
+                  printf("\t\t\t\t\t\t\t          ____/_______\n");
+                  printf("\t\t\t\t\t\t\t        /   \\/         \\\n");
+                  printf("\t\t\t\t\t\t\t        |   |          |\n");
+                  printf("\t\t\t\t\t\t\t        |___|__________|\n");
 
                   Sleep(100);
-                  system("cls");
-                  printf("\n");
-                  printf("\n");
-                  printf("\n");
-                  printf("             |>\n");
-                  printf("          ___|________\n");
-                  printf("        /   \\|         \\\n");
-                  printf("        |   |          |\n");
-                  printf("        |___|__________|\n");
-                  printf("\n");
-                  printf("    Factura enviada exitosamente.\n");
+                  system("cls"); printf("\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t             |>\n");
+                  printf("\t\t\t\t\t\t\t          ___|________\n");
+                  printf("\t\t\t\t\t\t\t        /   \\|         \\\n");
+                  printf("\t\t\t\t\t\t\t        |   |          |\n");
+                  printf("\t\t\t\t\t\t\t        |___|__________|\n");
+                  printf("\t\t\t\t\t\t\t\n");
+                  printf("\t\t\t\t\t\t\t  Factura enviada exitosamente.\n\n\n\n\n\n\n");
+                  Beep(494,250);
+                  Beep(740,250);
                 }
             }while(Enviar!=1 && Enviar!=2);
         }
         else{
-            printf("La factura ya fue enviada");
+            printf("\n\nLa factura ya fue enviada");
+            system("pause");
         }
     }
     else{
@@ -910,7 +912,7 @@ int main() {
                 }
 
                 if(ingresa!=1) {
-                    Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                    Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                     printf("\n\tUsuario y/o clave son incorrectos.\n\tPresione enter para continuar.\n");
                     intento++;
                     getchar();
@@ -930,10 +932,10 @@ int main() {
                     for(i=0; i<=1; i++){
                         system("cls");
                         system("COLOR FD");
-                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s \\(^o^\\)", 173,usuario);
+                        printf("\n\n\t\t\t\t\t\t\t %cHola %s! \\(^o^\\)", 173,usuario);
                         sleep(1);
                         system("cls");
-                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s ~(^u^~)", 173,usuario);
+                        printf("\n\n\t\t\t\t\t\t\t %cHola %s! ~(^u^~)", 173,usuario);
                         sleep(1);
 
                     }
@@ -1044,7 +1046,7 @@ int main() {
 
                     default:
 
-                        Beep(523,500); // 523 hertz (C5) for 500 milliseconds
+                        Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                         printf("\t\t\t\t\t\tOpcion no valida\n");
                         fflush( stdin );
                         printf("\n\n");
@@ -1081,154 +1083,154 @@ int a, b, line = 12;
       for (b = 1; b <= ((a * 2) - 1); b++) //imprimir el triangulo
          printf(" *");
       printf("\n");
-
-
    }
 
-    Beep (330,100);Sleep(100);
-    Beep (330,100);Sleep(300);
-    Beep (330,100);Sleep(300);
-    Beep (262,100);Sleep(100);
-    Beep (330,100);Sleep(300);
-    Beep (392,100);Sleep(700);
-    Beep (196,100);Sleep(700);
-    Beep (262,300);Sleep(300);
-    Beep (196,300);Sleep(300);
-    Beep (164,300);Sleep(300);
-    Beep (220,300);Sleep(100);
-    Beep (246,100);Sleep(300);
-    Beep (233,200);
-    Beep (220,100);Sleep(300);
-    Beep (196,100);Sleep(150);
-    Beep (330,100);Sleep(150);
-    Beep (392,100);Sleep(150);
-    Beep (440,100);Sleep(300);
-    Beep (349,100);Sleep(100);
-    Beep (392,100);Sleep(300);
-    Beep (330,100);Sleep(300);
-    Beep (262,100);Sleep(100);
-    Beep (294,100);Sleep(100);
-    Beep (247,100);Sleep(500);
-    Beep (262,300);Sleep(300);
-    Beep (196,300);Sleep(300);
-    Beep (164,300);Sleep(300);
-    Beep (220,300);Sleep(100);
-    Beep (246,100);Sleep(300);
-    Beep (233,200);
-    Beep (220,100);Sleep(300);
-    Beep (196,100);Sleep(150);
-    Beep (330,100);Sleep(150);
-    Beep (392,100);Sleep(150);
-    Beep (440,100);Sleep(300);
-    Beep (349,100);Sleep(100);
-    Beep (392,100);Sleep(300);
-    Beep (330,100);Sleep(300);
-    Beep (262,100);Sleep(100);
-    Beep (294,100);Sleep(100);
-    Beep (247,100);Sleep(900);
-    Beep (392,100);Sleep(100);
-    Beep (370,100);Sleep(100);
-    Beep (349,100);Sleep(100);
-    Beep (311,100);Sleep(300);
-    Beep (330,100);Sleep(300);
-    Beep (207,100);Sleep(100);
-    Beep (220,100);Sleep(100);
-    Beep (262,100);Sleep(300);
-    Beep (220,100);Sleep(100);
-    Beep (262,100);Sleep(100);
-    Beep (294,100);Sleep(500);
-    Beep (392,100);Sleep(100);
-    Beep (370,100);Sleep(100);
-    Beep (349,100);Sleep(100);
-    Beep (311,100);Sleep(300);
-    Beep (330,100);Sleep(300);
-    Beep (523,100);Sleep(300);
-    Beep (523,100);Sleep(100);
-    Beep (523,100);Sleep(1100);
-    Beep (392,100);Sleep(100);
-    Beep (370,100);Sleep(100);
-    Beep (349,100);Sleep(100);
-    Beep (311,100);Sleep(300);
-    Beep (330,100);Sleep(300);
-    Beep (207,100);Sleep(100);
-    Beep (220,100);Sleep(100);
-    Beep (262,100);Sleep(300);
-    Beep (220,100);Sleep(100);
-    Beep (262,100);Sleep(100);
-    Beep (294,100);Sleep(500);
-    Beep (311,300);Sleep(300);
-    Beep (296,300);Sleep(300);
-    Beep (262,300);Sleep(1300);
-    Beep (262,100);Sleep(100);
-    Beep (262,100);Sleep(300);
-    Beep (262,100);Sleep(300);
-    Beep (262,100);Sleep(100);
-    Beep (294,100);Sleep(300);
-    Beep (330,200);Sleep(50);
-    Beep (262,200);Sleep(50);
-    Beep (220,200);Sleep(50);
-    Beep (196,100);Sleep(700);
-    Beep (262,100);Sleep(100);
-    Beep (262,100);Sleep(300);
-    Beep (262,100);Sleep(300);
-    Beep (262,100);Sleep(100);
-    Beep (294,100);Sleep(100);
-    Beep (330,100);Sleep(700);
-    Beep (440,100);Sleep(300);
-    Beep (392,100);Sleep(500);
-    Beep (262,100);Sleep(100);
-    Beep (262,100);Sleep(300);
-    Beep (262,100);Sleep(300);
-    Beep (262,100);Sleep(100);
-    Beep (294,100);Sleep(300);
-    Beep (330,200);Sleep(50);
-    Beep (262,200);Sleep(50);
-    Beep (220,200);Sleep(50);
-    Beep (196,100);Sleep(700);
-    /*Intro*/
-    Beep (330,100);Sleep(100);
-    Beep (330,100);Sleep(300);
-    Beep (330,100);Sleep(300);
-    Beep (262,100);Sleep(100);
-    Beep (330,100);Sleep(300);
-    Beep (392,100);Sleep(700);
-    Beep (196,100);Sleep(700);
-    Beep (196,100);Sleep(125);
-    Beep (262,100);Sleep(125);
-    Beep (330,100);Sleep(125);
-    Beep (392,100);Sleep(125);
-    Beep (523,100);Sleep(125);
-    Beep (660,100);Sleep(125);
-    Beep (784,100);Sleep(575);
-    Beep (660,100);Sleep(575);
-    Beep (207,100);Sleep(125);
-    Beep (262,100);Sleep(125);
-    Beep (311,100);Sleep(125);
-    Beep (415,100);Sleep(125);
-    Beep (523,100);Sleep(125);
-    Beep (622,100);Sleep(125);
-    Beep (830,100);Sleep(575);
-    Beep (622,100);Sleep(575);
-    Beep (233,100);Sleep(125);
-    Beep (294,100);Sleep(125);
-    Beep (349,100);Sleep(125);
-    Beep (466,100);Sleep(125);
-    Beep (587,100);Sleep(125);
-    Beep (698,100);Sleep(125);
-    Beep (932,100);Sleep(575);
-    Beep (932,100);Sleep(125);
-    Beep (932,100);Sleep(125);
-    Beep (932,100);Sleep(125);
-    Beep (1046,675);
+   Beep (330,100);Sleep(100);
+   Beep (330,100);Sleep(300);
+   Beep (330,100);Sleep(300);
+   Beep (262,100);Sleep(100);
+   Beep (330,100);Sleep(300);
+   Beep (392,100);Sleep(700);
+   Beep (196,100);Sleep(700);
+   Beep (262,300);Sleep(300);
+   Beep (196,300);Sleep(300);
+   Beep (164,300);Sleep(300);
+   Beep (220,300);Sleep(100);
+   Beep (246,100);Sleep(300);
+   Beep (233,200);
+   Beep (220,100);Sleep(300);
+   Beep (196,100);Sleep(150);
+   Beep (330,100);Sleep(150);
+   Beep (392,100);Sleep(150);
+   Beep (440,100);Sleep(300);
+   Beep (349,100);Sleep(100);
+   Beep (392,100);Sleep(300);
+   Beep (330,100);Sleep(300);
+   Beep (262,100);Sleep(100);
+   Beep (294,100);Sleep(100);
+   Beep (247,100);Sleep(500);
+   Beep (262,300);Sleep(300);
+   Beep (196,300);Sleep(300);
+   Beep (164,300);Sleep(300);
+   Beep (220,300);Sleep(100);
+   Beep (246,100);Sleep(300);
+   Beep (233,200);
+   Beep (220,100);Sleep(300);
+   Beep (196,100);Sleep(150);
+   Beep (330,100);Sleep(150);
+   Beep (392,100);Sleep(150);
+   Beep (440,100);Sleep(300);
+   Beep (349,100);Sleep(100);
+   Beep (392,100);Sleep(300);
+   Beep (330,100);Sleep(300);
+   Beep (262,100);Sleep(100);
+   Beep (294,100);Sleep(100);
+   Beep (247,100);Sleep(900);
+   Beep (392,100);Sleep(100);
+   Beep (370,100);Sleep(100);
+   Beep (349,100);Sleep(100);
+   Beep (311,100);Sleep(300);
+   Beep (330,100);Sleep(300);
+   Beep (207,100);Sleep(100);
+   Beep (220,100);Sleep(100);
+   Beep (262,100);Sleep(300);
+   Beep (220,100);Sleep(100);
+   Beep (262,100);Sleep(100);
+   Beep (294,100);Sleep(500);
+   Beep (392,100);Sleep(100);
+   Beep (370,100);Sleep(100);
+   Beep (349,100);Sleep(100);
+   Beep (311,100);Sleep(300);
+   Beep (330,100);Sleep(300);
+   Beep (523,100);Sleep(300);
+   Beep (523,100);Sleep(100);
+   Beep (523,100);Sleep(1100);
+   Beep (392,100);Sleep(100);
+   Beep (370,100);Sleep(100);
+   Beep (349,100);Sleep(100);
+   Beep (311,100);Sleep(300);
+   Beep (330,100);Sleep(300);
+   Beep (207,100);Sleep(100);
+   Beep (220,100);Sleep(100);
+   Beep (262,100);Sleep(300);
+   Beep (220,100);Sleep(100);
+   Beep (262,100);Sleep(100);
+   Beep (294,100);Sleep(500);
+   Beep (311,300);Sleep(300);
+   Beep (296,300);Sleep(300);
+   Beep (262,300);Sleep(1300);
+   Beep (262,100);Sleep(100);
+   Beep (262,100);Sleep(300);
+   Beep (262,100);Sleep(300);
+   Beep (262,100);Sleep(100);
+   Beep (294,100);Sleep(300);
+   Beep (330,200);Sleep(50);
+   Beep (262,200);Sleep(50);
+   Beep (220,200);Sleep(50);
+   Beep (196,100);Sleep(700);
+   Beep (262,100);Sleep(100);
+   Beep (262,100);Sleep(300);
+   Beep (262,100);Sleep(300);
+   Beep (262,100);Sleep(100);
+   Beep (294,100);Sleep(100);
+   Beep (330,100);Sleep(700);
+   Beep (440,100);Sleep(300);
+   Beep (392,100);Sleep(500);
+   Beep (262,100);Sleep(100);
+   Beep (262,100);Sleep(300);
+   Beep (262,100);Sleep(300);
+   Beep (262,100);Sleep(100);
+   Beep (294,100);Sleep(300);
+   Beep (330,200);Sleep(50);
+   Beep (262,200);Sleep(50);
+   Beep (220,200);Sleep(50);
+   Beep (196,100);Sleep(700);
+   /*Intro*/
+   Beep (330,100);Sleep(100);
+   Beep (330,100);Sleep(300);
+   Beep (330,100);Sleep(300);
+   Beep (262,100);Sleep(100);
+   Beep (330,100);Sleep(300);
+   Beep (392,100);Sleep(700);
+   Beep (196,100);Sleep(700);
+   Beep (196,100);Sleep(125);
+   Beep (262,100);Sleep(125);
+   Beep (330,100);Sleep(125);
+   Beep (392,100);Sleep(125);
+   Beep (523,100);Sleep(125);
+   Beep (660,100);Sleep(125);
+   Beep (784,100);Sleep(575);
+   Beep (660,100);Sleep(575);
+   Beep (207,100);Sleep(125);
+   Beep (262,100);Sleep(125);
+   Beep (311,100);Sleep(125);
+   Beep (415,100);Sleep(125);
+   Beep (523,100);Sleep(125);
+   Beep (622,100);Sleep(125);
+   Beep (830,100);Sleep(575);
+   Beep (622,100);Sleep(575);
+   Beep (233,100);Sleep(125);
+   Beep (294,100);Sleep(125);
+   Beep (349,100);Sleep(125);
+   Beep (466,100);Sleep(125);
+   Beep (587,100);Sleep(125);
+   Beep (698,100);Sleep(125);
+   Beep (932,100);Sleep(575);
+   Beep (932,100);Sleep(125);
+   Beep (932,100);Sleep(125);
+   Beep (932,100);Sleep(125);
+   Beep (1046,675);
 
-    system ("pause");
-    printf("\n\n............Presiona cualquier tecla para salir.........");
+   system("pause");
+
+            printf("\n\n............Presiona cualquier tecla para salir.........");
             sleep(1);
             repetir = 1;
             } else{
                 printf("Opcion no valida\n");
                 sleep(1);
                 repetir = 0;
+                Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 fflush( stdin );
             }
     } while (repetir==0);
