@@ -726,7 +726,8 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
             }while(Enviar!=1 && Enviar!=2);
         }
         else{
-            printf("La factura ya fue enviada");
+            printf("\n\nLa factura ya fue enviada.");
+            systen("pause");
         }
     }
     else{
