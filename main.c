@@ -545,6 +545,7 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
                     printf("Opcion no valida\n");
                 }
                 if (Enviar==1){
+                  system("cls");
                   printf("\n\n\n\n");
                   printf("\t\t\t\t\t\t\t   _______________\n");
                   printf("\t\t\t\t\t\t\t  |               |\n");
@@ -555,7 +556,7 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
                   printf("\t\t\t\t\t\t\t| ====              |\n");
                   printf("\t\t\t\t\t\t\t|___________________|\n");
 
-                  Sleep(50);
+                  Sleep(500);
                   system("cls"); printf("\n\n\n\n");
                   printf("\t\t\t\t\t\t\t\n");
                   printf("\t\t\t\t\t\t\t   _______________\n");
@@ -720,7 +721,7 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
                   printf("\t\t\t\t\t\t\t        |   |          |\n");
                   printf("\t\t\t\t\t\t\t        |___|__________|\n");
                   printf("\t\t\t\t\t\t\t\n");
-                  printf("\t\t\t\t\t\t\t  Factura enviada exitosamente.\n");
+                  printf("\t\t\t\t\t\t\t  Factura enviada exitosamente.\n\n\n\n\n\n\n");
                 }
             }while(Enviar!=1 && Enviar!=2);
         }
