@@ -344,7 +344,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
     printf("45121604       Oclusores para c%cmaras                                 267.24\n",160);
     printf("45121605       Marcos de pantalla                                     7400.00\n\n\n");
 
-    printf(" CLAVES                SERVICIOS \n\n");
+    printf(" CLAVES                SERVICIOS                                      PRECIOS\n\n");
     printf("82131601       Servicios de fotograf%ca a%crea                          6500.00\n",161, 130);
     printf("82131602       Cinematograf%ca                                         6315.00\n",161);
     printf("82131603       Servicios de producci%cn de v%cdeos                      4950.00\n",162,161);
