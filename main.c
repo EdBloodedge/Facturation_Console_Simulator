@@ -1085,9 +1085,7 @@ int a, b, line = 12;
 
    }
 
-
-
-                              Beep (330,100);Sleep(100);
+    Beep (330,100);Sleep(100);
     Beep (330,100);Sleep(300);
     Beep (330,100);Sleep(300);
     Beep (262,100);Sleep(100);
@@ -1222,9 +1220,9 @@ int a, b, line = 12;
     Beep (932,100);Sleep(125);
     Beep (932,100);Sleep(125);
     Beep (1046,675);
-    printf("\n\n............Presiona cualquier tecla para salir.........");
 
     system ("pause");
+    printf("\n\n............Presiona cualquier tecla para salir.........");
             sleep(1);
             repetir = 1;
             } else{
