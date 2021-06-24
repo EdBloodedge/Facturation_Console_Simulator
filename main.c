@@ -3,9 +3,9 @@
 #include <stdlib.h> /* system */
 #include <time.h>
 
-#define USUARIO "Usuario1"
-#define CLAVE "contra1"
-#define FIRMA "UsuarCtr1"
+#define USUARIO "Perry"
+#define CLAVE "ElOrnitorrinco"
+#define FIRMA "AgenteP"
 #define QR "# ## #\n# ## #\n#    #\n #### "
 
 #define USUARIO2 "Jaimito"
@@ -717,7 +717,7 @@ int main() {
                     system("cls");
                     for(i=0; i<=1; i++){
                         system("cls");
-                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! (/^o^)/", 173);
+                        printf("\n\n\t\t\t\t\t\t\t %cHOLA! %s (/^o^)/", 173,usuario);
                         sleep(1);
                         system("cls");
                         printf("\t\t\t\t    ---------------------------------------------------------------------\n");
@@ -837,7 +837,31 @@ int main() {
             }
             }while(MenuPrincipal!=5 && ingresa==1);
         } else if (entrar==2) {
-            printf("Saliendo del programa...");
+            system("cls");
+            printf("\n\n\nGracias por utilizar el Sistema de Facturaci%cn Electr%cnica de los SAT-anes\n\n\n",162, 162);//ó
+
+
+int a, b, line = 12;
+   for (a = line/2; a <= line; a = a+2) { //Para la parte superior del corazon
+      for (b = 1; b < line-a; b = b+2) //crear espacio antes de la primera prominencia
+         printf("  ");
+      for (b = 1; b <= a; b++) //imprimir la primera prominencia
+        printf(" *");
+      for (b = 1; b <= line-a; b++) //crear espacio antes de la segunda prominencia
+         printf("  ");
+      for (b = 1; b <= a-1; b++) //imprimir la segunda prominencia
+         printf(" *");
+      printf("\n");
+   }
+   for (a = line; a >= 0; a--) { //la base del corazon es un triangulo invertido
+      for (b = a; b < line; b++) //generar espacio antes del triangulo
+         printf("  ");
+      for (b = 1; b <= ((a * 2) - 1); b++) //imprimir el triangulo
+         printf(" *");
+      printf("\n");
+   }
+
+            printf("\n\n............Presiona cualquier tecla para salir.........");
             sleep(1);
             repetir = 1;
             } else{
