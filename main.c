@@ -64,6 +64,7 @@ struct factura{
 //Usuario.
 struct Usuario{
   char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20], qr[50];
+  int NumFacturas;
   struct factura facturas[LimiteFact];
 };
 
@@ -845,16 +846,19 @@ int main() {
   strcpy(USUARIOS[0].usuario, USUARIO);
   strcpy(USUARIOS[0].clave, CLAVE);
   strcpy(USUARIOS[0].qr, QR);
+  USUARIOS[0].NumFacturas = 0;
 
   //Asignación de datos del segundo usuario
   strcpy(USUARIOS[1].usuario, USUARIO2);
   strcpy(USUARIOS[1].clave, CLAVE2);
   strcpy(USUARIOS[1].qr, QR2);
+  USUARIOS[1].NumFacturas = 0;
 
   //Asignación de datos del tercer usuario
   strcpy(USUARIOS[2].usuario, USUARIO3);
   strcpy(USUARIOS[2].clave, CLAVE3);
   strcpy(USUARIOS[2].qr, QR3);
+  USUARIOS[2].NumFacturas = 0;
 
 
   do{
@@ -994,9 +998,10 @@ int main() {
                         folioChar[3]=folioInt1+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
 
                         strcpy(USUARIOS[0].facturas[cantidadFacturas].folio, folioChar);
-                        crear(&(USUARIOS[0]), cantidadFacturas, PRODUCTOS);
+                        crear(&(USUARIOS[0]), USUARIOS[j].NumFacturas, PRODUCTOS);
                         tiempo(&(USUARIOS[0]), cantidadFacturas);
                         cantidadFacturas++;
+                        USUARIOS[j].NumFacturas++;
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
                         mostrar(USUARIOS, cantidadFacturas-1);
