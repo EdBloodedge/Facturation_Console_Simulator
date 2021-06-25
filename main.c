@@ -114,9 +114,9 @@ struct producto{
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int crear(struct Usuario *A, int a, struct producto *B){
 
-  int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2;
+  int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2,continuar=0;
   char enye = 168, firmaDigital[70];
-  int claveBuscada, k, salir, moral=0, fiscal=0, cantidadProductos=0, i, letraNumero=0, contador=0;
+  int claveBuscada, k, salir, moral=0, fiscal=0, cantidadProductos=0, i, letraNumero=0, contador=0, moral2=0, fiscal2=0;
 
   system("CLS");
   if(a!=0){
@@ -287,8 +287,8 @@ int crear(struct Usuario *A, int a, struct producto *B){
     do{
         printf("%cQue tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines De Lucro\n -> ",enye, 130);
         fflush(stdin);
-        scanf(" %d", &moral);
-        switch(moral){
+        scanf(" %d", &moral2);
+        switch(moral2){
             case 1:
                 strcpy(A->facturas[a].receptorFiscales, MORAL1);
                 break;
@@ -302,7 +302,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 printf("\n\n");
                 break;
         }
-    }while(moral!=1 && moral!=2);
+    }while(moral2!=1 && moral2!=2);
     }
 
   if(longitud2 == 13){
@@ -310,7 +310,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
     do{
         printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
         fflush(stdin);
-        scanf(" %d", &fiscal);
+        scanf(" %d", &fiscal2);
         switch(fiscal){
             case 1:
                 strcpy(A->facturas[a].receptorFiscales, FISCAL1);
@@ -334,7 +334,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
                 printf("\n\n");
                 break;
         }
-    }while(fiscal!=1 && fiscal!=2 && fiscal!=3 && fiscal!=4 && fiscal!=5);
+    }while(fiscal2!=1 && fiscal2!=2 && fiscal2!=3 && fiscal2!=4 && fiscal2!=5);
     }
 
 //------------------------------DATOS DE LOS PRODUCTOS Y SERVICIOS---------------------------------------------
@@ -371,11 +371,14 @@ int crear(struct Usuario *A, int a, struct producto *B){
 
     do{
         salir=1;
+        continuar=0;
         printf("\n\n\nIngrese la clave del producto(s) o servicio(s) que quieres comprar ->  ");
         fflush(stdin);
-        scanf("%d",&claveBuscada);
+        if (scanf(" %d",&claveBuscada)==0){
+            continuar=1;
+        }
         for (k=0; k<=25; k++){
-            if ((B[k].clave) == claveBuscada){
+            if  (((B[k].clave) == claveBuscada) && (continuar==0)){
                     A->facturas[a].MASPRODUCTOS[cantidadProductos].clave=B[k].clave;
                     strcpy(A->facturas[a].MASPRODUCTOS[cantidadProductos].nombreDescripcion, B[k].descripcion);
                     A->facturas[a].MASPRODUCTOS[cantidadProductos].precioUnitario=B[k].precio;
