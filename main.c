@@ -115,7 +115,7 @@ struct producto{
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int crear(struct Usuario *A, int a, struct producto *B){
 
-  int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2,continuar=0;
+  int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2,continuar=0, avanzar=0;
   char enye = 168, firmaDigital[70];
   int claveBuscada, k, salir, moral=0, fiscal=0, cantidadProductos=0, i, letraNumero=0, contador=0, moral2=0, fiscal2=0;
 
@@ -384,9 +384,17 @@ int crear(struct Usuario *A, int a, struct producto *B){
                     strcpy(A->facturas[a].MASPRODUCTOS[cantidadProductos].nombreDescripcion, B[k].descripcion);
                     A->facturas[a].MASPRODUCTOS[cantidadProductos].precioUnitario=B[k].precio;
                     printf("Producto/Servicio guardado\n");
-                    printf("Cantidad: ");
-                    fflush(stdin);
-                    scanf("%d", &(A->facturas[a].MASPRODUCTOS[cantidadProductos].cantidad));
+                    do{
+                        printf("Cantidad: ");
+                        fflush(stdin);
+                        if (scanf("%d", &(A->facturas[a].MASPRODUCTOS[cantidadProductos].cantidad))== 1 ){
+                            avanzar=0;
+                        }
+                        else{
+                            printf("Cantidad no valida\n");
+                            avanzar=1;
+                        }
+                    }while(avanzar==1);
                     k=26;
                     cantidadProductos++;
             }
@@ -1029,7 +1037,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                         folioChar[3]=folioInt1+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
 
                         strcpy(USUARIOS[0].facturas[cantidadFacturas].folio, folioChar);
-                        crear(&(USUARIOS[0]), USUARIOS[j].NumFacturas, PRODUCTOS);
+                        crear(&(USUARIOS[0]), USUARIOS[0].NumFacturas, PRODUCTOS);
                         tiempo(&(USUARIOS[0]), cantidadFacturas);
                         cantidadFacturas++;
                         USUARIOS[j].NumFacturas++;
