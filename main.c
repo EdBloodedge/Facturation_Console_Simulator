@@ -3,6 +3,7 @@
 #include <stdlib.h> /* system */
 #include <time.h>
 
+
 #define USUARIO "Perry"
 #define CLAVE "ElOrnitorrinco"
 #define QR "# ## #\n# ## #\n#    #\n #### "
@@ -870,6 +871,33 @@ int main() {
     repetir = 0;
     system("cls");
     entrar=0;
+
+    printf("\t\t\t\t\t\t       Los SAT-anes\n\n");
+
+printf("\t\t\t\t\t\t\n");
+printf("\t\t\t\t\t\t*                       *\n");
+printf("\t\t\t\t\t\t**                     **     \n");
+printf("\t\t\t\t\t\t***                   ***  \n");
+printf("\t\t\t\t\t\t****     *******     ****        \n");
+printf("\t\t\t\t\t\t*************************         \n");
+printf("\t\t\t\t\t\t*************************       \n");
+printf("\t\t\t\t\t\t************************     \n");
+printf("\t\t\t\t\t\t *************************    \n");
+printf("\t\t\t\t\t\t***************************   \n");
+printf("\t\t\t\t\t\t***************************   \n");
+printf("\t\t\t\t\t\t***************************   \n");
+printf("\t\t\t\t\t\t***************************   \n");
+printf("\t\t\t\t\t\t *************************    \n");
+printf("\t\t\t\t\t\t  ***********************     \n");
+printf("\t\t\t\t\t\t    *******************       \n");
+printf("\t\t\t\t\t\t      ***************         \n");
+printf("\t\t\t\t\t\t          *******             \n");
+
+
+
+
+
+
 		printf("\n\n\n\t\t\t\t1)Iniciar Sesion \n\n\t\t\t\t2)Salir\n\n\t\t\t\t->");
 		scanf("%d",&entrar);
 		if (entrar==1){
@@ -1093,6 +1121,8 @@ int a, b, line = 12;
       printf("\n");
    }
 
+   //Cancioncita de Mario Bros para el salir definitivo
+
    Beep (330,100);Sleep(100);
    Beep (330,100);Sleep(300);
    Beep (330,100);Sleep(300);
@@ -1229,7 +1259,7 @@ int a, b, line = 12;
    Beep (932,100);Sleep(125);
    Beep (1046,675);
 
-   system("pause");
+
 
             printf("\n\n............Presiona cualquier tecla para salir.........");
             sleep(1);
