@@ -878,7 +878,7 @@ printf("\t\t\t\t\t\t\n");
 printf("\t\t\t\t\t\t*                       *\n");
 printf("\t\t\t\t\t\t**                     **     \n");
 printf("\t\t\t\t\t\t***                   ***  \n");
-printf("\t\t\t\t\t\t****     *******     ****        \n");
+printf("\t\t\t\t\t\t****                 ****        \n");
 printf("\t\t\t\t\t\t*************************         \n");
 printf("\t\t\t\t\t\t*************************       \n");
 printf("\t\t\t\t\t\t************************     \n");
@@ -892,7 +892,6 @@ printf("\t\t\t\t\t\t  ***********************     \n");
 printf("\t\t\t\t\t\t    *******************       \n");
 printf("\t\t\t\t\t\t      ***************         \n");
 printf("\t\t\t\t\t\t          *******             \n");
-
 
 
 
