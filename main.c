@@ -310,8 +310,9 @@ int crear(struct Usuario *A, int a, struct producto *B){
     printf("\n-PERSONAS FISCALES\n\n");
     do{
         printf("%cQue tipo de personas fiscales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
-        scanf(" %d", &fiscal2);
-        switch(fiscal){
+        scanf(" %d", & fiscal2);
+        fflush(stdin);
+        switch(fiscal2){
             case 1:
                 strcpy(A->facturas[a].receptorFiscales, FISCAL1);
                 break;
@@ -330,7 +331,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
             default:
                 Beep(300,500); // 523 hertz (C5) for 500 milliseconds
                 printf("Opcion no valida\n");
-                fflush( stdin );
+                fflush(stdin);
                 printf("\n\n");
                 break;
         }
