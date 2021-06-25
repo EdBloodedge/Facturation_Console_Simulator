@@ -212,8 +212,8 @@ int crear(struct Usuario *A, int a, struct producto *B){
   if(longitud1 == 13){
     printf("\n-PERSONAS FISCALES\n\n");
     do{
-        printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
-        scanf(" %d", &fiscal);
+        printf("%cQue tipo de personas fiscales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
+        scanf(" %d",&fiscal);
         switch(fiscal){
             case 1:
                 strcpy(A->facturas[a].emisorFiscales, FISCAL1);
@@ -309,8 +309,7 @@ int crear(struct Usuario *A, int a, struct producto *B){
   if(longitud2 == 13){
     printf("\n-PERSONAS FISCALES\n\n");
     do{
-        printf("%cQue tipo de personas morales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
-        fflush(stdin);
+        printf("%cQue tipo de personas fiscales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
         scanf(" %d", &fiscal2);
         switch(fiscal){
             case 1:
@@ -881,7 +880,7 @@ printf("\t\t\t\t\t\t***                   ***  \n");
 printf("\t\t\t\t\t\t****                 ****        \n");
 printf("\t\t\t\t\t\t*************************         \n");
 printf("\t\t\t\t\t\t*************************       \n");
-printf("\t\t\t\t\t\t************************     \n");
+printf("\t\t\t\t\t\t*************************     \n");
 printf("\t\t\t\t\t\t *************************    \n");
 printf("\t\t\t\t\t\t***************************   \n");
 printf("\t\t\t\t\t\t***************************   \n");
@@ -892,6 +891,7 @@ printf("\t\t\t\t\t\t  ***********************     \n");
 printf("\t\t\t\t\t\t    *******************       \n");
 printf("\t\t\t\t\t\t      ***************         \n");
 printf("\t\t\t\t\t\t          *******             \n");
+
 
 
 
