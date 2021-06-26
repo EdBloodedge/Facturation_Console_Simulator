@@ -113,14 +113,14 @@ struct producto{
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-int crear(struct Usuario *A, int a, struct producto *B){
+int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
 
   int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2,continuar=0, avanzar=0;
   char enye = 168, firmaDigital[70];
   int claveBuscada, k, salir, moral=0, fiscal=0, cantidadProductos=0, i, letraNumero=0, contador=0, moral2=0, fiscal2=0;
 
   system("CLS");
-  if(a!=0){
+  if(CopiarAnt == 1){
 
     printf("%cDesea usar los datos de emisor de la factura anterior?\n1.-S%c\nOtra tecla.- No\n", 168, 161);
     scanf("%d", &copiar);
@@ -866,7 +866,7 @@ int main() {
   char usuario[LONGITUD + 1]; //Variable temporal para guardar el usuario ingresado
   char clave[LONGCLAVE + 1]; //Variable temporal para guardar la clave ingresada
 
-  int intento = 0, ingresa = 0, i= 0, j = 0;
+  int intento = 0, ingresa = 0, i= 0, j = 0, CopiarAnt;
   char caracter;
 
   struct Usuario USUARIOS[NumUsers];
@@ -984,6 +984,7 @@ printf("\t\t\t\t\t\t          *******             \n");
             //Usuario encontrado
             if (ingresa == 1){
                 printf("\n\n\tAcceso otorgado.");
+                CopiarAnt = 0;
                 sleep(1);
             }
             do{
@@ -1054,9 +1055,10 @@ printf("\t\t\t\t\t\t          *******             \n");
                         folioChar[3]=folioInt1+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
 
                         strcpy(USUARIOS[0].facturas[cantidadFacturas].folio, folioChar);
-                        crear(&(USUARIOS[0]), cantidadFacturas, PRODUCTOS);
+                        crear(&(USUARIOS[0]), cantidadFacturas, PRODUCTOS, CopiarAnt);
                         tiempo(&(USUARIOS[0]), cantidadFacturas);
                         cantidadFacturas++;
+                        CopiarAnt = 1;
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
                         mostrar(&(USUARIOS[0]), cantidadFacturas-1);
