@@ -12,8 +12,8 @@
 #define CLAVE2 "tangamandapio"
 #define QR2 "#####\n  #  \n  #  \n ##  \n##   "
 
-#define USUARIO3 "LosSAT-anes"
-#define CLAVE3 "SAT-anes"
+#define USUARIO3 "LosSATanes"
+#define CLAVE3 "SATanes"
 #define QR3 "#####\n#    #\n#    #\n#    #\n#####"
 
 #define TECLA_ENTER 13
@@ -1054,14 +1054,13 @@ printf("\t\t\t\t\t\t          *******             \n");
                         folioChar[3]=folioInt1+'0'; //Se le suma el caracter 0 para convertirlo de entero a caracter
 
                         strcpy(USUARIOS[0].facturas[cantidadFacturas].folio, folioChar);
-                        crear(&(USUARIOS[0]), USUARIOS[0].NumFacturas, PRODUCTOS);
+                        crear(&(USUARIOS[0]), cantidadFacturas, PRODUCTOS);
                         tiempo(&(USUARIOS[0]), cantidadFacturas);
                         cantidadFacturas++;
-                        USUARIOS[j].NumFacturas++;
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
-                        mostrar(USUARIOS, cantidadFacturas-1);
-                        USUARIOS[0].facturas[cantidadFacturas-1].enviado=enviar(USUARIOS, cantidadFacturas, cantidadFacturas-1);
+                        mostrar(&(USUARIOS[0]), cantidadFacturas-1);
+                        USUARIOS[0].facturas[cantidadFacturas-1].enviado=enviar(&(USUARIOS[0]), cantidadFacturas, cantidadFacturas-1);
                         system("pause");
                     break;
 
@@ -1070,7 +1069,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                         system("cls");
                         k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
-                            mostrar(USUARIOS, k);
+                            mostrar(&(USUARIOS[0]), k);
                             system("pause");
                         }
                     break;
@@ -1080,7 +1079,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                         system("cls");
                         k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
-                            mostrar(USUARIOS, k);
+                            mostrar(&(USUARIOS[0]), k);
                             system("pause");
                             USUARIOS[0].facturas[k].enviado=enviar(USUARIOS, cantidadFacturas, k);
                         }
@@ -1093,7 +1092,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                         system("cls");
                         k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
-                            mostrar(USUARIOS, k);
+                            mostrar(&(USUARIOS[0]), k);
                             system("pause");
                             cantidadFacturas=eliminar(&(USUARIOS[0]), cantidadFacturas, k);
                         }
