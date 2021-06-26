@@ -900,13 +900,13 @@ int main() {
     printf("\t\t\t\t\t\t       Los SAT-anes\n\n");
 
 printf("\t\t\t\t\t\t\n");
-printf("\t\t\t\t\t\t*                       *\n");
-printf("\t\t\t\t\t\t**                     **     \n");
-printf("\t\t\t\t\t\t***                   ***  \n");
-printf("\t\t\t\t\t\t****                 ****        \n");
-printf("\t\t\t\t\t\t*************************         \n");
-printf("\t\t\t\t\t\t*************************       \n");
-printf("\t\t\t\t\t\t*************************     \n");
+printf("\t\t\t\t\t\t *                       *\n");
+printf("\t\t\t\t\t\t **                     **     \n");
+printf("\t\t\t\t\t\t ***                   ***  \n");
+printf("\t\t\t\t\t\t ****                 ****        \n");
+printf("\t\t\t\t\t\t *************************         \n");
+printf("\t\t\t\t\t\t *************************       \n");
+printf("\t\t\t\t\t\t *************************     \n");
 printf("\t\t\t\t\t\t *************************    \n");
 printf("\t\t\t\t\t\t***************************   \n");
 printf("\t\t\t\t\t\t***************************   \n");
