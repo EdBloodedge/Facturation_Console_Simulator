@@ -539,7 +539,7 @@ int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
 
             }
         }
-        printf("|_________________________________________________________________________________________________________________|");
+        printf("|_______________|_______________________________________________________|_________________________________________|");
     }
     if (cantidadFacturas>0){
         printf("\n\nIngresa el folio que quieres usar-> ");
