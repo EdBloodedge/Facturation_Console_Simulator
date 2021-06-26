@@ -99,7 +99,7 @@ struct producto{
 
 //SERVICIOS
 
-{82131601, 6500.00, "Servivios de fotografia aerea                     "},
+{82131601, 6500.00, "Servicios de fotografia aerea                     "},
 {82131602, 6315.00, "Cinematografia                                    "},
 {82131603, 4950.00, "Servicios de produccion de videos                 "},
 {82131604, 3500.00, "Servicios de estudio fotografico o fotos fijas    "},
