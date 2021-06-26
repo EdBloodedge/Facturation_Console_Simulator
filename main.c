@@ -530,8 +530,8 @@ int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
 
                     longitud3 = strlen(A->facturas[i].nombreEmisor);//Mide la longitud de la cadena
                     OperacionLong = 37 - longitud3;
-
-                    for(int lon=0; lon<=OperacionLong; lon++) {
+					int lon;
+                    for(lon=0; lon<=OperacionLong; lon++) {
                         printf(" ");
                     }
                      printf("|\n");
