@@ -53,7 +53,7 @@ struct productos{
 //Facturas
 struct factura{
 
-  char logo[20][10], nombreEmisor[30], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
+  char logo[20][10], nombreEmisor[37], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
   int enviado, hora[128];
   float subtotal, IVA, total;
   char folio[15], emisorFiscales[30], receptorFiscales[30], firma[70];
@@ -81,34 +81,34 @@ struct producto{
 }PRODUCTOS[25] = {
 //PRODUCTOS
 
-{45121503, 247.70, "Camaras desechables"},
-{45121504, 6999.00, "Camaras digitales"},
-{45121505, 13999.00, "Camaras cinematograficas"},
-{45121506, 10569.00, "Camaras de video conferencia"},
-{45121510, 24999.00, "Camaras aereas"},
-{45121511, 10799.00, "Camaras de alta velocidad"},
-{45121520, 1209.00, "Camaras web"},
-{45121521, 354.00, "Camaras de inspeccion"},
-{45121522, 950.17, "Camaras infrarrojas"},
-{45121523, 3076.00, "Camaras astronomicas"},
-{45121601, 1249.00, "Flashes o iluminacion para camaras"},
-{45121602, 799.00, "Tripodes para camara"},
-{45121603, 63.85, "Lentes para camara"},
-{45121604, 267.24, "Oclusores para camaras"},
-{45121605, 7400.00, "Marcos de pantalla"},
+{45121503, 247.70, "Camaras desechables                               "},
+{45121504, 6999.00, "Camaras digitales                                 "},
+{45121505, 13999.00, "Camaras cinematograficas                          "},
+{45121506, 10569.00, "Camaras de video conferencia                      "},
+{45121510, 24999.00, "Camaras aereas                                    "},
+{45121511, 10799.00, "Camaras de alta velocidad                         "},
+{45121520, 1209.00, "Camaras web                                       "},
+{45121521, 354.00, "Camaras de inspeccion                             "},
+{45121522, 950.17, "Camaras infrarrojas                               "},
+{45121523, 3076.00, "Camaras astronomicas                              "},
+{45121601, 1249.00, "Flashes o iluminacion para camaras                "},
+{45121602, 799.00, "Tripodes para camara                              "},
+{45121603, 63.85, "Lentes para camara                                "},
+{45121604, 267.24, "Oclusores para camaras                            "},
+{45121605, 7400.00, "Marcos de pantalla                                "},
 
 //SERVICIOS
 
-{82131601, 6500.00, "Servivios de fotografia aerea"},
-{82131602, 6315.00, "Cinematografia"},
-{82131603, 4950.00, "Servicios de produccion de videos"},
-{82131604, 3500.00, "Servicios de estudio fotografico o fotos fijas"},
-{82131501, 7500.00, "Elaboracion o reproduccion de pelicula fija"},
-{82131502, 6315.00, "Elaboracion o reproduccion de peliculas de cine"},
-{82131503, 2572.90, "Servicios de microficha"},
-{82131504, 175.90, "Separacion de colores"},
-{82131505, 3750.00, "Servicio de postproduccion de peliculas"},
-{82131506, 2950.00, "Servicio de fotos de graduacion"}
+{82131601, 6500.00, "Servivios de fotografia aerea                     "},
+{82131602, 6315.00, "Cinematografia                                    "},
+{82131603, 4950.00, "Servicios de produccion de videos                 "},
+{82131604, 3500.00, "Servicios de estudio fotografico o fotos fijas    "},
+{82131501, 7500.00, "Elaboracion o reproduccion de pelicula fija       "},
+{82131502, 6315.00, "Elaboracion o reproduccion de peliculas de cine   "},
+{82131503, 2572.90, "Servicios de microficha                           "},
+{82131504, 175.90, "Separacion de colores                            "},
+{82131505, 3750.00, "Servicio de postproduccion de peliculas           "},
+{82131506, 2950.00, "Servicio de fotos de graduacion                   "}
 };
 
 
@@ -509,37 +509,54 @@ int mostrar(struct Usuario *A, int a){
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BUSCAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
     int k, encontrado=26, i, j, contadorCantidad=0;
     char folioBuscado[15];
+    int longitud3;
+    int OperacionLong;
     if (MenuPrincipal!=1){
-        printf("\t\t\t\t\tFacturas Disponibles\n");
+        printf("\n\n\t\t\t\t\t   Facturas Disponibles\n\n");
+        printf("__________________________________________________________________________________________________________________\n");
+        printf("|    Folio      |\t\t Descripcion producto \t\t        | \t\tEmpresa\t\t\t  |\n");
+        printf("|_______________|_______________________________________________________|_________________________________________|\n");
         for (i=0; i<cantidadFacturas; i++){
             for (j=0; j<5; j++){
                 if (A->facturas[i].MASPRODUCTOS[j].clave !=0){
-                    printf("Folio: %s ", A->facturas[i].folio);
-                    printf("\tDescripcion producto: %s", A->facturas[i].MASPRODUCTOS[j].nombreDescripcion);
-                    printf("\t\tEmpresa: %s\n", A->facturas[i].nombreEmisor);
+
+                    printf("|%s", A->facturas[i].folio);
+                    printf("\t|   %s", A->facturas[i].MASPRODUCTOS[j].nombreDescripcion);
+                    printf("\t|   %s", A->facturas[i].nombreEmisor);
+
+                    longitud3 = strlen(A->facturas[i].nombreEmisor);//Mide la longitud de la cadena
+                    OperacionLong = 37 - longitud3;
+
+                    for(int lon=0; lon<=OperacionLong; lon++) {
+                        printf(" ");
+                    }
+                     printf("|\n");
                 }
+
             }
         }
+        printf("|_________________________________________________________________________________________________________________|");
     }
     if (cantidadFacturas>0){
         printf("\n\nIngresa el folio que quieres usar-> ");
         scanf(" %s",&folioBuscado);
         for (k=0; k<=cantidadFacturas; k++){
             if (strcmpi(A->facturas[k].folio, folioBuscado)==0){
-                    printf("Folio encontrado\n");
+                    printf("\nFolio encontrado\n");
                     encontrado=k;
                     k=22;
             }
             else if (k==cantidadFacturas){
-                printf("Folio no encontrado\n");
+                printf("\nFolio no encontrado\n");
             }
         }
     }
     else{
-        printf("No hay facturas registradas\n");
+        printf("\n\nNo hay facturas registradas\n");
     }
     system("pause");
     return encontrado;
@@ -1049,7 +1066,8 @@ printf("\t\t\t\t\t\t          *******             \n");
                     break;
 
                     case 2:
-
+                        system("pause");
+                        system("cls");
                         k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
                             mostrar(USUARIOS, k);
@@ -1058,7 +1076,8 @@ printf("\t\t\t\t\t\t          *******             \n");
                     break;
 
                     case 3:
-
+                        system("pause");
+                        system("cls");
                         k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
                             mostrar(USUARIOS, k);
@@ -1070,7 +1089,8 @@ printf("\t\t\t\t\t\t          *******             \n");
                     break;
 
                     case 4:
-
+                        system("pause");
+                        system("cls");
                         k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
                             mostrar(USUARIOS, k);
