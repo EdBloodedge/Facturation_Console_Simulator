@@ -1,3 +1,24 @@
+/*
+Integrantes del equipo:
+Paulina Martinez Villarreal.
+Manuel Antonio García Huerta.
+Eduardo de Jesús García Ríos.
+
+Materia:
+Seminario de Solucion de Problemas de Programación.
+
+Sección:D38
+
+Maestra:
+Thelma Isabel Morales Ramirez.
+
+Proyecto Final: Sistema de Facturación Electrónica.
+
+Nombre de la empresa: LosSAT-anes.
+*/
+
+
+
 #include <stdio.h>
 #include <string.h> /* gets, strcmp */
 #include <stdlib.h> /* system */
@@ -18,12 +39,12 @@
 
 #define TECLA_ENTER 13
 #define TECLA_BACKSPACE 8
-#define NumUsers 3 //Número de usuarios
+#define NumUsers 3 //N�mero de usuarios
 #define LONGITUD 20 //Longitud usuario
 #define LONGCLAVE 15 //Longitud clave
 #define LimiteFact 20 //Cantidad maxima de facturas por usuario
 #define MAX_INTENTOS 3
-#define Tamanio 1 //Tamaño
+#define Tamanio 1 //Tama�o
 
 #define MORAL1 "Regimen General"
 #define MORAL2 "Sin Fines de Lucro"
@@ -34,7 +55,7 @@
 #define FISCAL4 "Actividades Empresariales"
 #define FISCAL5 "Incorporacion Fiscal"
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIALIZACIÓN DE ESTRUCTURAS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIALIZACI�N DE ESTRUCTURAS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //Domicilio
 struct domicilio{
@@ -439,111 +460,111 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-int mostrar(struct Usuario *A, int a){
+int mostrar(struct Usuario A, int a){
     system("CLS");
     int longitud1, longitud2, i, contadorCantidad=0;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~EMISOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    printf("\n\n----------EMISOR----------\n\nNombre de la empresa: %s\n", A->facturas[a].nombreEmisor);
-    printf("RFC: %s\n", A->facturas[a].RFCEmisor);
-    printf("Domicilio\n-Calle: %s\n", A->facturas[a].domEmisor.calle);
-    printf("-N%cmero: %d\n", 163, A->facturas[a].domEmisor.numero);
-    printf("-Colonia: %s\n", A->facturas[a].domEmisor.colonia);
-    printf("-C%cdigo postal: %d\n", 162, A->facturas[a].domEmisor.codigoPostal);
-    printf("-Ciudad: %s\n", A->facturas[a].domEmisor.ciudad);
-    printf("-Estado o provincia: %s\n", A->facturas[a].domEmisor.estado);
-    printf("-Pa%cs: %s\n", 161, A->facturas[a].domEmisor.pais);
+    printf("\n\n----------EMISOR----------\n\nNombre de la empresa: %s\n", A.facturas[a].nombreEmisor);
+    printf("RFC: %s\n", A.facturas[a].RFCEmisor);
+    printf("Domicilio\n-Calle: %s\n", A.facturas[a].domEmisor.calle);
+    printf("-N%cmero: %d\n", 163, A.facturas[a].domEmisor.numero);
+    printf("-Colonia: %s\n", A.facturas[a].domEmisor.colonia);
+    printf("-C%cdigo postal: %d\n", 162, A.facturas[a].domEmisor.codigoPostal);
+    printf("-Ciudad: %s\n", A.facturas[a].domEmisor.ciudad);
+    printf("-Estado o provincia: %s\n", A.facturas[a].domEmisor.estado);
+    printf("-Pa%cs: %s\n", 161, A.facturas[a].domEmisor.pais);
 
 
 //~~~~~~~~~~~~~~~~~~~~~~REGIMEN FISCAL~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    longitud1 = strlen(A->facturas[a].RFCEmisor);
-    longitud2 = strlen(A->facturas[a].RFCReceptor);
+    longitud1 = strlen(A.facturas[a].RFCEmisor);
+    longitud2 = strlen(A.facturas[a].RFCReceptor);
     if(longitud1 == 12){
         printf("\n-PERSONAS MORALES\n\n");
-        printf("\nLa persona moral es:  %s ", A->facturas[a].emisorFiscales);
+        printf("\nLa persona moral es:  %s ", A.facturas[a].emisorFiscales);
         }
 
     if(longitud1 == 13){
         printf("\n-PERSONAS FISCALES\n\n");
-        printf("\nLa persona fiscal es:  %s ", A->facturas[a].emisorFiscales);
+        printf("\nLa persona fiscal es:  %s ", A.facturas[a].emisorFiscales);
         }
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~RECEPTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    printf("\n\n-----------RECEPTOR----------\n\nNombre de la empresa: %s\n", A->facturas[a].nombreReceptor);
-    printf("RFC: %s\n", A->facturas[a].RFCReceptor);
-    printf("\n\nDOMICILIO\n\n-Calle: %s\n", A->facturas[a].domReceptor.calle);
-    printf("-N%cmero: %d\n", 163, A->facturas[a].domReceptor.numero);
-    printf("-Colonia: %s\n", A->facturas[a].domReceptor.colonia);
-    printf("-C%cdigo postal: %d\n", 162, A->facturas[a].domReceptor.codigoPostal);
-    printf("-Ciudad: %s\n", A->facturas[a].domReceptor.ciudad);
-    printf("-Estado o provincia: %s\n", A->facturas[a].domReceptor.estado);
-    printf("-Pa%cs: %s\n", 161, A->facturas[a].domReceptor.pais);
+    printf("\n\n-----------RECEPTOR----------\n\nNombre de la empresa: %s\n", A.facturas[a].nombreReceptor);
+    printf("RFC: %s\n", A.facturas[a].RFCReceptor);
+    printf("\n\nDOMICILIO\n\n-Calle: %s\n", A.facturas[a].domReceptor.calle);
+    printf("-N%cmero: %d\n", 163, A.facturas[a].domReceptor.numero);
+    printf("-Colonia: %s\n", A.facturas[a].domReceptor.colonia);
+    printf("-C%cdigo postal: %d\n", 162, A.facturas[a].domReceptor.codigoPostal);
+    printf("-Ciudad: %s\n", A.facturas[a].domReceptor.ciudad);
+    printf("-Estado o provincia: %s\n", A.facturas[a].domReceptor.estado);
+    printf("-Pa%cs: %s\n", 161, A.facturas[a].domReceptor.pais);
 
     if(longitud2 == 12){
         printf("\n-PERSONAS MORALES\n\n");
-        printf("\nLa persona moral es:  %s ", A->facturas[a].receptorFiscales);
+        printf("\nLa persona moral es:  %s ", A.facturas[a].receptorFiscales);
         }
 
     if(longitud2 == 13){
         printf("\n-PERSONAS FISCALES\n\n");
-        printf("\nLa persona fiscal es:  %s \n", A->facturas[a].receptorFiscales);
+        printf("\nLa persona fiscal es:  %s \n", A.facturas[a].receptorFiscales);
         }
 
     printf("\n_________________________________________________________________________________________________________________\n");
     printf("|            |              |                                                    |                 |\t\t |\n|  Clave     | Cantidad     |\t\t Descripcion\t\t\t         | Precio Unitario |  Importe    |");
      printf("\n|____________|______________|____________________________________________________|_________________|_____________|\n");
    for (i=0; i<5; i++){
-        if (A->facturas[a].MASPRODUCTOS[i].clave !=0){
+        if (A.facturas[a].MASPRODUCTOS[i].clave !=0){
          //  printf("\nProducto/Servicio %d", i+1);
 
 
-            printf("| %d   |", A->facturas[a].MASPRODUCTOS[i].clave);
-            printf("\t%d" , A->facturas[a].MASPRODUCTOS[i].cantidad);
+            printf("| %d   |", A.facturas[a].MASPRODUCTOS[i].clave);
+            printf("\t%d" , A.facturas[a].MASPRODUCTOS[i].cantidad);
 
             int x = 0,OperacionLong2;
-            while (A->facturas[a].MASPRODUCTOS[i].cantidad != 0){
-                A->facturas[a].MASPRODUCTOS[i].cantidad = A->facturas[a].MASPRODUCTOS[i].cantidad /10;
+            while (A.facturas[a].MASPRODUCTOS[i].cantidad != 0){
+                A.facturas[a].MASPRODUCTOS[i].cantidad = A.facturas[a].MASPRODUCTOS[i].cantidad /10;
                 x++;
             }
 
             OperacionLong2 = 10 - x;
-
-            for(int lon=0; lon<=OperacionLong2; lon++) {
+			int lon;
+            for(lon=0; lon<=OperacionLong2; lon++) {
                         printf(" ");
                     }
 
-            printf(" |  %s", A->facturas[a].MASPRODUCTOS[i].nombreDescripcion);
-            printf("|    %.2f", A->facturas[a].MASPRODUCTOS[i].precioUnitario);
+            printf(" |  %s", A.facturas[a].MASPRODUCTOS[i].nombreDescripcion);
+            printf("|    %.2f", A.facturas[a].MASPRODUCTOS[i].precioUnitario);
 
             int x2 = 0;
             int OperacionLong3;
-            while (A->facturas[a].MASPRODUCTOS[i].precioUnitario != 0){
-                A->facturas[a].MASPRODUCTOS[i].precioUnitario = A->facturas[a].MASPRODUCTOS[i].precioUnitario /10;
+            while (A.facturas[a].MASPRODUCTOS[i].precioUnitario != 0){
+                A.facturas[a].MASPRODUCTOS[i].precioUnitario = A.facturas[a].MASPRODUCTOS[i].precioUnitario /10;
                 x2++;
             }
 
             OperacionLong3 = 14 - x2;
-
-            for(int lon3=0; lon3<=OperacionLong3; lon3++) {
+			int lon3;
+            for(lon3=0; lon3<=OperacionLong3; lon3++) {
                         printf(" ");
                     }
 
 
 
-            printf("      |   %.2f", A->facturas[a].MASPRODUCTOS[i].importe);
+            printf("      |   %.2f", A.facturas[a].MASPRODUCTOS[i].importe);
 
 
             printf("  |\n");
         }
    }
 printf("|____________|______________|____________________________________________________|_________________|_____________|\n");
-    printf("\nSubTotal: %.2f", A->facturas[a].subtotal);
-    printf("\nIVA: %.2f", A->facturas[a].IVA);
-    printf("\nTotal: %.2f\n", A->facturas[a].total);
+    printf("\nSubTotal: %.2f", A.facturas[a].subtotal);
+    printf("\nIVA: %.2f", A.facturas[a].IVA);
+    printf("\nTotal: %.2f\n", A.facturas[a].total);
 
-    printf("\nHora: %s\n", A->facturas[a].hora);
-    printf("Su folio: %s\n", A->facturas[a].folio);
-    printf("\nFirma: %s\n", A->facturas[a].firma);
+    printf("\nHora: %s\n", A.facturas[a].hora);
+    printf("Su folio: %s\n", A.facturas[a].folio);
+    printf("\nFirma: %s\n", A.facturas[a].firma);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BUSCAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -909,19 +930,19 @@ int main() {
 
   struct Usuario USUARIOS[NumUsers];
 
-  //Asignación de datos del primer usuario
+  //Asignaci�n de datos del primer usuario
   strcpy(USUARIOS[0].usuario, USUARIO);
   strcpy(USUARIOS[0].clave, CLAVE);
   strcpy(USUARIOS[0].qr, QR);
   USUARIOS[0].NumFacturas = 0;
 
-  //Asignación de datos del segundo usuario
+  //Asignaci�n de datos del segundo usuario
   strcpy(USUARIOS[1].usuario, USUARIO2);
   strcpy(USUARIOS[1].clave, CLAVE2);
   strcpy(USUARIOS[1].qr, QR2);
   USUARIOS[1].NumFacturas = 0;
 
-  //Asignación de datos del tercer usuario
+  //Asignaci�n de datos del tercer usuario
   strcpy(USUARIOS[2].usuario, USUARIO3);
   strcpy(USUARIOS[2].clave, CLAVE3);
   strcpy(USUARIOS[2].qr, QR3);
@@ -998,7 +1019,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                     }
                 }
 
-                //Comprobación del usuario en la base de datos
+                //Comprobaci�n del usuario en la base de datos
 
                 for(j=0; j<= 2; j++){
 
@@ -1042,7 +1063,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                     system("cls");
                     printf("\t\t\t\t    ---------------------------------------------------------------------\n");
                     printf("\t\t\t\t    |\t\t\t\t");
-                    printf("\t\t\t\t        |\n\t\t\t\t    |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica los SAT-anes  |\n",162, 162);//ó
+                    printf("\t\t\t\t        |\n\t\t\t\t    |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica los SAT-anes  |\n",162, 162);//�
                     printf("\t\t\t\t    |\t\t\t\t                             \t\t|\n");
                     printf("\t\t\t\t     --------------------------------------------------------------------\n");
                     printf("\n\n\t\t\t\tTienda de equipos y Suministros para Impresi%cn, Fotografia y Audiovisuales\n\n",162);
@@ -1099,7 +1120,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                         CopiarAnt = 1;
                         printf("\n\n-----Datos registrados exitosamente-----.\n");
                         system("pause");
-                        mostrar(&(USUARIOS[0]), cantidadFacturas-1);
+                        mostrar(USUARIOS[0], cantidadFacturas-1);
                         USUARIOS[0].facturas[cantidadFacturas-1].enviado=enviar(&(USUARIOS[0]), cantidadFacturas, cantidadFacturas-1);
                         system("pause");
                     break;
@@ -1109,7 +1130,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                         system("cls");
                         k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
-                            mostrar(&(USUARIOS[0]), k);
+                            mostrar(USUARIOS[0], k);
                             system("pause");
                         }
                     break;
@@ -1119,7 +1140,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                         system("cls");
                         k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
-                            mostrar(&(USUARIOS[0]), k);
+                            mostrar(USUARIOS[0], k);
                             system("pause");
                             USUARIOS[0].facturas[k].enviado=enviar(USUARIOS, cantidadFacturas, k);
                         }
@@ -1132,7 +1153,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                         system("cls");
                         k=buscar(&(USUARIOS[0]), cantidadFacturas, MenuPrincipal);
                         if (k!=26){
-                            mostrar(&(USUARIOS[0]), k);
+                            mostrar(USUARIOS[0], k);
                             system("pause");
                             cantidadFacturas=eliminar(&(USUARIOS[0]), cantidadFacturas, k);
                         }
@@ -1165,7 +1186,7 @@ printf("\t\t\t\t\t\t          *******             \n");
             }while(MenuPrincipal!=5 && ingresa==1);
         } else if (entrar==2) {
             system("cls");
-            printf("\n\n\nGracias por utilizar el Sistema de Facturaci%cn Electr%cnica de los SAT-anes\n\n\n",162, 162);//ó
+            printf("\n\n\nGracias por utilizar el Sistema de Facturaci%cn Electr%cnica de los SAT-anes\n\n\n",162, 162);//�
 
 system("COLOR F4");
 int a, b, line = 12;
