@@ -81,34 +81,34 @@ struct producto{
 }PRODUCTOS[25] = {
 //PRODUCTOS
 
-{45121503, 247.70, "Camaras desechables                               "},
-{45121504, 6999.00, "Camaras digitales                                 "},
+{45121503, 247.70  , "Camaras desechables                               "},
+{45121504, 6999.00 , "Camaras digitales                                 "},
 {45121505, 13999.00, "Camaras cinematograficas                          "},
 {45121506, 10569.00, "Camaras de video conferencia                      "},
 {45121510, 24999.00, "Camaras aereas                                    "},
 {45121511, 10799.00, "Camaras de alta velocidad                         "},
-{45121520, 1209.00, "Camaras web                                       "},
-{45121521, 354.00, "Camaras de inspeccion                             "},
-{45121522, 950.17, "Camaras infrarrojas                               "},
-{45121523, 3076.00, "Camaras astronomicas                              "},
-{45121601, 1249.00, "Flashes o iluminacion para camaras                "},
-{45121602, 799.00, "Tripodes para camara                              "},
-{45121603, 63.85, "Lentes para camara                                "},
-{45121604, 267.24, "Oclusores para camaras                            "},
-{45121605, 7400.00, "Marcos de pantalla                                "},
+{45121520, 1209.00 , "Camaras web                                       "},
+{45121521, 354.00  , "Camaras de inspeccion                             "},
+{45121522, 950.17  , "Camaras infrarrojas                               "},
+{45121523, 3076.00 , "Camaras astronomicas                              "},
+{45121601, 1249.00 , "Flashes o iluminacion para camaras                "},
+{45121602, 799.00  , "Tripodes para camara                              "},
+{45121603, 63.85   , "Lentes para camara                                "},
+{45121604, 267.24  , "Oclusores para camaras                            "},
+{45121605, 7400.00 , "Marcos de pantalla                                "},
 
 //SERVICIOS
 
-{82131601, 6500.00, "Servicios de fotografia aerea                     "},
-{82131602, 6315.00, "Cinematografia                                    "},
-{82131603, 4950.00, "Servicios de produccion de videos                 "},
-{82131604, 3500.00, "Servicios de estudio fotografico o fotos fijas    "},
-{82131501, 7500.00, "Elaboracion o reproduccion de pelicula fija       "},
-{82131502, 6315.00, "Elaboracion o reproduccion de peliculas de cine   "},
-{82131503, 2572.90, "Servicios de microficha                           "},
-{82131504, 175.90, "Separacion de colores                            "},
-{82131505, 3750.00, "Servicio de postproduccion de peliculas           "},
-{82131506, 2950.00, "Servicio de fotos de graduacion                   "}
+{82131601, 6500.00 , "Servicios de fotografia aerea                     "},
+{82131602, 6315.00 , "Cinematografia                                    "},
+{82131603, 4950.00 , "Servicios de produccion de videos                 "},
+{82131604, 3500.00 , "Servicios de estudio fotografico o fotos fijas    "},
+{82131501, 7500.00 , "Elaboracion o reproduccion de pelicula fija       "},
+{82131502, 6315.00 , "Elaboracion o reproduccion de peliculas de cine   "},
+{82131503, 2572.90 , "Servicios de microficha                           "},
+{82131504, 175.90  , "Separacion de colores                            "},
+{82131505, 3750.00 , "Servicio de postproduccion de peliculas           "},
+{82131506, 2950.00 , "Servicio de fotos de graduacion                   "}
 };
 
 
@@ -488,17 +488,55 @@ int mostrar(struct Usuario *A, int a){
         printf("\n-PERSONAS FISCALES\n\n");
         printf("\nLa persona fiscal es:  %s \n", A->facturas[a].receptorFiscales);
         }
-    for (i=0; i<5; i++){
+
+    printf("\n_________________________________________________________________________________________________________________\n");
+    printf("|            |              |                                                    |                 |\t\t |\n|  Clave     | Cantidad     |\t\t Descripcion\t\t\t         | Precio Unitario |  Importe    |");
+     printf("\n|____________|______________|____________________________________________________|_________________|_____________|\n");
+   for (i=0; i<5; i++){
         if (A->facturas[a].MASPRODUCTOS[i].clave !=0){
-            printf("\nProducto/Servicio %d", i+1);
-            printf("\nClave: %d", A->facturas[a].MASPRODUCTOS[i].clave);
-            printf("\nDescripcion: %s", A->facturas[a].MASPRODUCTOS[i].nombreDescripcion);
-            printf("\nCantidad: %d", A->facturas[a].MASPRODUCTOS[i].cantidad);
-            printf("\nPrecio Unitario: %.2f", A->facturas[a].MASPRODUCTOS[i].precioUnitario);
-            printf("\nImporte: %.2f", A->facturas[a].MASPRODUCTOS[i].importe);
-            printf("\n\n");
+         //  printf("\nProducto/Servicio %d", i+1);
+
+
+            printf("| %d   |", A->facturas[a].MASPRODUCTOS[i].clave);
+            printf("\t%d" , A->facturas[a].MASPRODUCTOS[i].cantidad);
+
+            int x = 0,OperacionLong2;
+            while (A->facturas[a].MASPRODUCTOS[i].cantidad != 0){
+                A->facturas[a].MASPRODUCTOS[i].cantidad = A->facturas[a].MASPRODUCTOS[i].cantidad /10;
+                x++;
+            }
+
+            OperacionLong2 = 10 - x;
+
+            for(int lon=0; lon<=OperacionLong2; lon++) {
+                        printf(" ");
+                    }
+
+            printf(" |  %s", A->facturas[a].MASPRODUCTOS[i].nombreDescripcion);
+            printf("|    %.2f", A->facturas[a].MASPRODUCTOS[i].precioUnitario);
+
+            int x2 = 0;
+            int OperacionLong3;
+            while (A->facturas[a].MASPRODUCTOS[i].precioUnitario != 0){
+                A->facturas[a].MASPRODUCTOS[i].precioUnitario = A->facturas[a].MASPRODUCTOS[i].precioUnitario /10;
+                x2++;
+            }
+
+            OperacionLong3 = 14 - x2;
+
+            for(int lon3=0; lon3<=OperacionLong3; lon3++) {
+                        printf(" ");
+                    }
+
+
+
+            printf("      |   %.2f", A->facturas[a].MASPRODUCTOS[i].importe);
+
+
+            printf("  |\n");
         }
-    }
+   }
+printf("|____________|______________|____________________________________________________|_________________|_____________|\n");
     printf("\nSubTotal: %.2f", A->facturas[a].subtotal);
     printf("\nIVA: %.2f", A->facturas[a].IVA);
     printf("\nTotal: %.2f\n", A->facturas[a].total);
