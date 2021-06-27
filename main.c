@@ -406,7 +406,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
                     A->facturas[a].MASPRODUCTOS[cantidadProductos].precioUnitario=B[k].precio;
                     printf("Producto/Servicio guardado\n");
                     do{
-                        printf("Cantidad: ");
+                        printf("\n\nCantidad: ");
                         fflush(stdin);
                         if (scanf("%d", &(A->facturas[a].MASPRODUCTOS[cantidadProductos].cantidad))== 1 ){
                             avanzar=0;
