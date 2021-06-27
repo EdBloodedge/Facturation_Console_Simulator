@@ -831,7 +831,7 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
 int eliminar(struct Usuario *A, int cantidadFacturas, int k){
     int eliminar=0, cantidadProductos=0, cantidadProductos2=0, j;
     if (cantidadFacturas>0){
-        printf("seguro que quieres eliminarlo? \n1)Si\nOtra tecla \n-> ");
+        printf("\n\nseguro que quieres eliminarlo? \n1)Si\nOtra tecla \n-> ");
         scanf("%d", &eliminar);
         if (eliminar==1){
             if (A->facturas[k].enviado!=1){
