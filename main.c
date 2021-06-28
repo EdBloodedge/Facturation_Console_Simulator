@@ -464,9 +464,9 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
 
         if(k==27){
           printf("\n\nQuieres agregar otro producto? \n1)Si \nOtra tecla)No \n-> ");
-          if(scanf("%d", &salir) == 0)
+          if(scanf("%d", &salir) == 0){
             fflush(stdin);
-            salir = 0;
+            salir = 0;}
         } else if(k==26){
           salir = 1;
         }
