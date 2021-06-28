@@ -1,5 +1,6 @@
 /*
 Integrantes del equipo:
+
 Paulina Martinez Villarreal.
 Manuel Antonio García Huerta.
 Eduardo de Jesús García Ríos.
@@ -14,7 +15,7 @@ Thelma Isabel Morales Ramirez.
 
 Proyecto Final: Sistema de Facturación Electrónica.
 
-Nombre de la empresa: LosSAT-anes.
+Nombre de la empresa: Los SAT-anes.
 */
 
 
