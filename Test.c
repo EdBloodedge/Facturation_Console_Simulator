@@ -31,7 +31,7 @@ int main(){
 
   if(scanf("%d", &a) == 0){
 
-    printf("Si es cero")
+    printf("Si es cero");
 
   }
 

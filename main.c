@@ -136,7 +136,7 @@ struct producto{
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
 
-  int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2,continuar=0, avanzar=0;
+  int copiar = 0, longi1 = 0, longi2 = 0, longitud1, longitud2,continuar=0, avanzar=0, NoLetras = 0, cantidad;
   char enye = 168, firmaDigital[70];
   int claveBuscada, k, salir, moral=0, fiscal=0, cantidadProductos=0, i, letraNumero=0, contador=0, moral2=0, fiscal2=0;
 
@@ -187,13 +187,29 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
     gets(A->facturas[a].domEmisor.calle);
     printf("-N%cmero: ", 163);
     fflush(stdin);
-    scanf("%d", &(A->facturas[a].domEmisor.numero));
+    do{
+      fflush(stdin);
+      if(scanf("%d", &(A->facturas[a].domEmisor.numero)) == 0){
+        printf("Valor ingresado no v%clido.\n\n", 160);
+        Beep(300,500);
+        NoLetras = 0;}
+      else
+        NoLetras = 1;
+    }while(NoLetras == 0);
     printf("-Colonia: ");
     fflush(stdin);
     gets(A->facturas[a].domEmisor.colonia);
     printf("-C%cdigo postal: ", 162);
     fflush(stdin);
-    scanf("%d", &(A->facturas[a].domEmisor.codigoPostal));
+    do{
+      fflush(stdin);
+      if(scanf("%d", &(A->facturas[a].domEmisor.codigoPostal)) == 0){
+        printf("Valor ingresado no v%clido.\n\n", 160);
+        Beep(300,500);
+        NoLetras = 0;}
+      else
+        NoLetras = 1;
+    }while(NoLetras == 0);
     printf("-Ciudad: ");
     fflush(stdin);
     gets(A->facturas[a].domEmisor.ciudad);
@@ -285,13 +301,29 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
   gets(A->facturas[a].domReceptor.calle);
   printf("-N%cmero: ", 163);
   fflush(stdin);
-  scanf("%d", &(A->facturas[a].domReceptor.numero));
+  do{
+    fflush(stdin);
+    if(scanf("%d", &(A->facturas[a].domReceptor.numero)) == 0){
+      printf("Valor ingresado no v%clido.\n\n", 160);
+      Beep(300,500);
+      NoLetras = 0;}
+    else
+      NoLetras = 1;
+  }while(NoLetras == 0);
   printf("-Colonia: ");
   fflush(stdin);
   gets(A->facturas[a].domReceptor.colonia);
   printf("-C%cdigo postal: ", 162);
   fflush(stdin);
-  scanf("%d", &(A->facturas[a].domReceptor.codigoPostal));
+  do{
+    fflush(stdin);
+    if(scanf("%d", &(A->facturas[a].domReceptor.codigoPostal)) == 0){
+      printf("Valor ingresado no v%clido.\n\n", 160);
+      Beep(300,500);
+      NoLetras = 0;}
+    else
+      NoLetras = 1;
+  }while(NoLetras == 0);
   printf("-Ciudad: ");
   fflush(stdin);
   gets(A->facturas[a].domReceptor.ciudad);
@@ -408,14 +440,19 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
                     do{
                         printf("\n\nCantidad: ");
                         fflush(stdin);
-                        if (scanf("%d", &(A->facturas[a].MASPRODUCTOS[cantidadProductos].cantidad))== 1 ){
-                            avanzar=0;
-                        }
-                        else{
+                        if (scanf("%d", &cantidad) == 0){
+                            Beep(300,500);
                             printf("Cantidad no valida\n");
                             avanzar=1;
+                        }else if(cantidad < 1){
+                            printf("Cantidad no valida\n");
+                            Beep(300,500);
+                            avanzar=1;
+                        }else{
+                            avanzar=0;
+                            A->facturas[a].MASPRODUCTOS[cantidadProductos].cantidad = cantidad;
                         }
-                    }while(avanzar==1);
+                    }while(avanzar == 1);
                     k=26;
                     cantidadProductos++;
             }
@@ -428,6 +465,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
         if(k==27){
           printf("\n\nQuieres agregar otro producto? \n1)Si \nOtra tecla)No \n-> ");
           if(scanf("%d", &salir) == 0)
+            fflush(stdin);
             salir = 0;
         } else if(k==26){
           salir = 1;
@@ -831,7 +869,7 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
 int eliminar(struct Usuario *A, int cantidadFacturas, int k){
     int eliminar=0, cantidadProductos=0, cantidadProductos2=0, j;
     if (cantidadFacturas>0){
-        printf("\n\nseguro que quieres eliminarlo? \n1)Si\nOtra tecla \n-> ");
+        printf("\n\nseguro que quieres eliminarlo? \n1)Si\nOtra tecla)No \n-> ");
         scanf("%d", &eliminar);
         if (eliminar==1){
             if (A->facturas[k].enviado!=1){
@@ -1043,23 +1081,23 @@ printf("\t\t\t\t\t\t          *******             \n");
             //Usuario encontrado
             if (ingresa == 1){
                 printf("\n\n\tAcceso otorgado.");
+                for(i=0; i<=1; i++){
+                    system("cls");
+                    printf("\n\n\t\t\t\t\t\t\t %cHola %s! \\(^o^\\)", 173,usuario);
+                    sleep(1);
+                    system("cls");
+                    printf("\n\n\t\t\t\t\t\t\t %cHola %s! ~(^u^~)", 173,usuario);
+                    sleep(1);
+
+                }
                 CopiarAnt = 0;
                 sleep(1);
             }
             do{
                 if (ingresa == 1) {
                     system("cls");
-                    for(i=0; i<=1; i++){
-                        system("cls");
-                        system("COLOR FD");
-                        printf("\n\n\t\t\t\t\t\t\t %cHola %s! \\(^o^\\)", 173,usuario);
-                        sleep(1);
-                        system("cls");
-                        printf("\n\n\t\t\t\t\t\t\t %cHola %s! ~(^u^~)", 173,usuario);
-                        sleep(1);
 
-                    }
-
+                    system("COLOR FD");
                     system("cls");
                     printf("\t\t\t\t    ---------------------------------------------------------------------\n");
                     printf("\t\t\t\t    |\t\t\t\t");
