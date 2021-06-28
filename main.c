@@ -1080,7 +1080,7 @@ printf("\t\t\t\t\t\t          *******             \n");
             intento = 0;
             //Usuario encontrado
             if (ingresa == 1){
-                printf("\n\n\tAcceso otorgado.");
+                printf("\n\n\tAcceso otorgado."\n);
                 system("pause");
                 for(i=0; i<=1; i++){
                     system("cls");
