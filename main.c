@@ -1081,6 +1081,7 @@ printf("\t\t\t\t\t\t          *******             \n");
             //Usuario encontrado
             if (ingresa == 1){
                 printf("\n\n\tAcceso otorgado.");
+                system("pause");
                 for(i=0; i<=1; i++){
                     system("cls");
                     printf("\n\n\t\t\t\t\t\t\t %cHola %s! \\(^o^\\)", 173,usuario);
