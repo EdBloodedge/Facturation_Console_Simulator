@@ -127,7 +127,7 @@ struct producto{
 {82131501, 7500.00 , "Elaboracion o reproduccion de pelicula fija       "},
 {82131502, 6315.00 , "Elaboracion o reproduccion de peliculas de cine   "},
 {82131503, 2572.90 , "Servicios de microficha                           "},
-{82131504, 175.90  , "Separacion de colores                            "},
+{82131504, 175.90  , "Separacion de colores                             "},
 {82131505, 3750.00 , "Servicio de postproduccion de peliculas           "},
 {82131506, 2950.00 , "Servicio de fotos de graduacion                   "}
 };
