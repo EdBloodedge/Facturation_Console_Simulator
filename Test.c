@@ -28,12 +28,14 @@ struct producto{
 };
 int main(){
   int a;
+  int i;
+  float num;
+  long int numi;
 
-  if(scanf("%d", &a) == 0){
+  scanf("%f", &num);
+  numi = num;
 
-    printf("Si es cero");
-
-  }
+  printf("%d", numi)
 
 
 	return 0;
