@@ -228,7 +228,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
   if(longitud1 == 12){
     printf("\n-PERSONAS MORALES\n\n");
     do{
-        printf("%cQue tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines De Lucro)\n -> ",enye, 130);
+        printf("%cQu%c tipo de personas morales son? \n1)R%cgimen General \n2)Sin Fines de Lucro\n -> ", enye, 130, 130);
         scanf(" %d", &moral);
         switch(moral){
             case 1:
@@ -239,7 +239,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
                 break;
             default:
                 Beep(300,500); // 523 hertz (C5) for 500 milliseconds
-                printf("Opcion no valida\n");
+                printf("Opci%cn no v%clida\n", 162, 160);
                 fflush( stdin );
                 printf("\n\n");
                 break;
@@ -250,7 +250,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
   if(longitud1 == 13){
     printf("\n-PERSONAS FISCALES\n\n");
     do{
-        printf("%cQue tipo de personas fiscales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporacion Fiscal \n5)Actividades Empresariales \n-> ",enye);
+        printf("%cQu%c tipo de personas fiscales son? \n1)Persona Asalariada \n2)Honorarios \n3)Arrendamiento de Inmuebles \n4)Incorporaci%cn Fiscal \n5)Actividades Empresariales \n-> ", enye, 130, 162);
         scanf(" %d",&fiscal);
         switch(fiscal){
             case 1:
@@ -270,7 +270,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
                 break;
             default:
                 Beep(300,500); // 523 hertz (C5) for 500 milliseconds
-                printf("Opcion no valida\n");
+                printf("Opci%cn no v%clida\n", 162, 160);
                 fflush( stdin );
                 printf("\n\n");
                 break;
@@ -352,7 +352,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
                 break;
             default:
                 Beep(300,500); // 523 hertz (C5) for 500 milliseconds
-                printf("Opcion no valida\n");
+                printf("Opci%cn no v%clida\n", 162, 160);
                 fflush(stdin);
                 printf("\n\n");
                 break;
@@ -384,7 +384,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
                 break;
             default:
                 Beep(300,500); // 523 hertz (C5) for 500 milliseconds
-                printf("Opcion no valida\n");
+                printf("Opci%cn no v%clida\n", 162, 160);
                 fflush(stdin);
                 printf("\n\n");
                 break;
@@ -443,10 +443,10 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
                         fflush(stdin);
                         if (scanf("%d", &cantidad) == 0){
                             Beep(300,500);
-                            printf("Cantidad no valida\n");
+                            printf("Cantidad no v%clida\n", 160);
                             avanzar=1;
                         }else if(cantidad < 1){
-                            printf("Cantidad no valida\n");
+                            printf("Cantidad no v%clida\n", 160);
                             Beep(300,500);
                             avanzar=1;
                         }else{
@@ -464,7 +464,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
         }
 
         if(k==27){
-          printf("\n\nQuieres agregar otro producto? \n1)Si \nOtra tecla)No \n-> ");
+          printf("\n\n%cQuieres agregar otro producto? \n1)Si \nOtra tecla)No \n-> ", 168);
           if(scanf("%d", &salir) == 0){
             fflush(stdin);
             salir = 0;}
@@ -501,6 +501,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MOSTRAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int mostrar(struct Usuario A, int a){
     system("CLS");
+    struct Usuario *DA = &A;
     int longitud1, longitud2, i, contadorCantidad=0;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~EMISOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     printf("\n\n----------EMISOR----------\n\nNombre de la empresa: %s\n", A.facturas[a].nombreEmisor);
@@ -549,9 +550,9 @@ int mostrar(struct Usuario A, int a){
         printf("\nLa persona fiscal es:  %s \n", A.facturas[a].receptorFiscales);
         }
 
-    printf("\n_________________________________________________________________________________________________________________\n");
-    printf("|            |              |                                                    |                 |\t\t |\n|  Clave     | Cantidad     |\t\t Descripcion\t\t\t         | Precio Unitario |  Importe    |");
-     printf("\n|____________|______________|____________________________________________________|_________________|_____________|\n");
+    printf("\n____________________________________________________________________________________________________________________\n");
+    printf("|            |              |                                                    |                 |\t\t    |\n|  Clave     | Cantidad     |\t\t Descripci%cn\t\t\t         | Precio Unitario |     Importe    |", 162);
+     printf("\n|____________|______________|____________________________________________________|_________________|________________|\n");
    for (i=0; i<5; i++){
         if (A.facturas[a].MASPRODUCTOS[i].clave !=0){
          //  printf("\nProducto/Servicio %d", i+1);
@@ -567,39 +568,60 @@ int mostrar(struct Usuario A, int a){
             }
 
             OperacionLong2 = 10 - x;
-			int lon;
+			      int lon;
             for(lon=0; lon<=OperacionLong2; lon++) {
                         printf(" ");
                     }
 
-            printf(" |  %s", A.facturas[a].MASPRODUCTOS[i].nombreDescripcion);
-            printf("|    %.2f", A.facturas[a].MASPRODUCTOS[i].precioUnitario);
+            printf(" |  %s|", A.facturas[a].MASPRODUCTOS[i].nombreDescripcion);
 
-            int x2 = 0;
-            int OperacionLong3;
-            while (A.facturas[a].MASPRODUCTOS[i].precioUnitario != 0){
-                A.facturas[a].MASPRODUCTOS[i].precioUnitario = A.facturas[a].MASPRODUCTOS[i].precioUnitario /10;
-                x2++;
-            }
+            unsigned long int num = 2, s = 1;
+            int r = 10;
 
-            OperacionLong3 = 14 - x2;
-			int lon3;
-            for(lon3=0; lon3<=OperacionLong3; lon3++) {
-                        printf(" ");
-                    }
+            num = A.facturas[a].MASPRODUCTOS[i].precioUnitario;
 
+            for(s = 1000000000; s>10; s/=10){
 
+          		if(num%s == num){
+          		  if(num%(s/10) != num)
+          				s = 1;
+          		}
+          		r--;
+          	}
 
-            printf("      |   %.2f", A.facturas[a].MASPRODUCTOS[i].importe);
+            r = 12-r;
 
+            for(r; r>0; r--)
+              printf(" ");
 
-            printf("  |\n");
+            printf("$%.2f |", A.facturas[a].MASPRODUCTOS[i].precioUnitario);
+
+            num = A.facturas[a].MASPRODUCTOS[i].importe;
+            r = 10;
+
+            for(s = 1000000000; s>10; s/=10){
+
+          		if(num%s == num){
+          		  if(num%(s/10) != num)
+          				s = 1;
+          		}
+          		r--;
+          	}
+
+            r = 11-r;
+
+            for(r; r>0; r--)
+              printf(" ");
+
+            printf("$%.2f |\n", A.facturas[a].MASPRODUCTOS[i].importe);
+
         }
    }
-printf("|____________|______________|____________________________________________________|_________________|_____________|\n");
-    printf("\nSubTotal: %.2f", A.facturas[a].subtotal);
-    printf("\nIVA: %.2f", A.facturas[a].IVA);
-    printf("\nTotal: %.2f\n", A.facturas[a].total);
+printf("|____________|______________|____________________________________________________|_________________|________________|\n");
+    printf("\nSubTotal: $%.2f", A.facturas[a].subtotal);
+    printf("\nIVA: $%.2f", A.facturas[a].IVA);
+    printf("\n__________________________");
+    printf("\nTotal: $%.2f\n", A.facturas[a].total);
 
     printf("\nHora: %s\n", A.facturas[a].hora);
     printf("Su folio: %s\n", A.facturas[a].folio);
@@ -616,7 +638,7 @@ int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
     if (MenuPrincipal!=1){
         printf("\n\n\t\t\t\t\t   Facturas Disponibles\n\n");
         printf("__________________________________________________________________________________________________________________\n");
-        printf("|    Folio      |\t\t Descripcion producto \t\t        | \t\tEmpresa\t\t\t  |\n");
+        printf("|    Folio      |\t\t Descripci%cn producto \t\t        | \t\tEmpresa\t\t\t  |\n", 162);
         printf("|_______________|_______________________________________________________|_________________________________________|\n");
         for (i=0; i<cantidadFacturas; i++){
             for (j=0; j<5; j++){
@@ -670,7 +692,7 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
                 fflush(stdin);
                 scanf("%d",&Enviar);
                 if (Enviar!=1 && Enviar!=2){
-                    printf("Opcion no valida\n");
+                    printf("Opci%cn no v%clida\n", 162, 160);
                 }
                 if (Enviar==1){
                   system("cls");
@@ -856,12 +878,12 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
             }while(Enviar!=1 && Enviar!=2);
         }
         else{
-            printf("\n\nLa factura ya fue enviada");
+            printf("\n\nLa factura ya fue enviada.\n\n");
             system("pause");
         }
     }
     else{
-        printf("No hay facturas registradas\n");
+        printf("No hay facturas registradas.\n");
     }
     return Enviar;
 }
@@ -870,7 +892,7 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
 int eliminar(struct Usuario *A, int cantidadFacturas, int k){
     int eliminar=0, cantidadProductos=0, cantidadProductos2=0, j;
     if (cantidadFacturas>0){
-        printf("\n\nseguro que quieres eliminarlo? \n1)Si\nOtra tecla)No \n-> ");
+        printf("\n\n%cEst%c seguro de que quiere eliminar la factura?\nEsta acci%cn no se puede revertir. \n1)Si\nOtra tecla)No \n-> ", 168, 160, 162);
         scanf("%d", &eliminar);
         if (eliminar==1){
             if (A->facturas[k].enviado!=1){
@@ -926,18 +948,18 @@ int eliminar(struct Usuario *A, int cantidadFacturas, int k){
 
                 cantidadFacturas=cantidadFacturas-2;
                 cantidadFacturas++;
-                printf("Se ha eliminado la factura");
+                printf("\n\nSe ha eliminado la factura.\n");
             }
             else{
-                printf("No se puede eliminar la factura porque ya fue enviada");
+                printf("\n\nNo se puede eliminar la factura porque ya fue enviada.\n");
             }
         }
         else if (eliminar !=1){
-            printf("No se ha eliminado");
+            printf("\n\nNo se ha eliminado.\n");
         }
     }
     else{
-        printf("No hay facturas registradas\n");
+        printf("\n\nNo hay facturas registradas.\n");
     }
     return cantidadFacturas;
 }
@@ -1081,7 +1103,7 @@ printf("\t\t\t\t\t\t          *******             \n");
             intento = 0;
             //Usuario encontrado
             if (ingresa == 1){
-                printf("\n\n\tAcceso otorgado.\n");
+                printf("\n\nAcceso otorgado.\n");
                 system("pause");
                 for(i=0; i<=1; i++){
                     system("cls");
@@ -1105,8 +1127,8 @@ printf("\t\t\t\t\t\t          *******             \n");
                     printf("\t\t\t\t    |\t\t\t\t");
                     printf("\t\t\t\t        |\n\t\t\t\t    |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica los SAT-anes  |\n",162, 162);//�
                     printf("\t\t\t\t    |\t\t\t\t                             \t\t|\n");
-                    printf("\t\t\t\t     --------------------------------------------------------------------\n");
-                    printf("\n\n\t\t\t\tTienda de equipos y Suministros para Impresi%cn, Fotografia y Audiovisuales\n\n",162);
+                    printf("\t\t\t\t    ---------------------------------------------------------------------\n");
+                    printf("\n\n\t\t\t\tTienda de equipos y suministros para impresi%cn, fotograf%ca y audiovisuales\n\n", 162, 161);
 
                         printf("\t\t\t\t\t\t           %cSonr%ce! :)\n\n", 173, 161);
                         sleep(3);
@@ -1211,7 +1233,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                     default:
 
                         Beep(300,500); // 523 hertz (C5) for 500 milliseconds
-                        printf("\t\t\t\t\t\tOpcion no valida\n");
+                        printf("\t\t\t\t\t\tOpci%cn no v%clida\n", 162, 160);
                         fflush( stdin );
                         printf("\n\n");
                         sleep(1);
@@ -1219,7 +1241,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                     break;
                 }
             } else {
-                printf("\n\n\tHa sobrepasado el numero maximo de intentos permitidos\n");
+                printf("\n\n\tHa sobrepasado el numero m%cximo de intentos permitidos\n", 160);
                 sleep(1);
                 repetir = 0;
             }
@@ -1393,7 +1415,7 @@ int a, b, line = 12;
             sleep(1);
             repetir = 1;
             } else{
-                printf("Opcion no valida\n");
+                printf("Opci%cn no v%clida\n", 162, 160);
                 sleep(1);
                 repetir = 0;
                 Beep(300,500); // 523 hertz (C5) for 500 milliseconds

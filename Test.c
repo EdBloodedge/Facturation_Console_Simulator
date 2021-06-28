@@ -4,7 +4,7 @@
 
 struct pagina{
 
-  int num;
+  float num;
 
 };
 
@@ -27,16 +27,36 @@ struct producto{
 
 };
 int main(){
-  int a;
-  int i;
-  float num;
-  long int numi;
+	
+	struct estudiante *A = &pepito;
+	int a;
+	int i = 10;
+	float num;
+	unsigned long int numi = 2;
 
-  scanf("%f", &num);
-  numi = num;
+	scanf("%f", &(A->novela.numero.num));
+	
+	printf("%f\n", A->novela.numero.num);
+	
+	numi = pepito.novela.numero.num;
+	printf("%u\n", numi);
 
-  printf("%d", numi)
+	for(a = 1000000000; a>10; a/=10){
 
+		if(numi%a == numi){
+
+			if(numi%(a/10) != numi){
+
+				a = 1;
+
+			}
+		}
+		i--;
+	}
+
+	i+=3;
+
+	printf("%.2f tiene %d caracteres.", num, i);
 
 	return 0;
 
