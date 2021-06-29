@@ -29,14 +29,17 @@ Nombre de la empresa: Los SAT-anes.
 #define USUARIO "Perry"
 #define CLAVE "ElOrnitorrinco"
 #define QR "# ## #\n# ## #\n#    #\n #### "
+#define PUESTO1 "Agente secreto"
 
 #define USUARIO2 "Jaimito"
 #define CLAVE2 "tangamandapio"
 #define QR2 "#####\n  #  \n  #  \n ##  \n##   "
+#define PUESTO2 "Cartero"
 
 #define USUARIO3 "LosSATanes"
 #define CLAVE3 "SATanes"
 #define QR3 "#####\n#    #\n#    #\n#    #\n#####"
+#define PUESTO3 "Facturadores del inframundo"
 
 #define TECLA_ENTER 13
 #define TECLA_BACKSPACE 8
@@ -86,7 +89,7 @@ struct factura{
 
 //Usuario.
 struct Usuario{
-  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[20], qr[50];
+  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[40], qr[50];
   int NumFacturas;
   struct factura facturas[LimiteFact];
 };
@@ -995,18 +998,21 @@ int main() {
   strcpy(USUARIOS[0].usuario, USUARIO);
   strcpy(USUARIOS[0].clave, CLAVE);
   strcpy(USUARIOS[0].qr, QR);
+  strcpy(USUARIOS[0].puesto, PUESTO1);
   USUARIOS[0].NumFacturas = 0;
 
   //Asignaci�n de datos del segundo usuario
   strcpy(USUARIOS[1].usuario, USUARIO2);
   strcpy(USUARIOS[1].clave, CLAVE2);
   strcpy(USUARIOS[1].qr, QR2);
+  strcpy(USUARIOS[1].puesto, PUESTO2);
   USUARIOS[1].NumFacturas = 0;
 
   //Asignaci�n de datos del tercer usuario
   strcpy(USUARIOS[2].usuario, USUARIO3);
   strcpy(USUARIOS[2].clave, CLAVE3);
   strcpy(USUARIOS[2].qr, QR3);
+  strcpy(USUARIOS[2].puesto, PUESTO3);
   USUARIOS[2].NumFacturas = 0;
 
 
@@ -1128,7 +1134,9 @@ printf("\t\t\t\t\t\t          *******             \n");
                     printf("\t\t\t\t        |\n\t\t\t\t    |\t Bienvenido al Sistema de Facturaci%cn Electr%cnica los SAT-anes  |\n",162, 162);//�
                     printf("\t\t\t\t    |\t\t\t\t                             \t\t|\n");
                     printf("\t\t\t\t    ---------------------------------------------------------------------\n");
-                    printf("\n\n\t\t\t\tTienda de equipos y suministros para impresi%cn, fotograf%ca y audiovisuales\n\n", 162, 161);
+                    printf("\t\t\t\tTienda de equipos y suministros para impresi%cn, fotograf%ca y audiovisuales\n\n", 162, 161);
+                    printf("\n\t\t\t\t     Usuario: %s\n", (USUARIOS[j].usuario));
+                    printf("\t\t\t\t     Puesto: %s\n\n", (USUARIOS[j].puesto));
 
                         printf("\t\t\t\t\t\t           %cSonr%ce! :)\n\n", 173, 161);
                         sleep(3);
