@@ -1283,7 +1283,7 @@ printf("\t\t\t\t\t\t          *******             \n");
                             system("pause");
                             USUARIOS[0].facturas[k].enviado=enviar(USUARIOS, cantidadFacturas, k);
                         }
-                        sleep(1);
+                        system("pause");
 
                     break;
 
