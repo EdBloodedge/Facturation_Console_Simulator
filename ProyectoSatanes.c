@@ -79,7 +79,7 @@ struct productos{
 struct factura{
 
   char logo[20][10], nombreEmisor[37], RFCEmisor[15], nombreReceptor[30], RFCReceptor[15];
-  int enviado, hora[128];
+  int enviado, hora[128], qr[10][20];
   float subtotal, IVA, total;
   char folio[15], emisorFiscales[30], receptorFiscales[30], firma[70];
   struct domicilio domEmisor, domReceptor;
@@ -89,7 +89,7 @@ struct factura{
 
 //Usuario.
 struct Usuario{
-  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[40], qr[50];
+  char usuario[LONGITUD+1], clave[LONGCLAVE+1], nombre[50], puesto[40];
   int NumFacturas;
   struct factura facturas[LimiteFact];
 };
@@ -505,7 +505,7 @@ int crear(struct Usuario *A, int a, struct producto *B, int CopiarAnt){
 int mostrar(struct Usuario A, int a){
     system("CLS");
     struct Usuario *DA = &A;
-    int longitud1, longitud2, i, contadorCantidad=0;
+    int longitud1, longitud2, i, contadorCantidad=0, j, k, l;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~EMISOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     printf("\n\n----------EMISOR----------\n\nNombre de la empresa: %s\n", A.facturas[a].nombreEmisor);
     printf("RFC: %s\n", A.facturas[a].RFCEmisor);
@@ -628,7 +628,20 @@ printf("|____________|______________|___________________________________________
 
     printf("\nHora: %s\n", A.facturas[a].hora);
     printf("Su folio: %s\n", A.facturas[a].folio);
-    printf("\nFirma: %s\n", A.facturas[a].firma);
+    printf("\nFirma: %s\n\n", A.facturas[a].firma);
+
+    if(A.facturas[a].enviado == 1){
+      printf("\t\t\t\t\t\t\t\t\t\t\t");
+      for(j = 0; j<10; j++){
+          for(k=0; k<20; k++){
+
+        printf("%c", A.facturas[a].qr[j][k]);
+
+        }
+        printf("\n\n");
+      }
+
+    }
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BUSCAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -687,7 +700,7 @@ int buscar(struct Usuario *A, int cantidadFacturas, int MenuPrincipal){
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENVIAR FACTURA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int enviar(struct Usuario *A, int cantidadFacturas, int k){
-    int Enviar;
+    int Enviar, i, j, a;
     if (cantidadFacturas>0){
         if (A->facturas[k].enviado==0 || A->facturas[k].enviado==2){
             do{
@@ -874,9 +887,68 @@ int enviar(struct Usuario *A, int cantidadFacturas, int k){
                   printf("\t\t\t\t\t\t\t        |   |          |\n");
                   printf("\t\t\t\t\t\t\t        |___|__________|\n");
                   printf("\t\t\t\t\t\t\t\n");
-                  printf("\t\t\t\t\t\t\t  Factura enviada exitosamente.\n\n\n\n\n\n\n");
+                  printf("\t\t\t\t\t\t\t  Factura enviada exitosamente.\n");
+                  printf("\t\t\t\t\t\t\t          QR generado.\n\n");
                   Beep(494,250);
                   Beep(740,250);
+
+                  for(i = 0; i<10; i++){
+                      for(a=0; a<20; a++){
+
+                        j = rand()%4;
+
+                        switch(j){
+
+                          case 0:
+                            A->facturas[k].qr[i][a] = 32;
+                            break;
+
+                          case 1:
+                            A->facturas[k].qr[i][a] = 219;
+                            break;
+
+                          case 2:
+                            A->facturas[k].qr[i][a] = 223;
+                            break;
+
+                          case 3:
+                            A->facturas[k].qr[i][a] = 220;
+                            break;
+
+
+                    }
+
+                      }
+
+                  }
+
+                  A->facturas[k].qr[0][0] = 219; A->facturas[k].qr[0][1] = 223; A->facturas[k].qr[0][2] = 223; A->facturas[k].qr[0][3] = 223; A->facturas[k].qr[0][4] = 223; A->facturas[k].qr[0][5] = 223; A->facturas[k].qr[0][6] = 219; A->facturas[k].qr[0][7] = 32;
+                  A->facturas[k].qr[1][0] = 219; A->facturas[k].qr[1][1] = 32; A->facturas[k].qr[1][2] = 219; A->facturas[k].qr[1][3] = 219; A->facturas[k].qr[1][4] = 219; A->facturas[k].qr[1][5] = 32; A->facturas[k].qr[1][6] = 219; A->facturas[k].qr[1][7] = 32;
+                  A->facturas[k].qr[2][0] = 219; A->facturas[k].qr[2][1] = 32; A->facturas[k].qr[2][2] = 223; A->facturas[k].qr[2][3] = 223; A->facturas[k].qr[2][4] = 223; A->facturas[k].qr[2][5] = 32; A->facturas[k].qr[2][6] = 219; A->facturas[k].qr[2][7] = 32;
+                  A->facturas[k].qr[3][0] = 223; A->facturas[k].qr[3][1] = 223; A->facturas[k].qr[3][2] = 223; A->facturas[k].qr[3][3] = 223; A->facturas[k].qr[3][4] = 223; A->facturas[k].qr[3][5] = 223; A->facturas[k].qr[3][6] = 223; A->facturas[k].qr[3][7] = 32;
+
+                  A->facturas[k].qr[0][12] = 32; A->facturas[k].qr[0][13] = 219; A->facturas[k].qr[0][14] = 223; A->facturas[k].qr[0][15] = 223; A->facturas[k].qr[0][16] = 223; A->facturas[k].qr[0][17] = 223; A->facturas[k].qr[0][18] = 223; A->facturas[k].qr[0][19] = 219;
+                  A->facturas[k].qr[1][12] = 32;A->facturas[k].qr[1][13] = 219; A->facturas[k].qr[1][14] = 32; A->facturas[k].qr[1][15] = 219; A->facturas[k].qr[1][16] = 219; A->facturas[k].qr[1][17] = 219; A->facturas[k].qr[1][18] = 32; A->facturas[k].qr[1][19] = 219;
+                  A->facturas[k].qr[2][12] = 32;  A->facturas[k].qr[2][13] = 219; A->facturas[k].qr[2][14] = 32; A->facturas[k].qr[2][15] = 223; A->facturas[k].qr[2][16] = 223; A->facturas[k].qr[2][17] = 223; A->facturas[k].qr[2][18] = 32; A->facturas[k].qr[2][19] = 219;
+                  A->facturas[k].qr[3][12] = 32;A->facturas[k].qr[3][13] = 223; A->facturas[k].qr[3][14] = 223; A->facturas[k].qr[3][15] = 223; A->facturas[k].qr[3][16] = 223; A->facturas[k].qr[3][17] = 223; A->facturas[k].qr[3][18] = 223; A->facturas[k].qr[3][19] = 223;
+
+                  A->facturas[k].qr[6][0] = 220; A->facturas[k].qr[6][1] = 220; A->facturas[k].qr[6][2] = 220; A->facturas[k].qr[6][3] = 220; A->facturas[k].qr[6][4] = 220; A->facturas[k].qr[6][5] = 220; A->facturas[k].qr[6][6] = 220; A->facturas[k].qr[6][7] = 32;
+                  A->facturas[k].qr[7][0] = 219; A->facturas[k].qr[7][1] = 32; A->facturas[k].qr[7][2] = 220; A->facturas[k].qr[7][3] = 220; A->facturas[k].qr[7][4] = 220; A->facturas[k].qr[7][5] = 32; A->facturas[k].qr[7][6] = 219; A->facturas[k].qr[7][7] = 32;
+                  A->facturas[k].qr[8][0] = 219; A->facturas[k].qr[8][1] = 32; A->facturas[k].qr[8][2] = 219; A->facturas[k].qr[8][3] = 219; A->facturas[k].qr[8][4] = 219; A->facturas[k].qr[8][5] = 32; A->facturas[k].qr[8][6] = 219; A->facturas[k].qr[8][7] = 32;
+                  A->facturas[k].qr[9][0] = 219; A->facturas[k].qr[9][1] = 220; A->facturas[k].qr[9][2] = 220; A->facturas[k].qr[9][3] = 220; A->facturas[k].qr[9][4] = 220; A->facturas[k].qr[9][5] = 220; A->facturas[k].qr[9][6] = 219; A->facturas[k].qr[9][7] = 32;
+
+                  for(i = 0; i<10; i++){
+                    printf("\t\t\t\t\t\t\t     ");
+                      for(a=0; a<20; a++){
+
+                	  printf("%c", A->facturas[k].qr[i][a]);
+
+                	  }
+                	  printf("\n");
+                	}
+
+                  printf("\n\n");
+
                 }
             }while(Enviar!=1 && Enviar!=2);
         }
@@ -997,21 +1069,18 @@ int main() {
   //Asignaci�n de datos del primer usuario
   strcpy(USUARIOS[0].usuario, USUARIO);
   strcpy(USUARIOS[0].clave, CLAVE);
-  strcpy(USUARIOS[0].qr, QR);
   strcpy(USUARIOS[0].puesto, PUESTO1);
   USUARIOS[0].NumFacturas = 0;
 
   //Asignaci�n de datos del segundo usuario
   strcpy(USUARIOS[1].usuario, USUARIO2);
   strcpy(USUARIOS[1].clave, CLAVE2);
-  strcpy(USUARIOS[1].qr, QR2);
   strcpy(USUARIOS[1].puesto, PUESTO2);
   USUARIOS[1].NumFacturas = 0;
 
   //Asignaci�n de datos del tercer usuario
   strcpy(USUARIOS[2].usuario, USUARIO3);
   strcpy(USUARIOS[2].clave, CLAVE3);
-  strcpy(USUARIOS[2].qr, QR3);
   strcpy(USUARIOS[2].puesto, PUESTO3);
   USUARIOS[2].NumFacturas = 0;
 
