@@ -631,16 +631,16 @@ printf("|____________|______________|___________________________________________
     printf("\nFirma: %s\n\n", A.facturas[a].firma);
 
     if(A.facturas[a].enviado == 1){
-      printf("\t\t\t\t\t\t\t\t\t\t\t");
       for(j = 0; j<10; j++){
+        printf("\t\t\t\t\t\t\t\t\t\t\t");
           for(k=0; k<20; k++){
 
         printf("%c", A.facturas[a].qr[j][k]);
 
         }
-        printf("\n\n");
+        printf("\n");
       }
-
+      printf("\n");
     }
 }
 
